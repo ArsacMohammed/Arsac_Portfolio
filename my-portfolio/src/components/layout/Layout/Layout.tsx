@@ -1,0 +1,27 @@
+import React from 'react'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+import { ThemeProvider } from '../../../hooks'
+import SmoothScroll from '../../../components/common/SmoothScroll/SmoothScroll'
+
+interface LayoutProps {
+  children: React.ReactNode
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  return (
+    <ThemeProvider>
+      <SmoothScroll>
+        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+          <Header />
+          <main className="pt-16 md:pt-20">
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </SmoothScroll>
+    </ThemeProvider>
+  )
+}
+
+export default Layout

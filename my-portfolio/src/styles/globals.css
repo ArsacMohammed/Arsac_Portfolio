@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary - Orange/Red gradient like your design */
+  --color-primary-50: #fff7ed;
+  --color-primary-100: #ffedd5;
+  --color-primary-200: #fed7aa;
+  --color-primary-300: #fdba74;
+  --color-primary-400: #fb923c;
+  --color-primary-500: #f97316; /* Main orange */
+  --color-primary-600: #ea580c;
+  --color-primary-700: #c2410c;
+  --color-primary-800: #9a3412;
+  --color-primary-900: #7c2d12;
+
+  /* Accent - Bright orange like the design */
+  --color-accent-500: #ff4500;
+  --color-accent-600: #e63e00;
+
+  /* Neutrals - Clean grays */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Typography */
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  /* Spacing for large elements */
+  --spacing-18: 4.5rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: linear-gradient(135deg, theme(--color-primary-500), theme(--color-accent-500));
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, theme(--color-primary-500), theme(--color-accent-500));
+  }
+  
+  .glass-morphism {
+    backdrop-filter: blur(16px);
+    background: color-mix(in srgb, white 8%, transparent);
+    border: 1px solid color-mix(in srgb, white 15%, transparent);
+  }
+  
+  .geometric-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, theme(--color-primary-500) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, theme(--color-accent-500) 0%, transparent 50%);
+    background-size: 400px 400px;
+    opacity: 0.1;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: theme(--font-display);
+    line-height: 1.6;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: theme(--color-gray-100);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: theme(--color-primary-500);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme(--color-primary-600);
+  }
+}
