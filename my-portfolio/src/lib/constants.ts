@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: "Your Name",
+  name: "Mohammed-Arsac",
   title: "Creative Developer & Designer", 
   description: "Crafting digital experiences with modern technologies",
   url: "https://yourname.dev",

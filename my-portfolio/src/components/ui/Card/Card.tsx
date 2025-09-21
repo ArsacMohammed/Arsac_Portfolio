@@ -13,10 +13,10 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({
   ...props
 }, ref) => {
   const variants = {
-    default: 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800',
-    bordered: 'bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700',
-    elevated: 'bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-800',
-    glass: 'backdrop-blur-md bg-white/10 border border-white/20 dark:bg-gray-900/10 dark:border-gray-700/20'
+    default: 'surface', // Using the new .surface class from globals.css
+    bordered: 'surface border-2 border-accent',
+    elevated: 'surface shadow-lg',
+    glass: 'backdrop-blur-md bg-white/10 border border-white/20'
   }
   
   const paddings = {
