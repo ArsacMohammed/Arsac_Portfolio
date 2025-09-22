@@ -71,89 +71,75 @@ const Hero: React.FC = () => {
           </div>
         </div>
       </nav>
-
       {/* Main Content */}
-      <div className="h-screen flex items-center background-color">
-        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
+      <div
+        className="h-screen flex items-center relative"
+        style={{ backgroundColor: 'var(--color-background)' }}
+      >
+        {/* Black Ribbon Bar - full width, behind content */}
+        <div
+          className="absolute bottom-9 left-0 right-0 transform -translate-y-1/2 bg-gray-900 z-0"
+          style={{ height: '152px' }} // adjust height as needed
+        ></div>
+
+        {/* Content container with higher z-index to appear above ribbon */}
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
           <div className="grid grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center h-full">
 
             {/* Left Column - Text Content */}
             <div className="col-span-12 lg:col-span-6 xl:col-span-6 relative">
-
               {/* Main Title */}
               <div className="hero-main-text mb-6 lg:mb-8">
-                <h1 className="absolute bottom-10 left-4  text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[16rem]  theme-text lab">
+                <h1 className="absolute bottom-10 left-4 text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[16rem] theme-text lab">
                   lab.
                 </h1>
 
+                {/* <span className="absolute top-90 left-20 text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[4rem] font-black leading-none theme-text rotate-90 numeric-style">
+              001
+            </span> */}
 
-                <span className="absolute top-90 left-20 text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[4rem] font-black leading-none theme-text rotate-90 numeric-style">
-                  001
-                </span>
-
-
-                {/* <div className="absolute top-20 left-20 w-[200px] h-[200px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px]">
-                  <ThreeDAnimation />
-                </div> */}
-
-                {/* Small decorative elements 
-                <div className="absolute -right-4 lg:-right-8 top-8 w-2 h-8 accent"></div>
-                <div className="absolute -left-2 lg:-left-4 bottom-8 w-4 h-4 accent rounded-sm"></div>
-                */}
+                {/* Small decorative elements can be added here */}
               </div>
             </div>
 
             {/* Right Column - Image */}
-            <div className="col-span-12 lg:col-span-6 xl:col-span-6 relative mt-8 lg:mt-32 xl:mt-32" style={{ backgroundColor: 'var(--color-background)' }}>
-              <div className="hero-image-container relative h-[50vh] md:h-[60vh] lg:h-[70vh] xl:h-[100vh] max-h-[900px]" style={{ backgroundColor: 'var(--color-background)' }}>
+            <div
+              className="col-span-12 lg:col-span-6 xl:col-span-6 relative mt-8 lg:mt-32 xl:mt-32 z-0"
+              style={{ backgroundColor: 'var(--color-background)' }}
+            >
+              <div
+                className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] xl:h-[100vh] max-h-[900px]"
+                style={{ backgroundColor: 'var(--color-background)' }}
+              >
 
-                {/* Main Image Container */}
-                <div className="relative w-full h-full" style={{ backgroundColor: 'var(--color-background)' }}>
-
+                <div className="relative w-full h-full">
                   {/* Background Shape */}
                   <div className="absolute inset-0" style={{ backgroundColor: 'var(--color-background)' }}></div>
 
-                  {/* Orange Accent Block - Matching the design */}
-                  <div className="absolute bottom-15 left-0 right-0 h-100 "></div>
 
-                  {/* Image Placeholder - Replace with your actual image */}
-                  <div className="absolute inset-0 flex items-center justify-end pr-25 ">
+
+                  {/* Orange Accent Block or other elements can go here */}
+                  <div className="absolute bottom-40 left-0 right-0 h-38  bg-gray-900  z-0"></div>
+
+                  {/* Image Container */}
+                  <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-10">
                     <img
                       src="public/arsac_latest_2.png"
-                      alt="Person in orange jacket"
+                      alt="Person in hero section"
                       className="w-auto h-full object-cover mix-blend-multiply"
-                      style={{ zIndex: 1 }}
+                      style={{ zIndex: 10 }}
                     />
                   </div>
 
-                  {/* Geometric Overlay Elements 
-                  <div className="absolute top-8 right-8">
-                    <div className="text-xs font-mono text-gray-50 transform rotate-90 origin-bottom-left">
-                      DESIGNED OF BT™
-                    </div>
-                  </div> */}
-
-                  {/* Corner geometric elements
-                  <div className="absolute top-4 left-4 w-6 h-6 border-2 border-accent"></div>
-                  <div className="absolute bottom-4 left-4 w-4 h-4 bg-gray-900"></div>  */}
+                  {/* Optional text or overlays */}
+                  <div className="hidden lg:block absolute -right-0 xl:right-20 rotate-90 top-40 text-2xl text-black max-w-60 font-bold font-black">
+                    <p>
+                      X-LAB  <br />
+                      MATERIAL OF <br />
+                      <span className="underline">CREATION 2025</span>
+                    </p>
+                  </div>
                 </div>
-
-                {/* Information Cards/Text 
-                <div className="hidden lg:block absolute -left-8 xl:-left-12 top-1/4 text-xs text-gray-400 max-w-32 leading-relaxed">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Sed do eiusmod tempor incididunt ut labore.
-                  </p>
-                </div> */}
-
-                <div className="hidden lg:block absolute -right-0 xl:right-20 rotate-90 top-40 text-2xl text-black max-w-60 font-bold font-black">
-                  <p>
-                    X-LAB  <br />
-                    MATERIAL OF <br />
-                    <span className="underline">CREATION 2025</span>
-                  </p>
-                </div>
-
               </div>
             </div>
           </div>
