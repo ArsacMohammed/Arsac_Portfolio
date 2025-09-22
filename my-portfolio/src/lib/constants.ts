@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: "Your Name",
+  name: "Mohammed-Arsac",
   title: "Creative Developer & Designer", 
   description: "Crafting digital experiences with modern technologies",
   url: "https://yourname.dev",
@@ -14,11 +14,11 @@ export const SITE_CONFIG = {
 }
 
 export const NAVIGATION_ITEMS = [
-  { name: "Home", href: "#home", id: "home" },
-  { name: "About", href: "#about", id: "about" },
-  { name: "Projects", href: "#projects", id: "projects" },
-  { name: "Skills", href: "#skills", id: "skills" },
-  { name: "Contact", href: "#contact", id: "contact" }
+  { name: "Home", href: "#home", id: "home" }, 
+  { name: "Projects", href: "#about", id: "about" },
+  { name: "About", href: "#projects", id: "projects" },
+  { name: "Insights", href: "#skills", id: "skills" },
+  { name: "New Arrivals", href: "#contact", id: "contact" }
 ] as const
 
 export const ANIMATION_DURATION = {

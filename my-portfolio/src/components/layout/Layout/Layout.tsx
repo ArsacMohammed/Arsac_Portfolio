@@ -10,11 +10,12 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <ThemeProvider>
+    <ThemeProvider >
       <SmoothScroll>
-        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+        <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-gray-900)] dark:text-[var(--color-gray-50)] transition-colors">
           <Header />
-          <main className="pt-16 md:pt-20">
+          {/* Remove padding-top, let sections handle their own spacing */}
+          <main className="w-full">
             {children}
           </main>
           <Footer />

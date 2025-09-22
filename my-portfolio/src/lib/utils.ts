@@ -23,3 +23,10 @@ export function slugify(text: string): string {
     .replace(/^-+/, '')
     .replace(/-+$/, '')
 }
+
+
+
+// What this does:
+// cn() combines class names intelligently, resolving conflicts (e.g., px-4 px-6 becomes just px-6)
+// formatDate() and slugify() are helper functions for blog posts or project URLs
+// This is the foundation for all your component styling

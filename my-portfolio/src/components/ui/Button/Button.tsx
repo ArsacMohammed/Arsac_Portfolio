@@ -11,7 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ 
   className,
   variant = 'primary',
   size = 'md',
@@ -24,10 +24,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   const Comp = asChild ? Slot : 'button'
   
   const variants = {
-    primary: 'bg-blue-600 text-white shadow hover:bg-blue-700 focus:ring-blue-500',
-    secondary: 'bg-gray-100 text-gray-900 shadow-sm hover:bg-gray-200 focus:ring-gray-500 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700',
-    outline: 'border border-gray-300 bg-transparent hover:bg-gray-50 focus:ring-gray-500 dark:border-gray-700 dark:hover:bg-gray-800',
-    ghost: 'hover:bg-gray-100 focus:ring-gray-500 dark:hover:bg-gray-800',
+    primary: 'btn-primary', // Using the new .btn-primary class from globals.css
+    secondary: 'surface text-gray-50 hover:bg-gray-800 focus:ring-gray-500',
+    outline: 'border border-accent bg-transparent hover:bg-gray-800 focus:ring-gray-500',
+    ghost: 'hover:bg-gray-800 focus:ring-gray-500',
     destructive: 'bg-red-600 text-white shadow hover:bg-red-700 focus:ring-red-500'
   }
   
