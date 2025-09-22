@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
     >
       {/* Top Navigation - Matching the design */}
       <nav className="hero-nav absolute top-0 left-0 right-0 z-10">
-        <div className="max-w-7xl mx-auto px-8 py-6 transform: rotate(0 deg)">
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
           <div className="flex items-center justify-between">
             {/* Logo placeholder */}
             <div className="text-sm font-medium text-gray-50">
@@ -73,32 +73,32 @@ const Hero: React.FC = () => {
 
       {/* Main Content */}
       <div className="h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-8 w-full">
-          <div className="grid grid-cols-12 gap-8 items-center h-full">
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
+          <div className="grid grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center h-full">
             
             {/* Left Column - Text Content */}
-            <div className="col-span-6 relative">
+            <div className="col-span-12 lg:col-span-6 relative">
               
               {/* Main Title */}
-              <div className="hero-main-text mb-8">
-                <h1 className="text-[8rem] md:text-[10rem] lg:text-[12rem] font-black leading-none theme-text">
+              <div className="hero-main-text mb-6 lg:mb-8">
+                <h1 className="text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-black leading-none theme-text">
                   lab.
                 </h1>
                 
                 // And for the number
-                <span className="text-[12rem] md:text-[14rem] lg:text-[16rem] font-black leading-none theme-text block rotate-270">
+                <span className="text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[14rem] font-black leading-none theme-text block rotate-270">
                   100
                 </span>
                 
                 {/* Small decorative elements */}
-                <div className="absolute -right-8 top-8 w-2 h-8 accent"></div>
-                <div className="absolute -left-4 bottom-8 w-4 h-4 accent rounded-sm"></div>
+                <div className="absolute -right-4 lg:-right-8 top-8 w-2 h-8 accent"></div>
+                <div className="absolute -left-2 lg:-left-4 bottom-8 w-4 h-4 accent rounded-sm"></div>
               </div>
             </div>
             
             {/* Right Column - Image */}
-            <div className="col-span-6 relative">
-              <div className="hero-image-container relative h-[70vh] max-h-[600px]">
+            <div className="col-span-12 lg:col-span-6 relative mt-8 lg:mt-0">
+              <div className="hero-image-container relative h-[50vh] md:h-[60vh] lg:h-[70vh] max-h-[600px]">
                 
                 {/* Main Image Container */}
                 <div className="relative w-full h-full">
@@ -135,14 +135,14 @@ const Hero: React.FC = () => {
                 </div>
                 
                 {/* Information Cards/Text */}
-                <div className="absolute -left-12 top-1/4 text-xs text-gray-400 max-w-32 leading-relaxed">
+                <div className="hidden lg:block absolute -left-8 xl:-left-12 top-1/4 text-xs text-gray-400 max-w-32 leading-relaxed">
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Sed do eiusmod tempor incididunt ut labore.
                   </p>
                 </div>
                 
-                <div className="absolute -right-16 bottom-1/4 text-xs text-gray-400 max-w-32 leading-relaxed">
+                <div className="hidden lg:block absolute -right-12 xl:-right-16 bottom-1/4 text-xs text-gray-400 max-w-32 leading-relaxed">
                   <p>
                     Ut enim ad minim veniam, quis nostrud exercitation 
                     ullamco laboris nisi ut aliquip.

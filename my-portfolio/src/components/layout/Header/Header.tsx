@@ -41,8 +41,8 @@ const Header: React.FC = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
           {/* Logo */}
           <motion.button
             onClick={() => handleNavClick('#home')}
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
           </motion.button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 xl:space-x-10">
             {NAVIGATION_ITEMS.map((item, index) => (
               <motion.button
                 key={item.id}
