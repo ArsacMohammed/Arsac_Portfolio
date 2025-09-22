@@ -42,7 +42,7 @@ const Header: React.FC = () => {
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
+        <div className="flex items-center justify-between h-16 md:h-20 lg:h-24 lab">
           {/* Logo */}
           <motion.button
             onClick={() => handleNavClick('#home')}

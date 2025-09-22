@@ -72,22 +72,22 @@ const Hero: React.FC = () => {
       </nav>
 
       {/* Main Content */}
-      <div className="h-screen flex items-center">
+      <div className="h-screen flex items-center background-color">
         <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center h-full">
             
             {/* Left Column - Text Content */}
-            <div className="col-span-12 lg:col-span-6 relative">
+            <div className="col-span-12 lg:col-span-6 xl:col-span-4 relative">
               
               {/* Main Title */}
               <div className="hero-main-text mb-6 lg:mb-8">
-                <h1 className="text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-black leading-none theme-text">
+                <h1 className="absolute bottom-10 left-4  text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[16rem]  theme-text lab">
                   lab.
                 </h1>
                 
-                // And for the number
-                <span className="text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[14rem] font-black leading-none theme-text block rotate-270">
-                  100
+                
+                <span className="absolute top-90 left-20 text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[4rem] font-black leading-none theme-text rotate-90 numeric-style">
+                  001
                 </span>
                 
                 {/* Small decorative elements */}
@@ -97,8 +97,8 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Right Column - Image */}
-            <div className="col-span-12 lg:col-span-6 relative mt-8 lg:mt-0">
-              <div className="hero-image-container relative h-[50vh] md:h-[60vh] lg:h-[70vh] max-h-[600px]">
+            <div className="col-span-12 lg:col-span-6 xl:col-span-8 relative mt-8 lg:mt-32 xl:mt-32">
+              <div className="hero-image-container relative h-[50vh] md:h-[60vh] lg:h-[70vh] xl:h-[100vh] max-h-[900px] ">
                 
                 {/* Main Image Container */}
                 <div className="relative w-full h-full">
@@ -107,19 +107,16 @@ const Hero: React.FC = () => {
                   <div className="absolute inset-0 surface"></div>
                   
                   {/* Orange Accent Block - Matching the design */}
-                  <div className="absolute bottom-0 left-0 right-0 h-32 accent"></div>
+                  <div className="absolute bottom-15 left-0 right-0 h-100  #FF512F"></div>
                   
                   {/* Image Placeholder - Replace with your actual image */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center space-y-4">
-                      <div className="w-24 h-24 bg-gray-400 rounded-full mx-auto opacity-50"></div>
-                      <p className="text-gray-50 font-medium">
-                        Your Image Here
-                      </p>
-                      <p className="text-sm text-gray-400">
-                        (Person in orange jacket)
-                      </p>
-                    </div>
+                     <img
+                        src="public/arsac_latest_2.png"
+                        alt="Person in orange jacket"
+                        className="w-auto h-full object-cover mix-blend-multiply"
+                        style={{ zIndex: 1 }}
+                      />
                   </div>
                   
                   {/* Geometric Overlay Elements */}
@@ -131,7 +128,7 @@ const Hero: React.FC = () => {
                   
                   {/* Corner geometric elements */}
                   <div className="absolute top-4 left-4 w-6 h-6 border-2 border-accent"></div>
-                  <div className="absolute bottom-4 right-4 w-4 h-4 bg-gray-900"></div>
+                  <div className="absolute bottom-4 left-4 w-4 h-4 bg-gray-900"></div>
                 </div>
                 
                 {/* Information Cards/Text */}
