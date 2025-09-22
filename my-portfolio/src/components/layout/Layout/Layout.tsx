@@ -10,7 +10,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <ThemeProvider>
+    <ThemeProvider >
       <SmoothScroll>
         <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-gray-900)] dark:text-[var(--color-gray-50)] transition-colors">
           <Header />

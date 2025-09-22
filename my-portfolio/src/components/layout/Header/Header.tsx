@@ -11,7 +11,7 @@ import type { ThemeMode } from '../../../types'
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { theme, setTheme,resolvedTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -128,20 +128,22 @@ const Header: React.FC = () => {
             </div>
 
             {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                const themes: ThemeMode[] = ['light', 'dark', 'system']
-                const currentIndex = themes.indexOf(theme)
-                const nextTheme = themes[(currentIndex + 1) % themes.length]
-                setTheme(nextTheme)
-              }}
-              className="p-2 rounded-lg"
-            >
-              <ThemeIcon className="w-5 h-5" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+           <Button
+  variant="ghost"
+  size="sm"
+  onClick={() => {
+    const themes: ThemeMode[] = ['light', 'dark', 'system']
+    const currentIndex = themes.indexOf(theme)
+    const nextTheme = themes[(currentIndex + 1) % themes.length]
+    setTheme(nextTheme)
+  }}
+  className="p-2 rounded-lg ml-4" // added margin-left to separate from menu
+>
+  <ThemeIcon
+    className={`w-5 h-5 ${theme === 'light' ? 'text-black' : 'text-white'}`}
+  />
+  <span className="sr-only">Toggle theme</span>
+</Button>
           </nav>
 
 

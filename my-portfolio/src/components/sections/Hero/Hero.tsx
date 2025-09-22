@@ -102,9 +102,25 @@ const Hero: React.FC = () => {
             {/* Left Column - Text Content */}
             <div className="col-span-12 lg:col-span-6 xl:col-span-6 relative z-10">
               <div className="hero-main-text mb-6 lg:mb-8">
-                <h1 className="absolute bottom-10 left-4 text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[16rem] theme-text lab">
-                  lab.
-                </h1>
+
+
+                <div className="flex flex-col justify-center h-full pl-8">
+                  {/* <h1 className="text-7xl font-extrabold leading-tight mb-4">Mohammed Arsac.</h1> */}
+                  <h1
+  className="text-7xl font-extrabold leading-tight mb-4 
+             bg-gradient-to-r from-black to-white 
+             bg-clip-text text-transparent 
+             [text-stroke:2px_black]">
+  Mohammed Arsac
+</h1>
+
+
+                  <p className="text-2xl text-gray-600 mb-4 max-w-md">Building seamless digital experiences for modern businesses.</p>
+                  <button className="mt-4 py-3 px-8 bg-black text-white rounded-xl hover:bg-gray-800 transition font-medium w-fit">View My Work</button>
+                </div>
+
+
+
               </div>
             </div>
 
