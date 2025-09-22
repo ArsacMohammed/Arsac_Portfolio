@@ -6,7 +6,7 @@ import { useTheme } from '../../../hooks'
 import { NAVIGATION_ITEMS, SITE_CONFIG } from '../../..//lib/constants'
 import { scrollToElement } from '../../../components/common'
 import { cn } from '../../../lib/utils'
-import type{ ThemeMode } from '../../../types'
+import type { ThemeMode } from '../../../types'
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -32,9 +32,9 @@ const Header: React.FC = () => {
   return (
     <motion.header
       className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300',
-        scrolled 
-          ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-800/50' 
+        'fixed top-0 w-full z-50 transition-all duration-300 flex items-center justify-between px-6 py-4',
+        scrolled
+          ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm border-b border-gray-200/50 dark:border-gray-800/50'
           : 'bg-transparent'
       )}
       initial={{ y: -100 }}
@@ -43,36 +43,90 @@ const Header: React.FC = () => {
     >
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex items-center justify-between h-16 md:h-20 lg:h-24 lab">
-          {/* Logo */}
+          {/* Left: Logo 
           <motion.button
             onClick={() => handleNavClick('#home')}
-            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all"
           >
+
             {SITE_CONFIG.name.split(' ')[0]}
-          </motion.button>
+          </motion.button> */}
+          {/* <motion.button
+            onClick={() => handleNavClick('#home')}
+            className="text-lg font-medium text-black relative group transition-transform duration-300"
+            whileHover={{ scale: 1.05 }}
+          >
+             {SITE_CONFIG.name.split(' ')[0]}
+            {/* Underline 
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300"></span>
+          </motion.button> */}
+
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 xl:space-x-10">
-            {NAVIGATION_ITEMS.map((item, index) => (
+          <nav className="hidden md:flex lg:flex xl:flex w-full items-center px-14">
+            {/* Left Section */}
+            <div className="flex">
               <motion.button
-                key={item.id}
-                onClick={() => handleNavClick(item.href)}
-                className={cn(
-                  'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400',
-                  'font-medium transition-colors relative group'
-                )}
+                onClick={() => handleNavClick(NAVIGATION_ITEMS[0].href)} // Home
+                className="text-black font-medium relative group transition-colors duration-300 group-hover:text-orange-500"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                transition={{ delay: 0, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
               >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
+                {NAVIGATION_ITEMS[0].name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300" />
               </motion.button>
-            ))}
-            
+            </div>
+
+
+            {/* Center Section (Projects) */}
+            <div className="absolute left-1/2 transform -translate-x-1/2  -ml-120">
+              <motion.button
+                onClick={() => handleNavClick('/projects')}
+                className="text-black font-medium relative group transition-colors duration-300 group-hover:text-orange-500"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                Projects
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300" />
+              </motion.button>
+            </div>
+
+            {/* Right Section */}
+            <div className="flex ml-auto space-x-8 items-center">
+              {NAVIGATION_ITEMS.slice(2).map((item, index) => (
+                <motion.button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.href)}
+                  className="text-black font-medium relative group transition-colors duration-300 group-hover:text-orange-500"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300" />
+                </motion.button>
+              ))}
+
+              {/* Hamburger Menu SVG */}
+              <button className="text-black transition-colors duration-300 hover:text-orange-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+
             {/* Theme Toggle */}
             <Button
               variant="ghost"
@@ -90,6 +144,24 @@ const Header: React.FC = () => {
             </Button>
           </nav>
 
+
+          {/* Theme Toggle 
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                const themes: ThemeMode[] = ['light', 'dark', 'system']
+                const currentIndex = themes.indexOf(theme)
+                const nextTheme = themes[(currentIndex + 1) % themes.length]
+                setTheme(nextTheme)
+              }}
+              className="p-2 rounded-lg"
+            >
+              <ThemeIcon className="w-5 h-5" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          </nav> */}
+
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <Button
@@ -105,7 +177,7 @@ const Header: React.FC = () => {
             >
               <ThemeIcon className="w-5 h-5" />
             </Button>
-            
+
             <Button
               variant="ghost"
               size="sm"
