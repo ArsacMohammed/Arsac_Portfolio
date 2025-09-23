@@ -68,18 +68,41 @@ const Hero: React.FC = () => {
       {/* Main Content */}
       <div
         className="h-screen flex items-center relative"
-        style={{ backgroundColor: 'var(--color-background)' }}
+        style={{ background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 30%, #ffffff 50%, #ffffff 80%)' }}
       >
-        {/* Black Ribbon Bar - full width, lowest layer */}
+        {/* Black Ribbon Bar - full width, lowest layer  */}
         <div
-          className="absolute bottom-9 left-0 right-0 transform -translate-y-1/2 bg-black z-0"
+          className="absolute top-200 left-0 right-0 transform -translate-y-1/2 bg-black z-0"
           style={{ height: '152px' }}
         ></div>
+
+        {/* <div
+  className="absolute top-200 left-0 right-0 z-0 bg-black"
+  style={{
+    height: '152px',
+    transform: 'skewY(3deg)',   // instead of -3deg
+    transformOrigin: 'top left',
+  }}
+></div> */}
+
+
+        {/* Black Ribbon Bar - inverted wave */}
+        {/* <div className="absolute top-210 left-0 right-0 z-30">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 130"
+            className="w-full h-[130px] fill-black"
+            preserveAspectRatio="none"
+          >
+            <path d="M0,76 C360,6 1080,146 1440,76 L1440,130 L0,152 Z" />
+          </svg>
+        </div> */}
+
 
         {/* MetaBalls above both columns but below image */}
         <div
           className="absolute top-1/2 left-8/9 transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none"
-          style={{ width: '1500px', height: '600px' }}
+          style={{ width: '1300px', height: '700px' }}
         >
           <MetaBalls
             color="#000000"
@@ -91,7 +114,7 @@ const Hero: React.FC = () => {
             enableTransparency={true}
             hoverSmoothness={0.05}
             clumpFactor={1}
-            speed={1.0}
+            speed={0.9}
           />
         </div>
 
@@ -107,12 +130,12 @@ const Hero: React.FC = () => {
                 <div className="flex flex-col justify-center h-full pl-8">
                   {/* <h1 className="text-7xl font-extrabold leading-tight mb-4">Mohammed Arsac.</h1> */}
                   <h1
-  className="text-7xl font-extrabold leading-tight mb-4 
+                    className="text-7xl font-extrabold leading-tight mb-4 
              bg-gradient-to-r from-black to-white 
              bg-clip-text text-transparent 
              [text-stroke:2px_black]">
-  Mohammed Arsac
-</h1>
+                    Mohammed Arsac
+                  </h1>
 
 
                   <p className="text-2xl text-gray-600 mb-4 max-w-md">Building seamless digital experiences for modern businesses.</p>
@@ -127,11 +150,10 @@ const Hero: React.FC = () => {
             {/* Right Column - Image */}
             <div
               className="col-span-12 lg:col-span-6 xl:col-span-6 relative mt-8 lg:mt-32 xl:mt-32 z-10"
-              style={{ backgroundColor: 'var(--color-background)' }}
             >
 
               {/* Image - highest layer, above everything */}
-              <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-20 ">
+              <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-10 ">
                 <img
                   src="public/arsac_latest_2.png"
                   alt="Person in hero section"
@@ -143,7 +165,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator 
       <motion.div
         className="absolute bottom-8 left-8 text-gray-400 cursor-pointer z-20"
         animate={{ y: [0, 8, 0] }}
@@ -154,7 +176,7 @@ const Hero: React.FC = () => {
           <div className="w-px h-8 bg-gray-400"></div>
           <span className="transform -rotate-90 origin-center whitespace-nowrap">SCROLL DOWN</span>
         </div>
-      </motion.div>
+      </motion.div>*/}
     </section>
   )
 }
