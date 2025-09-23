@@ -1,74 +1,117 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Download, MapPin, Mail, Calendar } from 'lucide-react'
-import { Button, Card, CardContent } from '../../../components/ui'
-import { useFadeIn } from '../../../hooks'
-import { personalInfo } from '../../../data/personal'
-import { skillsByCategory } from '../../../data/skills'
+import React, { useEffect } from 'react'
+import { motion, useAnimation, easeInOut } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 const About: React.FC = () => {
-  const titleRef = useFadeIn<HTMLDivElement>()
-  const contentRef = useFadeIn<HTMLDivElement>(0.2)
-  const statsRef = useFadeIn<HTMLDivElement>(0.4)
+  const controls = useAnimation()
+  const [ref, inView] = useInView({ threshold: 0.2 })
 
- return (
-    <section
-      className="bg-{#f1f1f1} py-20 px-6 md:px-0 relative"
-      style={{ minHeight: "70vh", display: "flex", alignItems: "center" }}
-    >
-      {/* Top wave to connect with Hero section */}
-      {/* <div className="absolute top-0 left-0 right-0 z-0">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 200"
-          className="w-full h-[200px] fill-black"
-          preserveAspectRatio="none"
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    }
+  }, [controls, inView])
+
+  const leftVariants = {
+    hidden: { opacity: 0, x: -200 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.8, ease: easeInOut, delay: 0.2 }
+    }
+  }
+
+  const rightVariants = {
+    hidden: { opacity: 0, x: 200 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.8, ease: easeInOut, delay: 0.2 }
+    }
+  }
+
+  return (
+    <section id="about" className="min-h-screen relative overflow-hidden" ref={ref}>
+      <div
+        className="h-screen w-screen flex relative"
+        style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
+      >
+        <motion.div
+          className="w-5/9 h-full relative z-10"
+          initial="hidden"
+          animate={controls}
+          variants={leftVariants}
         >
-          <path d="M0,0 L1440,0 L1440,100 C1320,40 1200,160 1080,100 C960,40 840,160 720,100 C600,40 480,160 360,100 C240,40 120,160 0,100 Z" />
-        </svg>
-      </div> */}
+          <div className="relative h-full w-full">
+            <div className="tilted-square-container absolute top-17 left-50 z-20">
+              <img src="/image.png" alt="Diamond Square" className="tilted-square-img" />
+            </div>
+            <div className="tilted-rectangle-container absolute top-55 right-100 z-10">
+              <img src="/image.png" alt="Diamond Rectangle" className="tilted-rectangle-img" />
+            </div>
+          </div>
+        </motion.div>
 
-{/* Black Ribbon Bar - bottom wave for hero */}
-{/* <div className="absolute top-0 left-0 right-0 z-30">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1440 130"
-    className="w-full h-[130px] fill-black"
-    preserveAspectRatio="none"
-  >
-    <path d="M0,0 L1440,0 L1440,76 C1080,130 360,6 0,76 Z" />
-  </svg>
-</div> */}
+        <motion.div
+          className="w-5/9 h-full relative z-10 flex items-center"
+          initial="hidden"
+          animate={controls}
+          variants={rightVariants}
+        >
+          <div className="w-full h-full flex flex-col justify-center px-12">
+            <div className="mb-12 text-center">
+              <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-0">
+                <span className="text-7xl font-extrabold leading-tight mb-2 bg-gradient-to-r from-gray-900 via-gray-600 to-gray-300 bg-clip-text text-transparent [text-stroke:1.5px_black]">About Me</span>
+              </h1>
+            </div>
 
+            <h1 className="text-7xl font-bold mb-4 text-[#222222] leading-tight">
+              Cloud, AI & Full Stack<br /><span className="text-gray-600">Software Developer</span>
+            </h1>
 
-      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Left Container - Photo */}
-        <div className="flex justify-center items-center">
-          <img
-            src="/path_to_profile_photo.jpg"
-            alt="Profile"
-            className="rounded-xl shadow-2xl w-[75%] max-w-[340px] object-cover"
-            // style={{ background: "#f1f1f1" }}  
-          />
-        </div>
-        {/* Right Container - Fuzzy Bold Text */}
-        <div>
-          <h2
-            className="text-4xl md:text-5xl font-extrabold text-[#2E2E2E] mb-6"
-            style={{ filter: "blur(1.2px)" }}
-          >
-            Creating Digital Impact
-          </h2>
-          <p className="text-lg text-[#64748B] font-semibold tracking-wide mb-4">
-            Passionate about transforming complex ideas into seamless digital products.
-          </p>
-          <p className="text-base text-[#4A90E2] font-bold bg-[#D4C5B0] px-3 py-2 rounded-md inline-block">
-            Driven by design, powered by technology – delivering exceptional solutions for businesses.
-          </p>
-        </div>
+            <p className="text-xl text-[#4B5563] mb-12 leading-relaxed">
+              Crafting modern digital solutions leveraging cloud technologies, AI, and full stack development.
+            </p>
+
+            <div className="grid grid-cols-2 gap-8 mb-8">
+              <div className="stat-button">
+                <div className="stat-circle"></div>
+                <div className="stat-content">
+                  <h3 className="text-4xl font-bold text-[#222222] mb-1">25+</h3>
+                  <p className="text-gray-500 text-sm uppercase tracking-wider">Projects Completed</p>
+                </div>
+              </div>
+              <div className="stat-button">
+                <div className="stat-circle"></div>
+                <div className="stat-content">
+                  <h3 className="text-4xl font-bold text-[#222222] mb-1">4+</h3>
+                  <p className="text-gray-500 text-sm uppercase tracking-wider">Years Experience</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-8">
+              <div className="stat-button">
+                <div className="stat-circle"></div>
+                <div className="stat-content">
+                  <h3 className="text-4xl font-bold text-[#222222] mb-1">10+</h3>
+                  <p className="text-gray-500 text-sm uppercase tracking-wider">Clients Served</p>
+                </div>
+              </div>
+              <div className="stat-button">
+                <div className="stat-circle"></div>
+                <div className="stat-content">
+                  <h3 className="text-4xl font-bold text-[#222222] mb-1">7+</h3>
+                  <p className="text-gray-500 text-sm uppercase tracking-wider">Technologies Mastered</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </motion.div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 export default About

@@ -30,17 +30,17 @@ const Header: React.FC = () => {
   const ThemeIcon = theme === 'dark' ? Sun : theme === 'light' ? Moon : Monitor
 
   return (
-    <motion.header
-      className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300 flex items-center justify-between px-6 py-4',
-        scrolled
-          ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm border-b border-gray-200/50 dark:border-gray-800/50 text-white'
-          : 'bg-transparent'
-      )}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
+<motion.header
+  className={cn(
+    'fixed top-0 w-full z-50 transition-all duration-300 flex items-center justify-between px-6 py-4',
+    scrolled
+      ? 'bg-white/60 backdrop-blur-md shadow-sm border-b border-gray-200 text-gray-900'
+      : 'bg-transparent text-white'
+  )}
+  initial={{ y: -100 }}
+  animate={{ y: 0 }}
+  transition={{ duration: 0.6, ease: 'easeOut' }}
+>
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className={
           cn(
@@ -73,17 +73,18 @@ const Header: React.FC = () => {
             {/* Left Section */}
             <div className="flex">
               <motion.button
-                onClick={() => handleNavClick(NAVIGATION_ITEMS[0].href)} // Home
-                className={cn(
-                  scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
-                  'font-medium relative group transition-colors duration-300'
-                )}
-
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-              >
+  onClick={() => handleNavClick(NAVIGATION_ITEMS[0].href)} // Home
+  className={cn(
+    scrolled
+      ? 'text-black text-lg font-semibold' // Bigger & black when scrolled
+      : 'text-black text-lg font-semibold',
+    'relative group transition-all duration-300'
+  )}
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0, duration: 0.5 }}
+  whileHover={{ scale: 1.1 }} // Zoom on hover
+>
                 {NAVIGATION_ITEMS[0].name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300" />
               </motion.button>
@@ -92,18 +93,19 @@ const Header: React.FC = () => {
 
             {/* Center Section (Projects) */}
             <div className="absolute left-1/2 transform -translate-x-1/2  -ml-120">
-              <motion.button
-                onClick={() => handleNavClick('/projects')}
-                className={cn(
-                  scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
-                  'font-medium relative group transition-colors duration-300'
-                )}
-
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-              >
+                          <motion.button
+  onClick={() => handleNavClick(NAVIGATION_ITEMS[0].href)} // Home
+  className={cn(
+    scrolled
+      ? 'text-black text-lg font-semibold' // Bigger & black when scrolled
+      : 'text-black text-lg font-semibold',
+    'relative group transition-all duration-300'
+  )}
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0, duration: 0.5 }}
+  whileHover={{ scale: 1.1 }} // Zoom on hover
+>
                 Projects
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300" />
               </motion.button>
@@ -112,19 +114,19 @@ const Header: React.FC = () => {
             {/* Right Section */}
             <div className="flex ml-auto space-x-8 items-center">
               {NAVIGATION_ITEMS.slice(2).map((item, index) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.href)}
-                  className={cn(
-                    scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
-                    'font-medium relative group transition-colors duration-300'
-                  )}
-
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  whileHover={{ scale: 1.05 }}
-                >
+                              <motion.button
+  onClick={() => handleNavClick(NAVIGATION_ITEMS[0].href)} // Home
+  className={cn(
+    scrolled
+      ? 'text-black text-lg font-semibold' // Bigger & black when scrolled
+      : 'text-black text-lg font-semibold',
+    'relative group transition-all duration-300'
+  )}
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0, duration: 0.5 }}
+  whileHover={{ scale: 1.1 }} // Zoom on hover
+>
                   {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300" />
                 </motion.button>

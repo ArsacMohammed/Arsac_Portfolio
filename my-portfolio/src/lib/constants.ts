@@ -36,6 +36,31 @@ export const BREAKPOINTS = {
 } as const
 
 
+export const ABOUT_SECTION = {
+  title: "Cloud, AI & Full Stack Software Developer",
+  shortDescription: "Crafting modern digital solutions leveraging cloud technologies, AI, and full stack development.",
+  longDescription: `
+    I specialize in designing and building scalable, efficient, and innovative software solutions.
+    With hands-on experience in cloud platforms, AI integration, and full stack development,
+    I help businesses transform ideas into high-quality applications. My work spans from conceptualization 
+    to deployment, ensuring robust, maintainable, and user-friendly solutions.
+  `,
+  stats: {
+    projectsCompleted: 25,
+    technologiesUsed: ["React", "Node.js", "TypeScript", "Python", "AWS", "Docker", "AI/ML"],
+    clientsServed: 10, // Can be companies or teams
+    yearsExperience: 4
+  },
+  highlights: [
+    "Cloud architecture design and deployment",
+    "AI/ML-based intelligent solutions",
+    "End-to-end full stack application development",
+    "Scalable, maintainable, and robust software solutions",
+    "Strong focus on UX/UI and modern technologies"
+  ]
+} as const;
+
+
 
 
 // What this does:

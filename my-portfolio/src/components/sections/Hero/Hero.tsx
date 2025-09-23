@@ -68,22 +68,22 @@ const Hero: React.FC = () => {
       {/* Main Content */}
       <div
         className="h-screen flex items-center relative"
-        style={{ backgroundColor: 'var(--color-background)' }}
+        style={{ background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 30%, #ffffff 50%, #ffffff 80%)' }}
       >
         {/* Black Ribbon Bar - full width, lowest layer  */}
-        {/* <div
+        <div
           className="absolute top-200 left-0 right-0 transform -translate-y-1/2 bg-black z-0"
           style={{ height: '152px' }}
-        ></div>  */}
+        ></div>
 
-     <div
+        {/* <div
   className="absolute top-200 left-0 right-0 z-0 bg-black"
   style={{
     height: '152px',
     transform: 'skewY(3deg)',   // instead of -3deg
     transformOrigin: 'top left',
   }}
-></div>
+></div> */}
 
 
         {/* Black Ribbon Bar - inverted wave */}
@@ -102,7 +102,7 @@ const Hero: React.FC = () => {
         {/* MetaBalls above both columns but below image */}
         <div
           className="absolute top-1/2 left-8/9 transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none"
-          style={{ width: '1500px', height: '600px' }}
+          style={{ width: '1300px', height: '700px' }}
         >
           <MetaBalls
             color="#000000"
@@ -114,7 +114,7 @@ const Hero: React.FC = () => {
             enableTransparency={true}
             hoverSmoothness={0.05}
             clumpFactor={1}
-            speed={1.0}
+            speed={0.9}
           />
         </div>
 
@@ -150,7 +150,6 @@ const Hero: React.FC = () => {
             {/* Right Column - Image */}
             <div
               className="col-span-12 lg:col-span-6 xl:col-span-6 relative mt-8 lg:mt-32 xl:mt-32 z-10"
-              style={{ backgroundColor: 'var(--color-background)' }}
             >
 
               {/* Image - highest layer, above everything */}

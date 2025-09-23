@@ -7,7 +7,8 @@
   --color-primary-200: #ffd1b8;
   --color-primary-300: #ffb68c;
   --color-primary-400: #ff9156;
-  --color-primary-500: #ff6f23;   /* main accent */
+  --color-primary-500: #ff6f23;
+  /* main accent */
   --color-primary-600: #e65e1f;
   --color-primary-700: #b74a1b;
   --color-primary-800: #8c3616;
@@ -15,11 +16,13 @@
 
   /* Typography */
   --font-display: "Inter", sans-serif;
-  --font-l1: "Geist", sans-serif; /* 100 and lab */
+  --font-l1: "Geist", sans-serif;
+  /* 100 and lab */
   --font-numeric: "Robinson", "Robinson Regular", "Robinson Medium", sans-serif;
 }
 
 @layer base {
+
   /* Light theme (default) */
   :root {
     --color-background: #F1F1F1;
@@ -48,7 +51,8 @@
     --color-gray-900: #1e1f24;
   }
 
-  html, body {
+  html,
+  body {
     background-color: var(--color-background);
     color: var(--color-gray-900);
     font-family: var(--font-display);
@@ -60,23 +64,28 @@
 }
 
 @layer components {
+
   /* Default surface (cards, panels) */
   .surface {
     background-color: var(--color-surface);
     color: inherit;
   }
+
   /* Primary buttons */
   .btn-primary {
     background-color: var(--color-primary-500);
     color: #fff;
   }
+
   .btn-primary:hover {
     background-color: var(--color-primary-600);
   }
+
   /* Accent lines or small elements */
   .accent {
     background-color: var(--color-primary-500);
   }
+
   /* Text gradient for headings */
   .text-gradient {
     background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-400));
@@ -89,28 +98,261 @@
   .theme-text {
     color: var(--color-gray-900);
   }
+
   .dark .theme-text {
     color: white;
   }
+
   .border-accent {
     border-color: var(--color-primary-500);
   }
+
   .text-accent {
     color: var(--color-primary-500);
   }
+
   .lab {
     /* font-family: var(--font-l1) !important; */
     font-family: cursive;
-    font-weight: 900;  /* black */
-    line-height: 1;    /* same as leading-none */
+    font-weight: 900;
+    /* black */
+    line-height: 1;
+    /* same as leading-none */
   }
+
   .numeric-style {
     font-family: var(--font-numeric);
     font-weight: 900;
     /* transform: rotate(90deg);  */
     line-height: 1;
-    display: inline-block;         /* required for transform */
-    transform: scaleX(1.4) scaleY(4);        /* increase vertical height */
-    transform-origin: center;      /* scale from center (not top-left) */
+    display: inline-block;
+    /* required for transform */
+    transform: scaleX(1.4) scaleY(4);
+    /* increase vertical height */
+    transform-origin: center;
+    /* scale from center (not top-left) */
   }
+
+.tilted-square-container {
+  width: 370px;
+  height: 370px;
+  transform: rotate(45deg);
+}
+.tilted-square-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: inset(0);
+  border-radius: 22px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+  transform: rotate(-90deg); /* Undo parent rotation so image appears upright */
+}
+
+.tilted-rectangle-container {
+  width: 370px;
+  height: 1300px; /* Rectangle, not square */
+  transform: rotate(90deg);
+}
+.tilted-rectangle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: inset(0);
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.11);
+  transform: rotate(-45deg); /* Undo parent rotation so image appears upright */
+}
+
+/* Glass Morphism Statistics Buttons */
+.stat-button {
+  background: #002f2f;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 15px 36px;
+  border: 1px solid rgba(0, 47, 47, 0.5);
+  box-shadow: 
+    0 8px 32px rgba(0, 47, 47, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 47, 47, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.stat-button:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: rgba(0, 47, 47, 0.95);
+  box-shadow: 
+    0 16px 48px rgba(0, 47, 47, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 47, 47, 0.4);
+  border-color: rgba(0, 47, 47, 0.6);
+}
+
+.stat-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.02) 0%, 
+    rgba(255, 255, 255, 0.005) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.stat-button::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.015) 0%,
+    rgba(255, 255, 255, 0.003) 100%
+  );
+  border-radius: 58px;
+  pointer-events: none;
+}
+
+/* Circle inside the button */
+.stat-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(200, 200, 200, 0.6) 100%
+  );
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.stat-circle::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(240, 240, 240, 0.3) 100%
+  );
+}
+
+.stat-button:hover .stat-circle {
+  transform: scale(1.1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(220, 220, 220, 0.7) 100%
+  );
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.stat-content {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  flex: 1;
+}
+
+.stat-button h3 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.stat-button p {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #e2e8f0;
+  opacity: 0.9;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme support for glass morphism stat buttons */
+.dark .stat-button {
+  background: rgba(45, 55, 72, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dark .stat-button:hover {
+  background: rgba(45, 55, 72, 0.4);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dark .stat-button::before {
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.dark .stat-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(160, 160, 160, 0.3) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .stat-button:hover .stat-circle {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(180, 180, 180, 0.4) 100%
+  );
+}
+
+.dark .stat-button h3 {
+  color: #e2e8f0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.dark .stat-button p {
+  color: #a0aec0;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+
 }
