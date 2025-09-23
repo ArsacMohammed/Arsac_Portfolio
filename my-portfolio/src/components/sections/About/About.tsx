@@ -48,7 +48,7 @@ const About: React.FC = () => {
             src="/path_to_profile_photo.jpg"
             alt="Profile"
             className="rounded-xl shadow-2xl w-[75%] max-w-[340px] object-cover"
-            style={{ background: "#f1f1f1" }}  
+            // style={{ background: "#f1f1f1" }}  
           />
         </div>
         {/* Right Container - Fuzzy Bold Text */}

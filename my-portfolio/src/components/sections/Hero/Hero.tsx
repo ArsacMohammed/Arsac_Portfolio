@@ -70,14 +70,24 @@ const Hero: React.FC = () => {
         className="h-screen flex items-center relative"
         style={{ backgroundColor: 'var(--color-background)' }}
       >
-        {/* Black Ribbon Bar - full width, lowest layer 
-        <div
+        {/* Black Ribbon Bar - full width, lowest layer  */}
+        {/* <div
           className="absolute top-200 left-0 right-0 transform -translate-y-1/2 bg-black z-0"
           style={{ height: '152px' }}
         ></div>  */}
 
+     <div
+  className="absolute top-200 left-0 right-0 z-0 bg-black"
+  style={{
+    height: '152px',
+    transform: 'skewY(3deg)',   // instead of -3deg
+    transformOrigin: 'top left',
+  }}
+></div>
+
+
         {/* Black Ribbon Bar - inverted wave */}
-        <div className="absolute top-210 left-0 right-0 z-30">
+        {/* <div className="absolute top-210 left-0 right-0 z-30">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1440 130"
@@ -86,7 +96,7 @@ const Hero: React.FC = () => {
           >
             <path d="M0,76 C360,6 1080,146 1440,76 L1440,130 L0,152 Z" />
           </svg>
-        </div>
+        </div> */}
 
 
         {/* MetaBalls above both columns but below image */}
