@@ -70,11 +70,25 @@ const Hero: React.FC = () => {
         className="h-screen flex items-center relative"
         style={{ backgroundColor: 'var(--color-background)' }}
       >
-        {/* Black Ribbon Bar - full width, lowest layer */}
+        {/* Black Ribbon Bar - full width, lowest layer 
         <div
-          className="absolute bottom-9 left-0 right-0 transform -translate-y-1/2 bg-black z-0"
+          className="absolute top-200 left-0 right-0 transform -translate-y-1/2 bg-black z-0"
           style={{ height: '152px' }}
-        ></div>
+        ></div>  */}
+
+{/* Black Ribbon Bar - bottom wave for hero */}
+{/* Black Ribbon Bar - inverted wave */}
+<div className="absolute top-210 left-0 right-0 z-30">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 130"
+    className="w-full h-[130px] fill-black"
+    preserveAspectRatio="none"
+  >
+    <path d="M0,76 C360,6 1080,146 1440,76 L1440,130 L0,152 Z" />
+  </svg>
+</div>
+
 
         {/* MetaBalls above both columns but below image */}
         <div
@@ -131,7 +145,7 @@ const Hero: React.FC = () => {
             >
 
               {/* Image - highest layer, above everything */}
-              <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-20 ">
+              <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-10 ">
                 <img
                   src="public/arsac_latest_2.png"
                   alt="Person in hero section"
@@ -143,7 +157,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator 
       <motion.div
         className="absolute bottom-8 left-8 text-gray-400 cursor-pointer z-20"
         animate={{ y: [0, 8, 0] }}
@@ -154,8 +168,8 @@ const Hero: React.FC = () => {
           <div className="w-px h-8 bg-gray-400"></div>
           <span className="transform -rotate-90 origin-center whitespace-nowrap">SCROLL DOWN</span>
         </div>
-      </motion.div>
-    </section>
+      </motion.div>*/}
+    </section> 
   )
 }
 
