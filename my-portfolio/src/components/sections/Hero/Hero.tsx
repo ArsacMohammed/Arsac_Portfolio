@@ -76,18 +76,17 @@ const Hero: React.FC = () => {
           style={{ height: '152px' }}
         ></div>  */}
 
-{/* Black Ribbon Bar - bottom wave for hero */}
-{/* Black Ribbon Bar - inverted wave */}
-<div className="absolute top-210 left-0 right-0 z-30">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1440 130"
-    className="w-full h-[130px] fill-black"
-    preserveAspectRatio="none"
-  >
-    <path d="M0,76 C360,6 1080,146 1440,76 L1440,130 L0,152 Z" />
-  </svg>
-</div>
+        {/* Black Ribbon Bar - inverted wave */}
+        <div className="absolute top-210 left-0 right-0 z-30">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 130"
+            className="w-full h-[130px] fill-black"
+            preserveAspectRatio="none"
+          >
+            <path d="M0,76 C360,6 1080,146 1440,76 L1440,130 L0,152 Z" />
+          </svg>
+        </div>
 
 
         {/* MetaBalls above both columns but below image */}
@@ -121,12 +120,12 @@ const Hero: React.FC = () => {
                 <div className="flex flex-col justify-center h-full pl-8">
                   {/* <h1 className="text-7xl font-extrabold leading-tight mb-4">Mohammed Arsac.</h1> */}
                   <h1
-  className="text-7xl font-extrabold leading-tight mb-4 
+                    className="text-7xl font-extrabold leading-tight mb-4 
              bg-gradient-to-r from-black to-white 
              bg-clip-text text-transparent 
              [text-stroke:2px_black]">
-  Mohammed Arsac
-</h1>
+                    Mohammed Arsac
+                  </h1>
 
 
                   <p className="text-2xl text-gray-600 mb-4 max-w-md">Building seamless digital experiences for modern businesses.</p>
@@ -169,7 +168,7 @@ const Hero: React.FC = () => {
           <span className="transform -rotate-90 origin-center whitespace-nowrap">SCROLL DOWN</span>
         </div>
       </motion.div>*/}
-    </section> 
+    </section>
   )
 }
 

@@ -13,7 +13,7 @@ const About: React.FC = () => {
 
  return (
     <section
-      className="bg-[#F4F4F4] py-20 px-6 md:px-0 relative"
+      className="bg-{#f1f1f1} py-20 px-6 md:px-0 relative"
       style={{ minHeight: "70vh", display: "flex", alignItems: "center" }}
     >
       {/* Top wave to connect with Hero section */}
@@ -29,7 +29,7 @@ const About: React.FC = () => {
       </div> */}
 
 {/* Black Ribbon Bar - bottom wave for hero */}
-<div className="absolute top-0 left-0 right-0 z-30">
+{/* <div className="absolute top-0 left-0 right-0 z-30">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1440 130"
@@ -38,7 +38,7 @@ const About: React.FC = () => {
   >
     <path d="M0,0 L1440,0 L1440,76 C1080,130 360,6 0,76 Z" />
   </svg>
-</div>
+</div> */}
 
 
       <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -48,7 +48,7 @@ const About: React.FC = () => {
             src="/path_to_profile_photo.jpg"
             alt="Profile"
             className="rounded-xl shadow-2xl w-[75%] max-w-[340px] object-cover"
-            style={{ background: "#e1e8f0" }}
+            style={{ background: "#f1f1f1" }}  
           />
         </div>
         {/* Right Container - Fuzzy Bold Text */}

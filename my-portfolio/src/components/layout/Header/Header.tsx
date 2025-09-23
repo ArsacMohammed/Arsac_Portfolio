@@ -11,7 +11,7 @@ import type { ThemeMode } from '../../../types'
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme,resolvedTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,14 +42,14 @@ const Header: React.FC = () => {
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-<div className={
-  cn(
-    "flex items-center justify-between lab transition-all duration-300",
-    scrolled
-      ? "h-12 md:h-14 lg:h-10"
-      : "h-16 md:h-20 lg:h-24"
-  )
-}>          {/* Left: Logo 
+        <div className={
+          cn(
+            "flex items-center justify-between lab transition-all duration-300",
+            scrolled
+              ? "h-12 md:h-14 lg:h-10"
+              : "h-16 md:h-20 lg:h-24"
+          )
+        }>          {/* Left: Logo 
           <motion.button
             onClick={() => handleNavClick('#home')}
             className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all"
@@ -75,9 +75,9 @@ const Header: React.FC = () => {
               <motion.button
                 onClick={() => handleNavClick(NAVIGATION_ITEMS[0].href)} // Home
                 className={cn(
-  scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
-  'font-medium relative group transition-colors duration-300'
-)}
+                  scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
+                  'font-medium relative group transition-colors duration-300'
+                )}
 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -95,9 +95,9 @@ const Header: React.FC = () => {
               <motion.button
                 onClick={() => handleNavClick('/projects')}
                 className={cn(
-  scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
-  'font-medium relative group transition-colors duration-300'
-)}
+                  scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
+                  'font-medium relative group transition-colors duration-300'
+                )}
 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -116,9 +116,9 @@ const Header: React.FC = () => {
                   key={item.id}
                   onClick={() => handleNavClick(item.href)}
                   className={cn(
-  scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
-  'font-medium relative group transition-colors duration-300'
-)}
+                    scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
+                    'font-medium relative group transition-colors duration-300'
+                  )}
 
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -132,10 +132,10 @@ const Header: React.FC = () => {
 
               {/* Hamburger Menu SVG */}
               <button className={cn(
-  scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
-  'font-medium relative group transition-colors duration-300'
-)}
->
+                scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
+                'font-medium relative group transition-colors duration-300'
+              )}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -150,26 +150,26 @@ const Header: React.FC = () => {
             </div>
 
             {/* Theme Toggle */}
-           <Button
-  variant="ghost"
-  size="sm"
-  onClick={() => {
-    const themes: ThemeMode[] = ['light', 'dark', 'system']
-    const currentIndex = themes.indexOf(theme)
-    const nextTheme = themes[(currentIndex + 1) % themes.length]
-    setTheme(nextTheme)
-  }}
-  className="p-2 rounded-lg ml-4 {cn(
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                const themes: ThemeMode[] = ['light', 'dark', 'system']
+                const currentIndex = themes.indexOf(theme)
+                const nextTheme = themes[(currentIndex + 1) % themes.length]
+                setTheme(nextTheme)
+              }}
+              className="p-2 rounded-lg ml-4 {cn(
   scrolled ? 'text-white group-hover:text-orange-500' : 'text-black group-hover:text-orange-500',
   'font-medium relative group transition-colors duration-300'
 )}
 " // added margin-left to separate from menu
->
-  <ThemeIcon
-    className={`w-5 h-5 ${theme === 'light' ? 'text-black' : 'text-white'}`}
-  />
-  <span className="sr-only">Toggle theme</span>
-</Button>
+            >
+              <ThemeIcon
+                className={`w-5 h-5 ${theme === 'light' ? 'text-black' : 'text-white'}`}
+              />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
           </nav>
 
 
