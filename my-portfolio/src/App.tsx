@@ -2,9 +2,11 @@ import React from 'react'
 import { Layout } from './components/layout'
 import Hero from './components/sections/Hero/Hero'
 import About from './components/sections/About/About'
-import Projects from './components/sections/Projects/Projects'
+import Exposure from './components/sections/Exposure/Exposure'
 import Skills from './components/sections/Skills/Skills'
 import Contact from './components/sections/Contact/Contact'
+import ExposureSection from './components/sections/Projects/ExposureSection'
+
 import '@/styles/globals.css'
 
 function App() {
@@ -12,7 +14,8 @@ function App() {
     <Layout>
       <Hero />
       <About />
-      <Projects />
+      <Exposure />
+      <ExposureSection />
       <Skills />
       <Contact />
     </Layout>
