@@ -1,190 +1,140 @@
+// ProjectsCarousel.tsx
+
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, Github, Calendar, Tag } from 'lucide-react'
-import { Button, Card, CardContent } from '../../../components/ui'
-import { projects, categories } from '../../../data/projects'
-import { useFadeIn } from '../../../hooks'
+import { ExternalLink } from 'lucide-react'
+import { Button } from '../../../components/ui'
+
+const slides = [
+  {
+    title: "Salomon",
+    subtitle: "Time to play",
+    image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?fit=crop&w=600&q=80", // add your own
+    bg: "from-red-700 to-red-900",
+    description: "Trail running shoes built for adventure.",
+    link: "https://www.salomon.com/",
+  },
+  {
+    title: "Smart Travel",
+    subtitle: "",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=600&q=80",
+    bg: "from-green-700 to-green-900",
+    description: "Travel smarter, easier, greener.",
+    link: "https://example.com",
+  },
+  {
+    title: "Vans",
+    subtitle: '"Off The Wall"',
+    image: "https://images.unsplash.com/photo-1465101162946-4377e57745c3?fit=crop&w=600&q=80",
+    bg: "from-cyan-400 to-cyan-700",
+    description: "Iconic street sneakers for everyone.",
+    link: "https://www.vans.com/",
+  },
+  {
+    title: "North Face",
+    subtitle: "",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&w=600&q=80",
+    bg: "from-gray-800 to-gray-900",
+    description: "Gear for the toughest outdoors.",
+    link: "https://www.thenorthface.com/",
+  },
+]
 
 const Projects: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState('All')
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null)
-  
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter)
+  const [index, setIndex] = useState(0)
 
-  const titleRef = useFadeIn<HTMLDivElement>()
+  const goToPrev = () => setIndex(i => (i === 0 ? slides.length - 1 : i - 1))
+  const goToNext = () => setIndex(i => (i === slides.length - 1 ? 0 : i + 1))
 
   return (
-    <section id="projects" className="py-20" style={{ background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 30%, #ffffff 70%, #ffffff 100%)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Title */}
-        <div ref={titleRef} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gray-900 dark:text-white">My </span>
-            <span className="text-gradient-primary">Projects</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A showcase of my recent work - from web applications to mobile apps and everything in between.
-          </p>
-        </div>
+    <section
+      id="projects"
+      className="w-full h-screen flex flex-col justify-center items-center px-0 py-0"
+      style={{
+        background: 'linear-gradient(to bottom, #ececec 0%, #f9f9f9 50%, #ffffff 100%)'
+      }}
+    >
+      {/* Carousel Container */}
+      <div className="relative w-full h-[500px] flex items-center justify-center">
+        {/* Prev Arrow */}
+        <button
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 rounded-full p-4 shadow hover:bg-white"
+          onClick={goToPrev}
+        >
+          <span className="sr-only">Previous</span>
+          <svg width={18} height={18} fill="none"><path stroke="currentColor" strokeWidth="2" d="M13 9H5m0 0l4-4m-4 4l4 4" /></svg>
+        </button>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={activeFilter === category ? 'primary' : 'outline'}
-              onClick={() => setActiveFilter(category)}
-              className={`px-6 py-2 transition-all duration-300 ${
-                activeFilter === category 
-                  ? 'bg-gradient-primary text-white shadow-lg transform scale-105' 
-                  : 'hover:border-primary-500 hover:text-primary-600'
-              }`}
+        {/* Next Arrow */}
+        <button
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 rounded-full p-4 shadow hover:bg-white"
+          onClick={goToNext}
+        >
+          <span className="sr-only">Next</span>
+          <svg width={18} height={18} fill="none"><path stroke="currentColor" strokeWidth="2" d="M5 9h8m0 0l-4-4m4 4l-4 4" /></svg>
+        </button>
+
+        {/* Slides */}
+        <div className="w-full flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slides[index].title}
+              initial={{ opacity: 0, x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -80 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="w-[360px] h-[340px] bg-white rounded-xl overflow-hidden shadow-xl relative flex-shrink-0 flex items-end justify-start"
+              style={{
+                boxShadow: "0 24px 64px rgba(0,0,0,0.11)",
+              }}
             >
-              {category}
-            </Button>
-          ))}
-        </div>
+              {/* Color overlay */}
+              <div
+                className={`absolute inset-0 z-0 bg-gradient-to-br ${slides[index].bg} opacity-90`}
+              ></div>
+              <img
+                src={slides[index].image}
+                alt={slides[index].title}
+                className="absolute z-10 inset-0 w-full h-full object-cover mix-blend-multiply"
+                draggable={false}
+              />
 
-        {/* Projects Grid */}
-        <motion.div 
-          layout 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 50, scale: 0.9 }}
-                transition={{ 
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  layout: { duration: 0.3 }
-                }}
-                onHoverStart={() => setHoveredProject(project.id)}
-                onHoverEnd={() => setHoveredProject(null)}
-                className="group"
-              >
-                <Card variant="elevated" className="overflow-hidden h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-                  
-                  {/* Project Image */}
-                  <div className="relative overflow-hidden aspect-video bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900 dark:to-primary-800">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-accent-500/20"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center space-y-2">
-                        <div className="w-16 h-16 bg-primary-500 rounded-lg mx-auto opacity-50"></div>
-                        <p className="text-primary-700 dark:text-primary-300 font-medium text-sm">Project Image</p>
-                      </div>
-                    </div>
-                    
-                    {/* Overlay on Hover */}
-                    <motion.div
-                      className="absolute inset-0 bg-black/50 flex items-center justify-center gap-4"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {project.liveUrl && (
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          onClick={() => window.open(project.liveUrl, '_blank')}
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Live Demo
-                        </Button>
-                      )}
-                      {project.githubUrl && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => window.open(project.githubUrl, '_blank')}
-                        >
-                          <Github className="w-4 h-4 mr-2" />
-                          Code
-                        </Button>
-                      )}
-                    </motion.div>
-                  </div>
-                  
-                  {/* Project Content */}
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
-                        {project.title}
-                      </h3>
-                      <div className="flex items-center gap-1 text-sm text-gray-500">
-                        <Calendar className="w-3 h-3" />
-                        <span>{new Date(project.date).getFullYear()}</span>
-                      </div>
-                    </div>
-                    
-                    <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-                    
-                    {/* Status Badge */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        project.status === 'completed' 
-                          ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                          : project.status === 'in-progress'
-                          ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300'
-                          : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
-                      }`}>
-                        {project.status.replace('-', ' ').toUpperCase()}
-                      </div>
-                      <div className="px-2 py-1 bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300 rounded-full text-xs font-medium">
-                        {project.category}
-                      </div>
-                    </div>
-                    
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md"
-                        >
-                          <Tag className="w-3 h-3" />
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <span className="px-2 py-1 bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-400 text-xs rounded-md">
-                          +{project.technologies.length - 4} more
-                        </span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+              {/* Card content */}
+              <div className="relative z-20 p-8 text-left w-full">
+                <h2 className="text-white text-3xl font-bold leading-tight mb-2 drop-shadow">{slides[index].title}</h2>
+                {slides[index].subtitle && (
+                  <div className="text-white text-lg font-medium mb-4 opacity-80">{slides[index].subtitle}</div>
+                )}
+                <div className="text-gray-200 text-base mb-4 opacity-80">{slides[index].description}</div>
+                <div>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => window.open(slides[index].link, "_blank")}
+                    className="bg-white text-gray-800 font-semibold rounded-full px-4 py-2 hover:bg-gray-100"
+                  >
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Visit
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
           </AnimatePresence>
-        </motion.div>
+        </div>
+      </div>
 
-        {/* View All Projects */}
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="px-8 py-4 text-lg font-semibold hover:bg-gradient-primary hover:text-white hover:border-transparent transition-all duration-300"
+      {/* Pagination (dots/numbers) */}
+      <div className="flex items-center justify-center gap-6 mt-10">
+        {slides.map((slide, i) => (
+          <button
+            key={slide.title}
+            onClick={() => setIndex(i)}
+            className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold transition border 
+              ${i === index ? "bg-primary-600 text-white border-primary-600" : "bg-white text-gray-400 border-gray-300 hover:bg-gray-100"}`}
           >
-            <Github className="w-5 h-5 mr-2" />
-            View All Projects on GitHub
-          </Button>
-        </motion.div>
+            {i + 1}
+          </button>
+        ))}
       </div>
     </section>
   )
