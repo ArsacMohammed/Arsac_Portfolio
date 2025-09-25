@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
+import { motion, AnimatePresence, LayoutGroup, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import { ExternalLink } from 'lucide-react'
 import { Button } from '../../ui'
+import { easeInOut } from 'framer-motion'
 
 interface Slide {
   image: string
@@ -11,6 +13,18 @@ interface Slide {
   link: string
 }
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeInOut,
+      staggerChildren: 0.15
+    }
+  }
+};
 const slides: Slide[] = [
   {
     image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?fit=crop&w=600&q=80',
@@ -48,7 +62,18 @@ const slides: Slide[] = [
     link: 'https://www.example.com/'
   }
 ]
-
+const containerVariants_ = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeInOut,
+      staggerChildren: 0.15
+    }
+  }
+};
 function getSliderWindow(slidesArr: Slide[], selectedIndex: number): Slide[] {
   const total = slidesArr.length
   return [
@@ -59,11 +84,31 @@ function getSliderWindow(slidesArr: Slide[], selectedIndex: number): Slide[] {
   ]
 }
 
-const Exposure: React.FC = () => {
+const Skills: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [paused, setPaused] = useState(false)
+  const controls = useAnimation()
+  const [ref, inView] = useInView({ threshold: 0.2 })
 
   const displayedSlides = getSliderWindow(slides, activeIndex)
+
+  // Animation variants for the bottom frame
+  const containerVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeInOut",
+        staggerChildren: 0.15
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (inView) controls.start('visible')
+  }, [controls, inView])
 
   // Autoplay effect with pause on hover
   useEffect(() => {
@@ -80,8 +125,9 @@ const Exposure: React.FC = () => {
 
   return (
     <section
-      id="Exposure"
-      className="w-full min-h-screen pt-60 relative"
+      id="Skills"
+      className="w-full min-h-screen pt-50 relative"
+      ref={ref}
       style={{
         background:
           'linear-gradient(to bottom, #e0e0e0 25%, #f8f8f8 60%, #ffffff 100%, #ffffff 100%)',
@@ -89,23 +135,25 @@ const Exposure: React.FC = () => {
         overflowX: 'hidden'
       }}
     >
-      <div className="w-full flex items-center justify-between px-4 py-0 absolute top-0 left-0 right-0 z-20 bg-transparent">
+      <div className="w-full flex items-center justify-between px-4 py-2 absolute top-0 left-0 right-0 z-20 bg-transparent">
         {/* Left: Heading */}
-        <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-tight mt-30 mb-0 ml-10">
-          <span className="text-7xl font-extrabold leading-tight mb-2 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">Exposure</span>
+        <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-tight mt-0 mb-0 ml-180">
+          <span className="text-7xl font-extrabold leading-tight mb-2 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">Skills</span>
         </h1>
 
         {/* Right: Top-right '7' Frame with gradient */}
         <div className="relative mr-4" style={{ width: 200, height: 200 }}>
-          <div className="absolute top-0 right-0 h-30 w-165 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black rounded" />
-          <div className="absolute top-0 right-0 w-30 h-100 bg-gradient-to-t from-[#560F13] via-[#560F13] to-black rounded" />
+          <div className="absolute top-0 right-0 h-20 w-100 bg-gradient-to-r bg-black rounded" />
+          {/* <div className="absolute top-0 right-0 h-10 w-100 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black rounded" /> */}
+
+          <div className="absolute top-0 right-0 w-20 h-100 bg-gradient-to-t bg-black to-black rounded" />
         </div>
       </div>
 
       {/* Carousel Container */}
       <LayoutGroup>
         <div
-          className="relative ml-28"
+          className="relative ml-55"
           style={{ width: containerWidth, height: 400, marginTop: '8rem' }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
@@ -249,8 +297,21 @@ const Exposure: React.FC = () => {
           />
         </div>
       </div>
+
+      {/* Bottom Frame - positioned at the very bottom of the section */}
+      <motion.div
+        className="absolute bottom-0 left-0 z-20"
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants_}
+      >
+        <div className="relative" style={{ width: 200, height: 200 }}>
+          <div className="absolute bottom-0 left-0 h-20 w-100 bg-gradient-to-r bg-black to-black rounded" />
+          <div className="absolute bottom-0 left-0 w-20 h-100 bg-gradient-to-t bg-black to-black rounded" />
+        </div>
+      </motion.div>
     </section>
   )
 }
 
-export default Exposure
+export default Skills

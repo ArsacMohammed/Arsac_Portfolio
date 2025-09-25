@@ -1,97 +1,70 @@
 import React from 'react'
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Twitter, Mail, ArrowUp } from 'lucide-react'
-import { Button } from '../../../components/ui'
-import { SITE_CONFIG } from '../../../lib/constants'
-import { scrollToElement } from '../../../components/common'
+import { Linkedin, Instagram, X, Mail, Phone } from 'lucide-react'
 
 const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear()
-
-  const socialLinks = [
-    { name: 'GitHub', icon: Github, href: SITE_CONFIG.author.github },
-    { name: 'LinkedIn', icon: Linkedin, href: SITE_CONFIG.author.linkedin },
-    { name: 'Twitter', icon: Twitter, href: `https://twitter.com/${SITE_CONFIG.author.twitter}` },
-    { name: 'Email', icon: Mail, href: `mailto:${SITE_CONFIG.author.email}` }
-  ]
-
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {SITE_CONFIG.name}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 max-w-sm">
-              {SITE_CONFIG.description}
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-gray-900 dark:text-white">Quick Links</h4>
-            <nav className="flex flex-col space-y-2">
-              <button
-                onClick={() => scrollToElement('#about')}
-                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-left transition-colors"
-              >
-                About
-              </button>
-              <button
-                onClick={() => scrollToElement('#projects')}
-                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-left transition-colors"
-              >
-                Projects
-              </button>
-              <button
-                onClick={() => scrollToElement('#contact')}
-                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-left transition-colors"
-              >
-                Contact
-              </button>
-            </nav>
-          </div>
-
-          {/* Social Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-gray-900 dark:text-white">Connect</h4>
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <social.icon className="w-5 h-5" />
-                  <span className="sr-only">{social.name}</span>
-                </motion.a>
-              ))}
-            </div>
-          </div>
+    <footer className="w-full bg-transparent border-t border-gray-200 dark:border-gray-800 py-10 px-8"style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
+>
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        {/* Left: Contact Info */}
+        <div className="flex flex-col space-y-1 text-black text-center md:text-left">
+          <p className="font-bold text-lg underline">Contact</p>
+          <p className="flex items-center gap-2 cursor-pointer hover:text-[#72383D] font-bold">
+            <Mail size={18} />
+            hello@yourdomain.com
+          </p>
+          <p className="flex items-center gap-2 cursor-pointer hover:text-[#72383D] font-bold">
+            <Phone size={18} />
+            +91-9876543210
+          </p>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            © {currentYear} {SITE_CONFIG.name}. All rights reserved.
-          </p>
-          
-          {/* Back to Top */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => scrollToElement('#home')}
-            className="group"
+        {/* Center: Social Icons */}
+        <div className="flex gap-8 text-black font-bold">
+          <a
+            href="https://linkedin.com/in/yourprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:opacity-70 transition"
           >
-            <ArrowUp className="w-4 h-4 mr-2 transition-transform group-hover:-translate-y-1" />
-            Back to Top
-          </Button>
+            <Linkedin size={28} />
+          </a>
+          <a
+            href="https://github.com/yourprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="hover:scale-110 transition-transform"
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" fill="#181717" />
+              <path fillRule="evenodd" clipRule="evenodd" d="M12 2C7.58 2 4 5.58 4 10c0 3.54 2.29 6.54 5.47 7.59.4.07.52-.17.52-.38v-1.35c-2.22.48-2.7-1.07-2.7-1.07-.36-.91-.89-1.16-.89-1.16-.72-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.7 1.2 1.83.85 2.28.65.07-.5.28-.85.5-1.04-1.77-.2-3.64-.89-3.64-3.98 0-.88.31-1.6.82-2.16-.08-.2-.36-1.01.08-2.11 0 0 .67-.22 2.2.83a7.6 7.6 0 012-.27c.68 0 1.36.09 2 .27 1.53-1.05 2.2-.83 2.2-.83.44 1.1.16 1.91.08 2.11.5.55.82 1.27.82 2.16 0 3.1-1.88 3.77-3.67 3.98.29.25.53.73.53 1.48v2.2c0 .21.12.45.53.38A8.01 8.01 0 0020 10c0-4.42-3.58-8-8-8z" fill="white"/>
+            </svg>
+          </a>
+          <a
+            href="https://instagram.com/yourprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="hover:opacity-70 transition"
+          >
+            <Instagram size={28} />
+          </a>
+          <a
+            href="https://twitter.com/yourprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+            className="hover:opacity-70 transition"
+          >
+            <X size={28} />
+          </a>
+        </div>
+
+        {/* Right: Copyright */}
+        <div className="text-black text-center md:text-right text-sm select-none font-bold">
+          &copy; {new Date().getFullYear()} Mohammed Arsac. All rights reserved.
         </div>
       </div>
     </footer>

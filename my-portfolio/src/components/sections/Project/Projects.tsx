@@ -3,6 +3,24 @@ import { motion, AnimatePresence, useAnimation, easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ChevronDown } from 'lucide-react'
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: easeInOut,
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeInOut } }
+};
+
 
 const luxeMetaColors = [
   "#EFE9E1", // light beige
@@ -14,7 +32,7 @@ const luxeMetaColors = [
 ];
 const luxeAccent = "#72383D";
 
-const exposureData = [
+const projectData = [
   {
     number: '#01',
     category: 'WEB DESIGN',
@@ -100,7 +118,7 @@ const exposureData = [
   }
 ]
 
-const Exposure: React.FC = () => {
+const Projects: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const controls = useAnimation()
   const [ref, inView] = useInView({ threshold: 0.2 })
@@ -121,31 +139,31 @@ const Exposure: React.FC = () => {
     return () => document.removeEventListener('mousedown', onClick)
   }, [openIndex])
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1.2, ease: easeInOut, staggerChildren: 0.1 } }
-  }
+  // const containerVariants = {
+  //   hidden: { opacity: 0 },
+  //   visible: { opacity: 1, transition: { duration: 1.2, ease: easeInOut, staggerChildren: 0.1 } }
+  // }
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeInOut } }
   }
 
   return (
-    <section id="exposure" className="min-h-[150vh] relative overflow-visible" ref={ref}>
+    <section id="Projects" className="min-h-[150vh] relative overflow-visible" ref={ref}>
       <div
         className="h-[150vh] w-screen flex relative"
         style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
       >
         {/* Header */}
         <motion.div
-          className="absolute top-0 left-170 right-0 z-20 px-4 pt-40 pb-16"
+          className="absolute top-0 left-140 right-0 z-20 px-0 pt-40 pb-16"
           initial="hidden"
           animate={controls}
-          variants={itemVariants}
+          variants={containerVariants}
         >
-          <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-tight ml-10">
+          <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-tight ml-0">
             <span className="text-7xl font-extrabold leading-tight bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">
-              Exposure
+              Projects Completed
             </span>
           </h1>
         </motion.div>
@@ -160,7 +178,7 @@ const Exposure: React.FC = () => {
           <div className="w-full px-6 md:px-12 lg:px-16 xl:px-50" ref={containerRef}>
             <div className="relative overflow-visible">
               <AnimatePresence>
-                {exposureData.map((item, index) => {
+                {projectData.map((item, index) => {
                   const isOpen = openIndex === index
                   const shouldShow = openIndex === null || isOpen
                   if (!shouldShow) return null
@@ -168,7 +186,7 @@ const Exposure: React.FC = () => {
                   return (
                     <motion.div
                       key={index}
-                      variants={itemVariants}
+                      variants={containerVariants}
                       className="relative overflow-visible"
                       layout
                       initial={{ opacity: 1, scale: 1, y: 0 }}
@@ -292,7 +310,7 @@ const Exposure: React.FC = () => {
                                     className="flex items-start space-x-3 text-gray-700 leading-relaxed"
                                   >
                                     <div className="w-2 h-2 bg-gradient-to-r from-[#560F13] to-black rounded-full mt-2 flex-shrink-0" />
-                                    <p className="text-base lg:text-lg">{point}</p>
+                                    <p className="text-base lg:text-3 xl">{point}</p>
                                   </motion.li>
                                 ))}
                               </ul>
@@ -308,21 +326,8 @@ const Exposure: React.FC = () => {
           </div>
         </motion.div>
       </div>
-      
-      {/* Bottom Frame - positioned at the very bottom of the section */}
-      <motion.div
-        className="absolute bottom-0 left-0 z-20"
-        initial="hidden"
-        animate={controls}
-        variants={itemVariants}
-      >
-        <div className="relative" style={{ width: 200, height: 200 }}>
-          <div className="absolute bottom-0 left-0 h-27 w-165 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black rounded" />
-          <div className="absolute bottom-0 left-0 w-27 h-100 bg-gradient-to-t from-[#560F13] via-[#560F13] to-black rounded" />
-        </div>
-      </motion.div>
     </section>
   )
 }
 
-export default Exposure
+export default Projects

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Code, Palette, Settings, Database } from 'lucide-react'
-import { Button } from '../../../components/ui'
+import { Button } from '../../ui'
 import { skillsByCategory } from '../../../data/skills'
 import { useFadeIn } from '../../../hooks'
 
