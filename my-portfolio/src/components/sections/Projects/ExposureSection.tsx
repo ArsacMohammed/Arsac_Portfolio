@@ -3,9 +3,24 @@ import { motion, AnimatePresence, useAnimation, easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ChevronDown } from 'lucide-react'
 
+
+const luxeMetaColors = [
+  "#EFE9E1", // light beige
+  "#D9D9D9",
+  "#D1C7BD",
+  "#AC9C8D",
+  "#72383D",
+  "#322D29"
+];
+const luxeAccent = "#72383D";
+
 const exposureData = [
   {
+    number: '#01',
+    category: 'WEB DESIGN',
     title: 'Database Modernization Acceleration Platform (DMAP)',
+    short: 'Engineered a sophisticated migration suite facilitating seamless Oracle database',
+
     description: [
       'Architected and developed a comprehensive platform to accelerate database modernization processes, reducing migration timelines by 60% through automated schema conversion and data validation frameworks.',
       'Implemented intelligent mapping algorithms that automatically identify and resolve compatibility issues between legacy database systems and modern cloud-native solutions, minimizing manual intervention requirements.',
@@ -15,7 +30,10 @@ const exposureData = [
     ]
   },
   {
+    number: '#02',
+    category: 'WEB DESIGN / WEB DEV',
     title: 'Oracle-to-Oracle Multi-Cloud Migration Suite',
+    short: 'Engineered a sophisticated migration suite facilitating seamless Oracle database',
     description: [
       'Engineered a sophisticated migration suite facilitating seamless Oracle database transitions across AWS, Azure, and Google Cloud platforms while maintaining complete data consistency and minimizing operational disruption.',
       'Developed advanced replication strategies using Oracle GoldenGate and custom ETL pipelines, enabling near-zero downtime migrations for mission-critical enterprise applications handling millions of daily transactions.',
@@ -25,7 +43,11 @@ const exposureData = [
     ]
   },
   {
-    title: 'Microservices Migration to Azure Kubernetes Service (AKS)',
+    number: '#03',
+    category: 'WEB DESIGN',
+    title: 'Microservices Migration to Azure Kubernetes Service.',
+    short: 'Engineered a sophisticated migration suite facilitating seamless Oracle database',
+
     description: [
       'Led the decomposition of monolithic applications into scalable microservices architecture, migrating over 25 services to Azure Kubernetes Service with improved fault tolerance and horizontal scaling capabilities.',
       'Implemented comprehensive CI/CD pipelines using Azure DevOps and GitLab, enabling automated testing, security scanning, and deployment processes that reduced release cycles from weeks to hours.',
@@ -35,7 +57,11 @@ const exposureData = [
     ]
   },
   {
+    number: '#04',
+    category: 'WEB DEV',
     title: 'Terraform Multi-Cloud Provisioning',
+    short: 'Engineered a sophisticated migration suite facilitating seamless Oracle database',
+
     description: [
       'Developed enterprise-grade Infrastructure as Code (IaC) solutions using Terraform for consistent resource provisioning across AWS, Azure, and Google Cloud platforms, standardizing deployment processes organization-wide.',
       'Architected modular Terraform configurations with reusable components, enabling rapid environment provisioning while maintaining security best practices and compliance standards across multiple cloud providers.',
@@ -45,7 +71,11 @@ const exposureData = [
     ]
   },
   {
+    number: '#05',
+    category: 'WEB DESIGN',
     title: 'Landing Zone Deployment with Terraform (Client Project)',
+    short: 'Engineered a sophisticated migration suite facilitating seamless Oracle database',
+
     description: [
       'Designed and implemented enterprise landing zones for Fortune 500 client using Terraform, establishing secure, scalable, and compliant cloud foundations across multiple AWS accounts and regions.',
       'Architected network topology with VPC peering, transit gateways, and hybrid connectivity solutions, enabling seamless integration between on-premises infrastructure and cloud environments with optimized performance.',
@@ -55,7 +85,11 @@ const exposureData = [
     ]
   },
   {
+    number: '#06',
+    category: 'WEB DESIGN',
     title: 'Wipro Aviation – Oracle to PostgreSQL Migration',
+    short: 'Engineered a sophisticated migration suite facilitating seamless Oracle database',
+
     description: [
       'Orchestrated large-scale database migration from Oracle to PostgreSQL for aviation industry client, handling over 2TB of critical flight operations data while ensuring zero data loss and minimal downtime.',
       'Developed custom data transformation tools and migration scripts that automated schema conversion, data type mapping, and stored procedure translation, reducing manual effort by 80% and eliminating human errors.',
@@ -97,14 +131,14 @@ const Exposure: React.FC = () => {
   }
 
   return (
-    <section id="exposure" className="min-h-screen relative overflow-visible" ref={ref}>
+    <section id="exposure" className="min-h-[150vh] relative overflow-visible" ref={ref}>
       <div
-        className="h-screen w-screen flex relative"
+        className="h-[150vh] w-screen flex relative"
         style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
       >
         {/* Header */}
         <motion.div
-          className="absolute top-0 left-0 right-0 z-20 px-4 py-8"
+          className="absolute top-0 left-170 right-0 z-20 px-4 pt-40 pb-16"
           initial="hidden"
           animate={controls}
           variants={itemVariants}
@@ -116,27 +150,14 @@ const Exposure: React.FC = () => {
           </h1>
         </motion.div>
 
-        {/* Bottom Frame */}
-        <motion.div
-          className="absolute bottom-0 left-0 z-20"
-          initial="hidden"
-          animate={controls}
-          variants={itemVariants}
-        >
-          <div className="relative" style={{ width: 200, height: 200 }}>
-            <div className="absolute bottom-0 left-0 h-27 w-165 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black rounded" />
-            <div className="absolute bottom-0 left-0 w-27 h-100 bg-gradient-to-t from-[#560F13] via-[#560F13] to-black rounded" />
-          </div>
-        </motion.div>
-
         {/* Accordion List */}
         <motion.div
-          className="w-full h-full flex items-start justify-center pt-32 pb-16 overflow-visible"
+          className="w-full h-full flex items-start justify-center pt-80 pb-16 overflow-visible"
           initial="hidden"
           animate={controls}
           variants={containerVariants}
         >
-          <div className="w-full max-w-5xl px-8" ref={containerRef}>
+          <div className="w-full px-6 md:px-12 lg:px-16 xl:px-50" ref={containerRef}>
             <div className="relative overflow-visible">
               <AnimatePresence>
                 {exposureData.map((item, index) => {
@@ -167,22 +188,71 @@ const Exposure: React.FC = () => {
                       }}
                     >
                       <motion.button
-                        onClick={() => setOpenIndex(isOpen ? null : index)}
-                        className="w-full flex items-center justify-between py-4 mb-4 hover:bg-gray-50 rounded-lg px-4 transition-all duration-300 bg-white border border-gray-200 shadow-sm"
-                        whileHover={{ scale: 1.01 }}
+                        className={`
+                                  w-full
+                                  flex
+                                  items-center
+                                  rounded-2xl
+                                  border
+                                  border-gray-200
+                                  shadow-md
+                                  transition
+                                  px-0
+                                  py-0
+                                  mb-6
+                                  focus:outline-none
+                                  bg-[#F9F8F7]  /* Soft neutral base for card background */
+                                `}
+                        style={{
+                          borderColor: isOpen ? '#72383D' : '#EEE',  /* Luxe accent border when open */
+                          boxShadow: isOpen ? `0 6px 32px -6px #72383D22` : undefined   /* Soft burgundy shadow when open */
+                        }}
+                        whileHover={{ scale: 1.01, y: -2, boxShadow: "0 12px 32px -6px #322D2920" }}
                         whileTap={{ scale: 0.99 }}
+                        onClick={() => setOpenIndex(isOpen ? null : index)}
                       >
-                        <h3 className="text-xl lg:text-2xl font-bold text-gray-900">
-                          {item.title}
-                        </h3>
-                        <motion.div
-                          animate={{ rotate: isOpen ? 180 : 0 }}
-                          transition={{ duration: 0.3, ease: 'easeInOut' }}
-                          className="text-gray-600 ml-4"
+                        {/* Meta Box */}
+                        <div
+                          className="flex flex-col items-center w-40 min-w-[8rem] h-full rounded-l-2xl border-r py-10 px-4 justify-center"
+                          style={{
+                            background: luxeMetaColors[index % luxeMetaColors.length], /* Luxe palette for meta block */
+                            borderColor: '#72383D',
+                            color: ['#D9D9D9', '#EFE9E1'].includes(luxeMetaColors[index % luxeMetaColors.length]) ? '#322D29' : '#FFF' // text contrast
+                          }}
                         >
-                          <ChevronDown size={24} />
-                        </motion.div>
+                          <div className="text-3xl font-semibold mb-2">{item.number}</div>
+                          {/* <div className="text-xs font-medium">{item.category}</div> */}
+                        </div>
+
+                        {/* Title & Actions */}
+                        <div className="flex-1 flex flex-row items-center px-7 py-7 justify-between">
+                          <div>
+                            <h3 className="text-3xl font-semibold leading-tight text-[#322D29] mb-2">
+                              {item.title}
+                            </h3>
+                            {/* {item.short && (
+        <p className="text-base text-gray-500 font-normal">{item.short}</p>
+      )} */}
+                          </div>
+                          <div className="flex gap-3 items-center">
+                            <span className="px-4 py-1 border border-[#D1C7BD] rounded-full text-xs font-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
+                              VIEW CASE
+                            </span>
+                            <span className="px-4 py-1 border border-[#D1C7BD] rounded-full text-xs font-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
+                              LIVE WEBSITE
+                            </span>
+                            <motion.div
+                              animate={{ rotate: isOpen ? 180 : 0 }}
+                              transition={{ duration: 0.34, ease: 'easeInOut' }}
+                              className="ml-2 text-[#72383D]"
+                            >
+                              <ChevronDown size={28} />
+                            </motion.div>
+                          </div>
+                        </div>
                       </motion.button>
+
+
 
                       <AnimatePresence initial={false}>
                         {isOpen && (
@@ -238,6 +308,19 @@ const Exposure: React.FC = () => {
           </div>
         </motion.div>
       </div>
+      
+      {/* Bottom Frame - positioned at the very bottom of the section */}
+      <motion.div
+        className="absolute bottom-0 left-0 z-20"
+        initial="hidden"
+        animate={controls}
+        variants={itemVariants}
+      >
+        <div className="relative" style={{ width: 200, height: 200 }}>
+          <div className="absolute bottom-0 left-0 h-27 w-165 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black rounded" />
+          <div className="absolute bottom-0 left-0 w-27 h-100 bg-gradient-to-t from-[#560F13] via-[#560F13] to-black rounded" />
+        </div>
+      </motion.div>
     </section>
   )
 }
