@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 const ConnectSection: React.FC = () => {
   return (
     <motion.section
+      id="contact"
       className="w-full bg-transparent px-8 py-12"
       style={{ background: 'linear-gradient(to top, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
       initial={{ opacity: 0, y: 60 }}

@@ -4,7 +4,7 @@ import { Menu, X, Sun, Moon, Monitor } from 'lucide-react'
 import { Button } from '../../../components/ui'
 import { useTheme } from '../../../hooks'
 import { NAVIGATION_ITEMS, SITE_CONFIG } from '../../..//lib/constants'
-import { scrollToElement } from '../../../components/common'
+import { useLenis } from '../../../components/common'
 import { cn } from '../../../lib/utils'
 import type { ThemeMode } from '../../../types'
 
@@ -12,6 +12,7 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { theme, setTheme, resolvedTheme } = useTheme();
+  const lenis = useLenis()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +24,20 @@ const Header: React.FC = () => {
   }, [])
 
   const handleNavClick = (href: string) => {
-    scrollToElement(href)
+    if (lenis) {
+      // Use Lenis for smooth scrolling with offset to account for fixed header
+      lenis.scrollTo(href, { 
+        offset: -80, // Offset to account for fixed header height
+        duration: 2.8, // Smooth duration
+        easing: (t: number) => 1 - Math.pow(1 - t, 3) // easeOutCubic for smooth feel
+      })
+    } else {
+      // Fallback to basic scroll
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
     setIsOpen(false)
   }
 
@@ -39,7 +53,7 @@ const Header: React.FC = () => {
   )}
   initial={{ y: -100 }}
   animate={{ y: 0 }}
-  transition={{ duration: 0.6, ease: 'easeOut' }}
+  transition={{ duration: 0.8, ease: 'easeOut' }}
 >
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className={
@@ -94,7 +108,7 @@ const Header: React.FC = () => {
             {/* Center Section (Projects) */}
             <div className="absolute left-1/2 transform -translate-x-1/2  -ml-120">
                           <motion.button
-  onClick={() => handleNavClick(NAVIGATION_ITEMS[0].href)} // Home
+  onClick={() => handleNavClick(NAVIGATION_ITEMS[1].href)} // Projects
   className={cn(
     scrolled
       ? 'text-black text-lg font-semibold' // Bigger & black when scrolled
@@ -115,7 +129,8 @@ const Header: React.FC = () => {
             <div className="flex ml-auto space-x-8 items-center">
               {NAVIGATION_ITEMS.slice(2).map((item, index) => (
                               <motion.button
-  onClick={() => handleNavClick(NAVIGATION_ITEMS[0].href)} // Home
+  key={item.id}
+  onClick={() => handleNavClick(item.href)} // Use correct href for each item
   className={cn(
     scrolled
       ? 'text-black text-lg font-semibold' // Bigger & black when scrolled

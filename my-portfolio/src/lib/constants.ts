@@ -15,10 +15,10 @@ export const SITE_CONFIG = {
 
 export const NAVIGATION_ITEMS = [
   { name: "Home", href: "#home", id: "home" }, 
-  { name: "Projects", href: "#about", id: "about" },
-  { name: "About", href: "#projects", id: "projects" },
-  { name: "Insights", href: "#skills", id: "skills" },
-  { name: "New Arrivals", href: "#contact", id: "contact" }
+  { name: "Projects", href: "#Projects", id: "Projects" },
+  { name: "About", href: "#about", id: "about" },
+  { name: "Skills", href: "#Skills", id: "Skills" },
+  { name: "Contact", href: "#contact", id: "contact" }
 ] as const
 
 export const ANIMATION_DURATION = {

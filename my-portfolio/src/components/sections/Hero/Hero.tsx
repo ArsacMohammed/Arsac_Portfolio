@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { motion } from 'framer-motion'
+import React, { useEffect, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { gsap } from 'gsap'
 import { useGSAP } from '../../../hooks'
 import { useLenis } from '../../../components/common/'
@@ -8,6 +8,44 @@ import MetaBalls from './Metaballs'   // Import MetaBalls
 
 const Hero: React.FC = () => {
   const lenis = useLenis()
+
+  // LettersPullUp component for hero text animation
+  const LettersPullUp = ({ text, className = '' }: { text: string; className?: string }) => {
+    const splittedText = text.split('')
+    
+    const pullupVariant = {
+      initial: { y: 10, opacity: 0 },
+      animate: (i: number) => ({
+        y: 0,
+        opacity: 1,
+        transition: {
+          delay: i * 0.05,
+          duration: 0.6,
+          ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
+        },
+      }),
+    }
+    
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true })
+    
+    return (
+      <div className={`flex justify-start ${className}`}>
+        {splittedText.map((current, i) => (
+          <motion.div
+            key={i}
+            ref={ref}
+            variants={pullupVariant}
+            initial="initial"
+            animate={isInView ? 'animate' : ''}
+            custom={i}
+          >
+            {current === ' ' ? <span>&nbsp;</span> : current}
+          </motion.div>
+        ))}
+      </div>
+    )
+  }
 
   // GSAP animations matching the design
   const heroRef = useGSAP<HTMLElement>((element) => {
@@ -129,17 +167,29 @@ const Hero: React.FC = () => {
 
                 <div className="flex flex-col justify-center h-full pl-8">
                   {/* <h1 className="text-7xl font-extrabold leading-tight mb-4">Mohammed Arsac.</h1> */}
-                  <h1
+                  <LettersPullUp 
+                    text="Mohammed Arsac"
                     className="text-7xl font-extrabold leading-tight mb-4 
-             bg-gradient-to-r from-black to-white 
-             bg-clip-text text-transparent 
-             [text-stroke:2px_black]">
-                    Mohammed Arsac
-                  </h1>
+                      bg-gradient-to-r from-black to-white 
+                      bg-clip-text text-transparent 
+                      [text-stroke:2px_black]"
+                  />
 
 
                   <p className="text-2xl text-gray-600 mb-4 max-w-md">Building seamless digital experiences for modern businesses.</p>
-                  <button className="mt-4 py-3 px-8 bg-black text-white rounded-xl hover:bg-gray-800 transition font-medium w-fit">View My Work</button>
+                  <button 
+                    className="mt-4 py-3 px-8 bg-black text-white rounded-xl hover:bg-gray-800 transition font-medium w-fit"
+                    onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = '/Mohammed Arsac - Latest resume.pdf';
+                      link.download = 'Mohammed Arsac - Latest resume.pdf';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                  >
+                    Resume
+                  </button>
                 </div>
 
 
@@ -157,7 +207,7 @@ const Hero: React.FC = () => {
                 <img
                   src="public/arsac_latest_2.png"
                   alt="Person in hero section"
-                // className="w-auto h-full object-cover mix-blend-multiply"
+                  // className="w-600 object-fit"
                 />
               </div>
             </div>
