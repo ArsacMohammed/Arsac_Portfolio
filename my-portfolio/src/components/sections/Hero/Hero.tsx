@@ -110,31 +110,49 @@ const Hero: React.FC = () => {
 
   return (
     <ErrorBoundary>
+      {/* Skip link for keyboard users */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:shadow-lg focus:rounded">
+        Skip to main content
+      </a>
       <section
         ref={heroRef}
         id="home"
         className="min-h-screen relative overflow-hidden"
+        role="region"
+        aria-labelledby="hero-title"
       >
         {/* Top Navigation */}
-        <nav className="hero-nav absolute top-0 left-0 right-0 z-30">
+        <nav className="hero-nav absolute top-0 left-0 right-0 z-30" aria-label="Main navigation">
           <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
             <div className="flex items-center justify-between">
-              <div className="text-sm font-medium text-gray-50">+1</div>
-              <div className="text-sm font-medium text-gray-50">
+              <a href="#home" className="text-sm font-medium text-gray-50" aria-label="Home">+1</a>
+              <ul className="flex space-x-8 hidden md:flex">
+                <li><button className="text-sm font-medium text-gray-50" onClick={scrollToProjects} tabIndex={0} aria-label="View projects">Projects</button></li>
+                <li><a href="#about" className="text-sm font-medium text-gray-50" tabIndex={0}>About</a></li>
+                <li><a href="#contact" className="text-sm font-medium text-gray-50" tabIndex={0}>Contact</a></li>
+              </ul>
+              <button 
+                className="text-sm font-medium text-gray-50 md:hidden"
+                aria-label="Open menu"
+                aria-expanded="false"
+                tabIndex={0}
+              >
                 <div className="flex flex-col space-y-1">
                   <div className="w-4 h-0.5 bg-gray-50"></div>
                   <div className="w-4 h-0.5 bg-gray-50"></div>
                   <div className="w-4 h-0.5 bg-gray-50"></div>
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </nav>
 
         {/* Main Content */}
         <div
+          id="main-content"
           className="h-screen flex items-center relative"
           style={{ background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 30%, #ffffff 50%, #ffffff 80%)' }}
+          role="main"
         >
           {/* Black Ribbon Bar - full width, lowest layer  */}
           <div
@@ -169,13 +187,15 @@ const Hero: React.FC = () => {
               <div className="col-span-12 lg:col-span-6 xl:col-span-6 relative z-10">
                 <div className="hero-main-text mb-6 lg:mb-8">
                   <div className="flex flex-col justify-center h-full pl-8">
-                    <LettersPullUp 
-                      text="Mohammed Arsac"
-                      className="text-7xl font-extrabold leading-tight mb-4 
-                        bg-gradient-to-r from-black to-white 
-                        bg-clip-text text-transparent 
-                        [text-stroke:2px_black]"
-                    />
+                    <h1 id="hero-title">
+                      <LettersPullUp 
+                        text="Mohammed Arsac"
+                        className="text-7xl font-extrabold leading-tight mb-4 
+                          bg-gradient-to-r from-black to-white 
+                          bg-clip-text text-transparent 
+                          [text-stroke:2px_black]"
+                      />
+                    </h1>
 
                     <p className="text-2xl text-gray-600 mb-4 max-w-md">Building seamless digital experiences for modern businesses.</p>
                     <button 
@@ -188,6 +208,8 @@ const Hero: React.FC = () => {
                         link.click();
                         document.body.removeChild(link);
                       }}
+                      aria-label="Download resume"
+                      tabIndex={0}
                     >
                       Resume
                     </button>
@@ -202,8 +224,11 @@ const Hero: React.FC = () => {
                 <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-10 ">
                   <img
                     src="public/arsac_latest_2.png"
-                    alt="Person in hero section"
+                    alt="Mohammed Arsac - Portfolio profile"
+                    loading="eager"
+                    aria-describedby="profile-description"
                   />
+                  <span id="profile-description" className="sr-only">Professional portrait of Mohammed Arsac, a web developer</span>
                 </div>
               </div>
             </div>
