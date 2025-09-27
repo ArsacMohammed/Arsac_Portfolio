@@ -44,10 +44,10 @@ const About: React.FC = () => {
         >
           <div className="relative h-full w-full">
             <div className="tilted-square-container absolute top-17 left-50 z-20">
-              <img src="/image.png" alt="Diamond Square" className="tilted-square-img" />
+              <img src="/image_green.png" alt="Diamond Square" className="tilted-square-img" />
             </div>
             <div className="tilted-rectangle-container absolute top-55 right-100 z-10">
-              <img src="/image.png" alt="Diamond Rectangle" className="tilted-rectangle-img" />
+              <img src="/image_green.png" alt="Diamond Rectangle" className="tilted-rectangle-img" />
             </div>
           </div>
         </motion.div>
