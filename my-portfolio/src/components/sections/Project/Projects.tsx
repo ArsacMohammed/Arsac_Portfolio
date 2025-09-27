@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useAnimation, easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ChevronDown } from 'lucide-react'
+import { useErrorHandler } from '../../../hooks'
 
 const containerVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -120,24 +121,58 @@ const projectData = [
 
 const Projects: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [animationError, setAnimationError] = useState<string | null>(null)
   const controls = useAnimation()
   const [ref, inView] = useInView({ threshold: 0.2 })
   const containerRef = useRef<HTMLDivElement>(null)
+  
+  // Error handling for animations and interactions
+  const { handleError } = useErrorHandler({
+    onError: (error, userFriendlyError) => {
+      console.error('Projects component error:', error)
+      setAnimationError(userFriendlyError.message)
+    }
+  })
 
   useEffect(() => {
-    if (inView) controls.start('visible')
-  }, [controls, inView])
+    try {
+      if (inView) {
+        controls.start('visible').catch((error) => {
+          handleError(new Error(`Animation start failed: ${error}`))
+        })
+      }
+    } catch (error) {
+      handleError(new Error(`Animation effect failed: ${error}`))
+    }
+  }, [controls, inView, handleError])
 
-  // Close on outside click
+  // Close on outside click with error handling
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setOpenIndex(null)
+      try {
+        if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+          setOpenIndex(null)
+        }
+      } catch (error) {
+        handleError(new Error(`Outside click handler failed: ${error}`))
       }
     }
-    if (openIndex !== null) document.addEventListener('mousedown', onClick)
-    return () => document.removeEventListener('mousedown', onClick)
-  }, [openIndex])
+    
+    try {
+      if (openIndex !== null) {
+        document.addEventListener('mousedown', onClick)
+      }
+      return () => {
+        try {
+          document.removeEventListener('mousedown', onClick)
+        } catch (error) {
+          console.error('Failed to remove event listener:', error)
+        }
+      }
+    } catch (error) {
+      handleError(new Error(`Event listener setup failed: ${error}`))
+    }
+  }, [openIndex, handleError])
 
   // const containerVariants = {
   //   hidden: { opacity: 0 },
@@ -154,6 +189,12 @@ const Projects: React.FC = () => {
         className="h-[150vh] w-screen flex relative"
         style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
       >
+        {/* Error Display */}
+        {animationError && (
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50 p-4 bg-red-900/20 border border-red-500/30 rounded-lg text-red-600 text-center max-w-md">
+            {animationError}
+          </div>
+        )}
         {/* Header */}
         <motion.div
           className="absolute top-0 left-140 right-0 z-20 px-0 pt-40 pb-16"
@@ -227,7 +268,13 @@ const Projects: React.FC = () => {
                         }}
                         whileHover={{ scale: 1.01, y: -2, boxShadow: "0 12px 32px -6px #322D2920" }}
                         whileTap={{ scale: 0.99 }}
-                        onClick={() => setOpenIndex(isOpen ? null : index)}
+                        onClick={() => {
+                          try {
+                            setOpenIndex(isOpen ? null : index)
+                          } catch (error) {
+                            handleError(new Error(`Failed to toggle accordion: ${error}`))
+                          }
+                        }}
                       >
                         {/* Meta Box */}
                         <div
