@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
+import type{KeyboardEvent } from 'react';
 import { motion, AnimatePresence, useAnimation, easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ChevronDown, AlertTriangle, RefreshCw } from 'lucide-react'
-import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary'  // <-- your error boundary
-import { useErrorHandler } from '../../../hooks/useErrorHandler' // <-- hook you wrote
-import  Button  from '../../../components/ui/Button/Button'
+import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary'
+import { useErrorHandler } from '../../../hooks/useErrorHandler'
+import Button from '../../../components/ui/Button/Button'
 import type { Project } from '../../../types'
 import { projectData } from '../../../lib/constants'
-
-
 
 const containerVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -26,11 +25,10 @@ const containerVariants = {
 const luxeMetaColors = [
   "#EFE9E1", "#D9D9D9", "#D1C7BD", "#AC9C8D", "#72383D", "#322D29"
 ]
+
 const luxeAccent = "#72383D"
 
-// Pretend this comes from API
 const fetchProjects = async (): Promise<Project[]> => {
-  // throw new Error("Simulated API error") // <-- test error handling
   return new Promise<Project[]>((resolve) => {
     setTimeout(() => resolve(projectData), 800)
   })
@@ -42,13 +40,12 @@ const ProjectsInner: React.FC = () => {
   const [ref, inView] = useInView({ threshold: 0.2 })
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Error handler hook
-const { state, execute, retry } = useErrorHandler<Project[]>({
-  maxRetries: 2,
-  retryDelay: 1500,
-  enableAutoRetry: true,
-  logErrors: true
-})
+  const { state, execute, retry } = useErrorHandler<Project[]>({
+    maxRetries: 2,
+    retryDelay: 1500,
+    enableAutoRetry: true,
+    logErrors: true
+  })
 
   useEffect(() => {
     execute(fetchProjects)
@@ -68,9 +65,16 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
     return () => document.removeEventListener('mousedown', onClick)
   }, [openIndex])
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setOpenIndex(openIndex === index ? null : index)
+    }
+  }
+
   if (state.loading) {
     return (
-      <section id="Projects" className="min-h-[50vh] flex items-center justify-center">
+      <section id="Projects" role="region" aria-labelledby="projects-heading" className="min-h-[50vh] flex items-center justify-center">
         <p className="text-lg text-gray-600 animate-pulse">Loading projects…</p>
       </section>
     )
@@ -78,8 +82,8 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
 
   if (state.error) {
     return (
-      <section id="Projects" className="min-h-[50vh] flex flex-col items-center justify-center text-center">
-        <AlertTriangle className="text-red-500 w-12 h-12 mb-4" />
+      <section id="Projects" role="region" aria-labelledby="projects-heading" className="min-h-[50vh] flex flex-col items-center justify-center text-center">
+        <AlertTriangle className="text-red-500 w-12 h-12 mb-4" aria-hidden="true" />
         <p className="text-gray-700 mb-2">{state.userFriendlyError?.message || "Something went wrong while loading projects."}</p>
         <Button onClick={retry} className="flex items-center gap-2">
           <RefreshCw size={16} /> Try Again
@@ -91,7 +95,8 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
   const projects = state.data ?? []
 
   return (
-    <section id="Projects" className="min-h-[150vh] relative overflow-visible" ref={ref}>
+    <section id="Projects" role="region" aria-labelledby="projects-heading" className="min-h-[150vh] relative overflow-visible" ref={ref}>
+      <a href="#Projects" className="sr-only">Skip to Projects</a>
       <div
         className="h-[150vh] w-screen flex relative"
         style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
@@ -103,7 +108,7 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
           animate={controls}
           variants={containerVariants}
         >
-          <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-tight ml-0">
+          <h1 id="projects-heading" className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-tight ml-0">
             <span className="text-7xl font-extrabold leading-tight bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">
               Projects Completed
             </span>
@@ -118,7 +123,7 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
           variants={containerVariants}
         >
           <div className="w-full px-6 md:px-12 lg:px-16 xl:px-50" ref={containerRef}>
-            <div className="relative overflow-visible">
+            <div className="relative overflow-visible" role="list">
               <AnimatePresence>
                 {projects.map((item, index) => {
                   const isOpen = openIndex === index
@@ -146,9 +151,10 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
                         left: 0,
                         right: 0
                       }}
+                      role="listitem"
                     >
                       <motion.button
-                        className="w-full flex items-center rounded-2xl border border-gray-200 shadow-md transition px-0 py-0 mb-6 focus:outline-none bg-[#F9F8F7]"
+                        className="w-full flex items-center rounded-2xl border border-gray-200 shadow-md transition px-0 py-0 mb-6 focus:outline-none focus:ring-2 focus:ring-[#72383D] focus:ring-offset-2 bg-[#F9F8F7]"
                         style={{
                           borderColor: isOpen ? '#72383D' : '#EEE',
                           boxShadow: isOpen ? `0 6px 32px -6px #72383D22` : undefined
@@ -156,6 +162,12 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
                         whileHover={{ scale: 1.01, y: -2, boxShadow: "0 12px 32px -6px #322D2920" }}
                         whileTap={{ scale: 0.99 }}
                         onClick={() => setOpenIndex(isOpen ? null : index)}
+                        tabIndex={0}
+                        role="button"
+                        aria-expanded={isOpen}
+                        aria-controls={`project-panel-${index}`}
+                        aria-labelledby={`project-title-${index}`}
+                        onKeyDown={(e) => handleKeyDown(e, index)}
                       >
                         {/* Meta Box */}
                         <div
@@ -165,6 +177,7 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
                             borderColor: '#72383D',
                             color: ['#D9D9D9', '#EFE9E1'].includes(luxeMetaColors[index % luxeMetaColors.length]) ? '#322D29' : '#FFF'
                           }}
+                          aria-hidden="true"
                         >
                           <div className="text-3xl font-semibold mb-2">{item.number}</div>
                         </div>
@@ -172,7 +185,7 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
                         {/* Title & Actions */}
                         <div className="flex-1 flex flex-row items-center px-7 py-7 justify-between">
                           <div>
-                            <h3 className="text-3xl font-semibold leading-tight text-[#322D29] mb-2">
+                            <h3 id={`project-title-${index}`} className="text-3xl font-semibold leading-tight text-[#322D29] mb-2">
                               {item.title}
                             </h3>
                           </div>
@@ -187,6 +200,7 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
                               animate={{ rotate: isOpen ? 180 : 0 }}
                               transition={{ duration: 0.34, ease: 'easeInOut' }}
                               className="ml-2 text-[#72383D]"
+                              aria-hidden="true"
                             >
                               <ChevronDown size={28} />
                             </motion.div>
@@ -198,6 +212,9 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
                       <AnimatePresence initial={false}>
                         {isOpen && (
                           <motion.div
+                            id={`project-panel-${index}`}
+                            role="region"
+                            aria-labelledby={`project-title-${index}`}
                             initial={{ opacity: 0, height: 0, scaleY: 0 }}
                             animate={{
                               opacity: 1,
@@ -223,7 +240,7 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
                             style={{ transformOrigin: 'top' }}
                           >
                             <div className="px-4 pb-6 pt-2">
-                              <ul className="space-y-4">
+                              <ul className="space-y-4" role="list">
                                 {item.description?.map((point, idx) => (
                                   <motion.li
                                     key={idx}
@@ -231,8 +248,9 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.4, delay: idx * 0.1, ease: 'easeOut' }}
                                     className="flex items-start space-x-3 text-gray-700 leading-relaxed"
+                                    role="listitem"
                                   >
-                                    <div className="w-2 h-2 bg-gradient-to-r from-[#560F13] to-black rounded-full mt-2 flex-shrink-0" />
+                                    <div className="w-2 h-2 bg-gradient-to-r from-[#560F13] to-black rounded-full mt-2 flex-shrink-0" aria-hidden="true" />
                                     <p className="text-base lg:text-3 xl">{point}</p>
                                   </motion.li>
                                 ))}
@@ -253,7 +271,6 @@ const { state, execute, retry } = useErrorHandler<Project[]>({
   )
 }
 
-// Wrap with ErrorBoundary so rendering errors don’t crash page
 const Projects: React.FC = () => (
   <ErrorBoundary level="section" showDetails>
     <ProjectsInner />
