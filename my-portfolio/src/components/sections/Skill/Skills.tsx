@@ -71,7 +71,7 @@ type SkillSlideProps = {
 // SkillSlide Component
 const SkillSlide: React.FC<SkillSlideProps> = ({ slide, isActive, isPrev, isNext, index, onClick }) => {
   const isMobile = window.innerWidth < 768;
-  
+
   const getPosition = () => {
     if (isActive) return { x: 0, scale: 1, zIndex: 30, opacity: 1 };
     if (isPrev) return { x: isMobile ? -100 : -280, scale: 0.85, zIndex: 20, opacity: isMobile ? 0 : 0.7 };
@@ -103,14 +103,13 @@ const SkillSlide: React.FC<SkillSlideProps> = ({ slide, isActive, isPrev, isNext
       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
       onClick={() => onClick(index)}
     >
-      <div 
-        className={`relative overflow-hidden rounded-2xl ${
-          isActive ? 'w-[85vw] h-[50vh] sm:w-[450px] sm:h-[280px] md:w-[600px] md:h-[380px] lg:w-[700px] lg:h-[420px]' : 
-          'w-[70vw] h-[40vh] sm:w-[350px] sm:h-[220px] md:w-[480px] md:h-[300px] lg:w-[550px] lg:h-[330px]'
-        }`}
+      <div
+        className={`relative overflow-hidden rounded-2xl ${isActive ? 'w-[85vw] h-[50vh] sm:w-[450px] sm:h-[280px] md:w-[600px] md:h-[380px] lg:w-[700px] lg:h-[420px]' :
+            'w-[70vw] h-[40vh] sm:w-[350px] sm:h-[220px] md:w-[480px] md:h-[300px] lg:w-[550px] lg:h-[330px]'
+          }`}
         style={{
-          boxShadow: isActive 
-            ? '0 25px 50px -12px rgba(0, 0, 0, 0.5)' 
+          boxShadow: isActive
+            ? '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
             : '0 10px 25px -5px rgba(0, 0, 0, 0.3)',
           background: slide.color,
         }}
@@ -121,7 +120,7 @@ const SkillSlide: React.FC<SkillSlideProps> = ({ slide, isActive, isPrev, isNext
           className="w-full h-full object-cover"
           draggable={false}
         />
-        
+
         {isActive && (
           <>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
@@ -185,8 +184,8 @@ const Skills: React.FC = () => {
       }}
     >
       {/* Header */}
-      <div className="absolute top-8 sm:top-12 left-8 sm:left-16 z-40">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
+      <div className="absolute top-20 sm:top-12 md:top-16 xl:top-30 left-0 right-0 text-center z-40"> 
+        <h1 className="text-7xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
           <span 
             className="bg-gradient-to-r from-[#560F13] to-black bg-clip-text text-transparent"
             style={{ WebkitTextStroke: '1px rgba(0,0,0,0.1)' }}
@@ -196,32 +195,30 @@ const Skills: React.FC = () => {
         </h1>
       </div>
 
-      {/* Frame Elements */}
-      <div className="absolute top-0 left-0 right-0 h-2 sm:h-3 bg-black md:hidden" />
-      <div className="absolute bottom-0 left-0 right-0 h-2 sm:h-3 bg-black md:hidden" />
-      
-      {/* Desktop Frames */}
-      <div className="hidden md:block">
-        <div className="absolute top-0 right-0 w-32 h-3 bg-black" />
-        <div className="absolute top-0 right-0 w-3 h-32 bg-black" />
-        <div className="absolute bottom-0 left-0 w-32 h-3 bg-black" />
-        <div className="absolute bottom-0 left-0 w-3 h-32 bg-black" />
-      </div>
+
 
       {/* Carousel Container */}
-      <motion.div 
+      <motion.div
         className="relative h-screen flex items-center justify-center"
         initial="hidden"
         animate={controls}
         variants={containerVariants}
       >
         <div className="relative w-full h-[60vh] sm:h-[400px] md:h-[600px] lg:h-[700px]">
+          {/* Frame Elements for all screen sizes */}
+          <div className="absolute top-0 right-0 w-20 sm:w-24 md:w-32 h-2 sm:h-3 bg-black" />
+          <div className="absolute top-0 right-0 w-2 sm:w-3 h-20 sm:h-24 md:h-32 bg-black" />
+          <div className="absolute bottom-0 left-2 sm:left-12 md:left-0 w-20 sm:w-24 md:w-32 h-2 sm:h-3 bg-black" />
+           <div className="absolute bottom-0 left-2 sm:left-12 md:left-0 w-2 sm:w-3 h-20 sm:h-24 md:h-32 bg-black" />
+          
+          {/* Additional frame for carousel container */}
+          {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[55vh] sm:w-[500px] sm:h-[350px] md:w-[650px] md:h-[430px] lg:w-[750px] lg:h-[470px] border-3 sm:border-4 border-black rounded-2xl sm:rounded-3xl" /> */}
           <AnimatePresence mode="popLayout">
             {slides.map((slide, index) => {
               const isActive = index === activeIndex;
               const isPrev = index === (activeIndex - 1 + slides.length) % slides.length;
               const isNext = index === (activeIndex + 1) % slides.length;
-              
+
               return (
                 <SkillSlide
                   key={`${slide.title}-${index}`}
@@ -243,11 +240,10 @@ const Skills: React.FC = () => {
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center font-bold transition-all ${
-                index === activeIndex
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center font-bold transition-all ${index === activeIndex
                   ? 'bg-black text-white scale-110'
                   : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-300'
-              }`}
+                }`}
             >
               {index + 1}
             </button>
