@@ -1,4 +1,4 @@
-import React from 'react'
+// React import removed as it's not needed in this component
 
 export const ThreeDAnimation = () => {
   return (

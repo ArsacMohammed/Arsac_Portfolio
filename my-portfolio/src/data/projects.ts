@@ -1,6 +1,6 @@
-import type { Project } from '../types'
+import type { ProjectData } from '../types'
 
-export const projects: Project[] = [
+export const projects: ProjectData[] = [
   {
     id: '1',
     title: 'E-Commerce Platform',

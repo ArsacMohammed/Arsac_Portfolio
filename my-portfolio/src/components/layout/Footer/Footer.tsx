@@ -3,24 +3,24 @@ import { Linkedin, Instagram, X, Mail, Phone } from 'lucide-react'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-transparent border-t border-gray-200 dark:border-gray-800 py-10 px-8"style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
+    <footer className="w-full bg-transparent border-t border-gray-200 dark:border-gray-800 py-token-10 px-token-8"style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
 >
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-token-6">
         {/* Left: Contact Info */}
         <div className="flex flex-col space-y-1 text-black text-center md:text-left">
-          <p className="font-bold text-lg underline">Contact</p>
-          <p className="flex items-center gap-2 cursor-pointer hover:text-[#72383D] font-bold">
+          <p className="font-token-bold text-token-lg underline">Contact</p>
+          <p className="flex items-center gap-token-2 cursor-pointer hover:text-[#72383D] font-token-bold">
             <Mail size={18} />
             hello@yourdomain.com
           </p>
-          <p className="flex items-center gap-2 cursor-pointer hover:text-[#72383D] font-bold">
+          <p className="flex items-center gap-token-2 cursor-pointer hover:text-[#72383D] font-token-bold">
             <Phone size={18} />
             +91-9876543210
           </p>
         </div>
 
         {/* Center: Social Icons */}
-        <div className="flex gap-8 text-black font-bold">
+        <div className="flex gap-token-8 text-black font-token-bold">
           <a
             href="https://linkedin.com/in/yourprofile"
             target="_blank"
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Right: Copyright */}
-        <div className="text-black text-center md:text-right text-sm select-none font-bold">
+        <div className="text-black text-center md:text-right text-token-sm select-none font-token-bold">
           &copy; {new Date().getFullYear()} Mohammed Arsac. All rights reserved.
         </div>
       </div>

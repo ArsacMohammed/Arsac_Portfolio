@@ -22,6 +22,23 @@ export interface Project {
   description: string[]
 }
 
+// Alternative project structure for data/projects.ts
+export interface ProjectData {
+  id: string
+  title: string
+  description: string
+  longDescription?: string
+  image: string
+  images?: string[]
+  technologies: string[]
+  liveUrl?: string
+  githubUrl?: string
+  category: string
+  featured: boolean
+  status: 'completed' | 'in-progress' | 'planned'
+  date: string
+}
+
 export interface Skill {
   name: string
   level: number // 1-100

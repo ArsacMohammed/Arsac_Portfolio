@@ -28,7 +28,7 @@ const Modal: React.FC<ModalProps> = ({
     md: 'max-w-lg',
     lg: 'max-w-2xl',
     xl: 'max-w-4xl',
-    full: 'max-w-[95vw] h-[95vh]'
+    full: 'max-w-[95vw] min-h-token-screen'
   }
 
   return (
@@ -37,23 +37,23 @@ const Modal: React.FC<ModalProps> = ({
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
         <Dialog.Content
           className={cn(
-            'fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] gap-4 border border-gray-200 bg-white p-6 shadow-lg duration-200 dark:border-gray-800 dark:bg-gray-900',
+            'fixed left-[50%] top-[50%] z-token-modal translate-x-[-50%] translate-y-[-50%] gap-token-4 border border-gray-200 bg-white p-token-6 shadow-token-lg duration-200 dark:border-gray-800 dark:bg-gray-900',
             'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
-            'rounded-xl',
+            'rounded-token-xl',
             sizes[size]
           )}
         >
           {(title || showCloseButton) && (
             <div className="flex items-center justify-between">
               {title && (
-                <Dialog.Title className="text-lg font-semibold">
+                <Dialog.Title className="text-token-lg font-token-semibold">
                   {title}
                 </Dialog.Title>
               )}
               {showCloseButton && (
                 <Dialog.Close asChild>
-                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                    <X className="h-4 w-4" />
+                  <Button variant="ghost" size="sm" className="h-token-8 w-token-8 p-0">
+                    <X className="h-token-4 w-token-4" />
                     <span className="sr-only">Close</span>
                   </Button>
                 </Dialog.Close>
@@ -62,7 +62,7 @@ const Modal: React.FC<ModalProps> = ({
           )}
           
           {description && (
-            <Dialog.Description className="text-sm text-gray-600 dark:text-gray-400">
+            <Dialog.Description className="text-token-sm text-gray-600 dark:text-gray-400">
               {description}
             </Dialog.Description>
           )}

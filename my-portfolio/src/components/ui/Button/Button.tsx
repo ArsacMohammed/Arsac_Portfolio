@@ -32,16 +32,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   }
   
   const sizes = {
-    sm: 'h-8 px-3 text-sm',
-    md: 'h-10 px-4 text-sm', 
-    lg: 'h-12 px-6 text-base',
-    xl: 'h-14 px-8 text-lg'
+    sm: 'h-token-8 px-token-3 text-token-sm',
+    md: 'h-token-10 px-token-4 text-token-sm', 
+    lg: 'h-token-12 px-token-6 text-token-base',
+    xl: 'h-token-14 px-token-8 text-token-lg'
   }
 
   return (
     <Comp
       className={cn(
-        'inline-flex items-center justify-center rounded-lg font-medium transition-colors',
+        'inline-flex items-center justify-center rounded-token-lg font-token-medium transition-colors',
         'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background',
         'disabled:pointer-events-none disabled:opacity-50',
         variants[variant],
