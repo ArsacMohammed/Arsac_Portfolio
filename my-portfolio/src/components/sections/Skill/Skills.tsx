@@ -180,7 +180,7 @@ const Skills: React.FC = () => {
       className="relative w-full min-h-screen overflow-hidden"
       ref={ref}
       style={{
-        background: 'linear-gradient(180deg, #e0e0e0 0%, #f0f0f0 50%, #ffffff 100%)',
+        background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 0%, #ffffff 100%, #ffffff 70%)',
       }}
     >
       {/* Header */}

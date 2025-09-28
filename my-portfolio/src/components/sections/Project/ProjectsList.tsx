@@ -73,7 +73,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
       <a href="#Projects" className="sr-only">Skip to Projects</a>
       <div
         className="h-[80vh] sm:h-[90vh] md:h-[100vh] lg:h-[120vh] xl:h-[120vh] w-screen flex flex-col relative"  
-        style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 20%, #f8f8f8 100%, #e0e0e0 70%)' }}
       >
         {/* Header */}
         <motion.div

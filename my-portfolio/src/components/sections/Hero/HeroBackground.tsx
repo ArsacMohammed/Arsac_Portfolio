@@ -10,7 +10,7 @@ const HeroBackground: React.FC = () => {
             <div
                 className="absolute inset-0"
                 style={{
-                    background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 30%, #ffffff 50%, #ffffff 80%)'
+                    background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 0%, #ffffff 100%, #ffffff 80%)'
                 }}
             />
 

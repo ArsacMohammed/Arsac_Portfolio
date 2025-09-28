@@ -37,7 +37,7 @@ const About: React.FC = () => {
     <section id="about" className="min-h-screen relative overflow-hidden" ref={ref}>
       <div
         className="min-h-screen w-screen flex flex-col lg:flex-row relative"
-        style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 20%, #f8f8f8 100%, #e0e0e0 70%)' }}
       >
         {/* Desktop images */}
         <motion.div

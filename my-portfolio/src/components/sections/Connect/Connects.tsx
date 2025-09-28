@@ -7,7 +7,7 @@ const ConnectSection: React.FC = () => {
     <motion.section
       id="contact"
       className="w-full bg-transparent px-4 sm:px-6 md:px-token-8 py-8 sm:py-10 md:py-token-12"
-      style={{ background: 'linear-gradient(to top, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
+      style={{ background: 'linear-gradient(to top, #ffffff 10%, #ffffff 30%, #f8f8f8 100%, #e0e0e0 70%)' }}
       initial={{ opacity: 0, y: 60 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
