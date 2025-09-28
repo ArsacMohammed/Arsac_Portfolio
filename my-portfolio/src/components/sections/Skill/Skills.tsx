@@ -105,8 +105,8 @@ const SkillSlide: React.FC<SkillSlideProps> = ({ slide, isActive, isPrev, isNext
     >
       <div 
         className={`relative overflow-hidden rounded-2xl ${
-          isActive ? 'w-[85vw] h-[50vh] sm:w-[450px] sm:h-[280px] md:w-[500px] md:h-[320px]' : 
-          'w-[70vw] h-[40vh] sm:w-[350px] sm:h-[220px] md:w-[400px] md:h-[250px]'
+          isActive ? 'w-[85vw] h-[50vh] sm:w-[450px] sm:h-[280px] md:w-[600px] md:h-[380px] lg:w-[700px] lg:h-[420px]' : 
+          'w-[70vw] h-[40vh] sm:w-[350px] sm:h-[220px] md:w-[480px] md:h-[300px] lg:w-[550px] lg:h-[330px]'
         }`}
         style={{
           boxShadow: isActive 
@@ -168,12 +168,12 @@ const Skills: React.FC = () => {
   }, [controls, inView]);
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    // Always enable autoplay regardless of device
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % slides.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, []);
 
   return (
     <section
@@ -214,10 +214,8 @@ const Skills: React.FC = () => {
         initial="hidden"
         animate={controls}
         variants={containerVariants}
-        onMouseEnter={() => setIsAutoPlaying(false)}
-        onMouseLeave={() => setIsAutoPlaying(true)}
       >
-        <div className="relative w-full h-[60vh] sm:h-[400px] md:h-[500px]">
+        <div className="relative w-full h-[60vh] sm:h-[400px] md:h-[600px] lg:h-[700px]">
           <AnimatePresence mode="popLayout">
             {slides.map((slide, index) => {
               const isActive = index === activeIndex;
