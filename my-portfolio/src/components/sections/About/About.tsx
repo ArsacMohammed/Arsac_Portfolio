@@ -50,7 +50,7 @@ const About: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="w-full lg:w-1/2 h-auto lg:h-full relative z-token-docked flex items-center py-8 lg:py-0"
+          className="w-full lg:w-1/2 h-auto lg:h-full relative z-token-docked flex items-center py-8 lg:py-0 pt-2 md:pt-24 xl:pt-27"
           initial="hidden"
           animate={controls}
           variants={rightVariants}

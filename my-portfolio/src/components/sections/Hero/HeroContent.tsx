@@ -17,8 +17,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ onDownloadResume }) => {
                 text="Mohammed Arsac"
                 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-2 sm:mb-4 
                   text-black
-                  md:bg-gradient-to-r md:from-black md:to-white 
-                  md:bg-clip-text md:text-transparent 
+                  md:text-black
                   md:[text-stroke:1px_black] lg:[text-stroke:2px_black]"
               />
             </h1>
