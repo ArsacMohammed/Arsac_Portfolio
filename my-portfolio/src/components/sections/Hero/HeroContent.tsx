@@ -42,7 +42,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ onDownloadResume }) => {
       <div className="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6 relative mt-4 sm:mt-6 md:mt-0 lg:mt-32 xl:mt-32 z-20 order-1 md:order-2">
         <div className="hero-image-container flex items-center justify-center md:justify-end md:absolute md:inset-0 pr-0 md:pr-4 lg:pr-25 z-20">
           <img
-            src="/arsac_latest_2.png"
+            src="/arsac_latest_2.avif"
             alt="Mohammed Arsac - Portfolio profile"
             loading="eager"
             aria-describedby="profile-description"
