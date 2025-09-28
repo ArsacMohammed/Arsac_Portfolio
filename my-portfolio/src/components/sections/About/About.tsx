@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-// Optimized imports for tree shaking
 import { motion, useAnimation } from 'framer-motion'
 import { easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { AboutImages } from './AboutImages'
+import { AboutContent } from './AboutContent'
 
 const About: React.FC = () => {
   const controls = useAnimation()
@@ -44,14 +45,7 @@ const About: React.FC = () => {
           animate={controls}
           variants={leftVariants}
         >
-          <div className="relative h-full w-full">
-            <div className="tilted-square-container absolute top-17 left-50 z-token-sticky">
-              <img src="/image_green.png" alt="Diamond Square" className="tilted-square-img" />
-            </div>
-            <div className="tilted-rectangle-container absolute top-55 right-100 z-token-docked">
-              <img src="/image_green.png" alt="Diamond Rectangle" className="tilted-rectangle-img" />
-            </div>
-          </div>
+          <AboutImages />
         </motion.div>
 
         <motion.div
@@ -60,56 +54,7 @@ const About: React.FC = () => {
           animate={controls}
           variants={rightVariants}
         >
-          <div className="w-full h-full flex flex-col justify-center px-token-12">
-            <div className="mb-token-12 text-center">
-              <h1 className="text-token-4xl md:text-token-5xl xl:text-token-6xl font-token-bold mb-0">
-                <span className="text-token-7xl font-token-extrabold leading-token-tight mb-token-2 bg-gradient-to-r from-gray-900 via-gray-600 to-gray-300 bg-clip-text text-transparent [text-stroke:1.5px_black]">About Me</span>
-              </h1>
-            </div>
-
-            <h1 className="text-token-7xl font-token-bold mb-token-4 text-[#222222] leading-token-tight">
-              Cloud, AI & Full Stack<br /><span className="text-gray-600">Software Developer</span>
-            </h1>
-
-            <p className="text-token-xl text-[#4B5563] mb-token-12 leading-token-relaxed">
-              Crafting modern digital solutions leveraging cloud technologies, AI, and full stack development.
-            </p>
-
-            <div className="grid grid-cols-2 gap-token-8 mb-token-8">
-              <div className="stat-button">
-                <div className="stat-circle"></div>
-                <div className="stat-content">
-                  <h3 className="text-token-4xl font-token-bold text-[#222222] mb-token-1">25+</h3>
-                  <p className="text-gray-500 text-token-sm uppercase tracking-wider">Projects Completed</p>
-                </div>
-              </div>
-              <div className="stat-button">
-                <div className="stat-circle"></div>
-                <div className="stat-content">
-                  <h3 className="text-token-4xl font-token-bold text-[#222222] mb-token-1">4+</h3>
-                  <p className="text-gray-500 text-token-sm uppercase tracking-wider">Years Experience</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-token-8">
-              <div className="stat-button">
-                <div className="stat-circle"></div>
-                <div className="stat-content">
-                  <h3 className="text-token-4xl font-token-bold text-[#222222] mb-token-1">10+</h3>
-                  <p className="text-gray-500 text-token-sm uppercase tracking-wider">Clients Served</p>
-                </div>
-              </div>
-              <div className="stat-button">
-                <div className="stat-circle"></div>
-                <div className="stat-content">
-                  <h3 className="text-token-4xl font-token-bold text-[#222222] mb-token-1">7+</h3>
-                  <p className="text-gray-500 text-token-sm uppercase tracking-wider">Technologies Mastered</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          <AboutContent />
         </motion.div>
       </div>
     </section>

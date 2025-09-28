@@ -1,120 +1,45 @@
-import React, { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { gsap } from 'gsap'
-import { useGSAP } from '../../../hooks'
-import { useLenis } from '../../../components/common/'
-import { scrollToElement } from '../../../components/common'
-// Dynamic import for MetaBalls to reduce initial bundle size
-const MetaBalls = React.lazy(() => import('./Metaballs'))
-
-// ✅ Error Boundary Component
-class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error: any }> {
-  constructor(props: { children: React.ReactNode }) {
-    super(props)
-    this.state = { hasError: false, error: null }
-  }
-
-  static getDerivedStateFromError(error: any) {
-    return { hasError: true, error }
-  }
-
-  componentDidCatch(error: any, errorInfo: any) {
-    console.error('Hero Section Error:', error, errorInfo)
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100 text-red-600 font-semibold">
-          Something went wrong in the Hero section.
-        </div>
-      )
-    }
-    return this.props.children
-  }
-}
+import React from 'react';
+import { useLenis } from '../../../components/common/';
+import { scrollToElement } from '../../../components/common';
+import { useHeroAnimations } from './HeroAnimations';
+import ErrorBoundary from './ErrorBoundary';
+import HeroNavigation from './HeroNavigation';
+import HeroBackground from './HeroBackground';
+import HeroContent from './HeroContent';
 
 const Hero: React.FC = () => {
-  const lenis = useLenis()
+  const lenis = useLenis();
+  const heroRef = useHeroAnimations();
 
-  // LettersPullUp component for hero text animation
-  const LettersPullUp = ({ text, className = '' }: { text: string; className?: string }) => {
-    const splittedText = text.split('')
-    
-    const pullupVariant = {
-      initial: { y: 10, opacity: 0 },
-      animate: (i: number) => ({
-        y: 0,
-        opacity: 1,
-        transition: {
-          delay: i * 0.05,
-          duration: 0.6,
-          ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
-        },
-      }),
-    }
-    
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true })
-    
-    return (
-      <div className={`flex justify-start ${className}`}>
-        {splittedText.map((current, i) => (
-          <motion.div
-            key={i}
-            ref={ref}
-            variants={pullupVariant}
-            initial="initial"
-            animate={isInView ? 'animate' : ''}
-            custom={i}
-          >
-            {current === ' ' ? <span>&nbsp;</span> : current}
-          </motion.div>
-        ))}
-      </div>
-    )
-  }
-
-  // GSAP animations matching the design
-  const heroRef = useGSAP<HTMLElement>((_) => {
-    const tl = gsap.timeline()
-
-    // Animate elements in sequence
-    tl.fromTo('.hero-main-text',
-      { opacity: 0, x: -80 },
-      { opacity: 1, x: 0, duration: 1.2, ease: 'power3.out' }
-    )
-      .fromTo('.hero-number',
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
-        '-=0.8'
-      )
-      .fromTo('.hero-image-container',
-        { opacity: 0, scale: 0.9, x: 40 },
-        { opacity: 1, scale: 1, x: 0, duration: 1.2, ease: 'power3.out' },
-        '-=1.0'
-      )
-      .fromTo('.hero-nav',
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-        '-=1.2'
-      )
-  })
-
+  // Navigation handler
   const scrollToProjects = () => {
     if (lenis) {
-      lenis.scrollTo('#projects', { offset: -100 })
+      lenis.scrollTo('#projects', { offset: -100 });
     } else {
-      scrollToElement('#projects')
+      scrollToElement('#projects');
     }
-  }
+  };
+
+  // Resume download handler
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/Mohammed Arsac - Latest resume.pdf';
+    link.download = 'Mohammed Arsac - Latest resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary fallbackMessage="Unable to load the hero section. Please refresh the page.">
       {/* Skip link for keyboard users */}
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:shadow-lg focus:rounded">
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:shadow-lg focus:rounded"
+      >
         Skip to main content
       </a>
+      
       <section
         ref={heroRef}
         id="home"
@@ -122,124 +47,26 @@ const Hero: React.FC = () => {
         role="region"
         aria-labelledby="hero-title"
       >
-        {/* Top Navigation */}
-        <nav className="hero-nav absolute top-0 left-0 right-0 z-token-sticky" aria-label="Main navigation">
-          <div className="w-full px-token-6 sm:px-token-8 lg:px-token-12 xl:px-token-16 py-token-6">
-            <div className="flex items-center justify-between">
-              <a href="#home" className="text-token-sm font-token-medium text-gray-50" aria-label="Home">+1</a>
-              <ul className="flex gap-token-8 hidden md:flex">
-                <li><button className="text-token-sm font-token-medium text-gray-50" onClick={scrollToProjects} tabIndex={0} aria-label="View projects">Projects</button></li>
-                <li><a href="#about" className="text-token-sm font-token-medium text-gray-50" tabIndex={0}>About</a></li>
-                <li><a href="#contact" className="text-token-sm font-token-medium text-gray-50" tabIndex={0}>Contact</a></li>
-              </ul>
-              <button 
-                className="text-token-sm font-token-medium text-gray-50 md:hidden"
-                aria-label="Open menu"
-                aria-expanded="false"
-                tabIndex={0}
-              >
-                <div className="flex flex-col gap-token-1">
-                  <div className="w-token-4 h-0.5 bg-gray-50"></div>
-                  <div className="w-token-4 h-0.5 bg-gray-50"></div>
-                  <div className="w-token-4 h-0.5 bg-gray-50"></div>
-                </div>
-              </button>
-            </div>
-          </div>
-        </nav>
+        {/* Navigation */}
+        <HeroNavigation onProjectsClick={scrollToProjects} />
 
-        {/* Main Content */}
+        {/* Main Content Container */}
         <div
           id="main-content"
           className="h-screen flex items-center relative"
-          style={{ background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 30%, #ffffff 50%, #ffffff 80%)' }}
           role="main"
         >
-          {/* Black Ribbon Bar - full width, lowest layer  */}
-          <div
-            className="absolute top-200 left-0 right-0 transform -translate-y-1/2 bg-black z-0"
-            style={{ height: '152px' }}
-          ></div>
+          {/* Background Elements */}
+          <HeroBackground />
 
-          {/* MetaBalls above both columns but below image */}
-          <div
-            className="absolute top-1/2 left-8/9 transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none"
-            style={{ width: '1300px', height: '700px' }}
-          >
-            <React.Suspense fallback={<div className="w-full h-full bg-transparent" />}>
-              <MetaBalls
-                color="#000000"
-                cursorBallColor="#000000"
-                cursorBallSize={1}
-                ballCount={10}
-                animationSize={15}
-                enableMouseInteraction={true}
-                enableTransparency={true}
-                hoverSmoothness={0.05}
-                clumpFactor={1}
-                speed={0.9}
-              />
-            </React.Suspense>
-          </div>
-
-          {/* Content container */}
-          <div className="w-full px-token-6 sm:px-token-8 lg:px-token-12 xl:px-token-16 relative z-token-docked">
-            <div className="grid grid-cols-12 gap-token-6 lg:gap-token-8 xl:gap-token-12 items-center h-full">
-
-              {/* Left Column - Text Content */}
-              <div className="col-span-12 lg:col-span-6 xl:col-span-6 relative z-token-docked">
-                <div className="hero-main-text mb-token-6 lg:mb-token-8">
-                  <div className="flex flex-col justify-center h-full pl-token-8">
-                    <h1 id="hero-title">
-                      <LettersPullUp 
-                        text="Mohammed Arsac"
-                        className="text-token-7xl font-token-extrabold leading-token-tight mb-token-4 
-                          bg-gradient-to-r from-black to-white 
-                          bg-clip-text text-transparent 
-                          [text-stroke:2px_black]"
-                      />
-                    </h1>
-
-                    <p className="text-token-2xl text-gray-600 mb-token-4 max-w-md">Building seamless digital experiences for modern businesses.</p>
-                    <button 
-                      className="mt-token-4 py-token-3 px-token-8 bg-black text-white rounded-token-xl hover:bg-gray-800 transition font-token-medium w-fit"
-                      onClick={() => {
-                        const link = document.createElement('a');
-                        link.href = '/Mohammed Arsac - Latest resume.pdf';
-                        link.download = 'Mohammed Arsac - Latest resume.pdf';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                      }}
-                      aria-label="Download resume"
-                      tabIndex={0}
-                    >
-                      Resume
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column - Image */}
-              <div
-                className="col-span-12 lg:col-span-6 xl:col-span-6 relative mt-token-8 lg:mt-token-32 xl:mt-token-32 z-token-docked"
-              >
-                <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-token-docked ">
-                  <img
-                    src="public/arsac_latest_2.png"
-                    alt="Mohammed Arsac - Portfolio profile"
-                    loading="eager"
-                    aria-describedby="profile-description"
-                  />
-                  <span id="profile-description" className="sr-only">Professional portrait of Mohammed Arsac, a web developer</span>
-                </div>
-              </div>
-            </div>
+          {/* Content */}
+          <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 relative z-20">
+            <HeroContent onDownloadResume={handleDownloadResume} />
           </div>
         </div>
       </section>
     </ErrorBoundary>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
