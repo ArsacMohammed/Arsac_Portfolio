@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
-import { motion, useAnimation, easeInOut } from 'framer-motion'
+// Optimized imports for tree shaking
+import { motion, useAnimation } from 'framer-motion'
+import { easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 const About: React.FC = () => {

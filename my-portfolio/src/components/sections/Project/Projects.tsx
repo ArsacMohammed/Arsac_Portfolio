@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import type{KeyboardEvent } from 'react';
-import { motion, AnimatePresence, useAnimation, easeInOut } from 'framer-motion'
+import type { KeyboardEvent } from 'react';
+// Optimized imports for tree shaking
+import { motion, AnimatePresence, useAnimation } from 'framer-motion'
+import { easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+// Import icons from lucide-react
 import { ChevronDown, AlertTriangle, RefreshCw } from 'lucide-react'
 import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary'
 import { useErrorHandler } from '../../../hooks/useErrorHandler'
@@ -25,8 +28,6 @@ const containerVariants = {
 const luxeMetaColors = [
   "#EFE9E1", "#D9D9D9", "#D1C7BD", "#AC9C8D", "#72383D", "#322D29"
 ]
-
-const luxeAccent = "#72383D"
 
 const fetchProjects = async (): Promise<Project[]> => {
   return new Promise<Project[]>((resolve) => {

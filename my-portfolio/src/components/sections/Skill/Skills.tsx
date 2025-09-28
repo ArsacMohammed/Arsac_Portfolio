@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+// Optimized imports for tree shaking
 import { motion, AnimatePresence, LayoutGroup, useAnimation } from 'framer-motion'
+import { easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+// Import icons from lucide-react
 import { ExternalLink } from 'lucide-react'
 import { Button } from '../../ui'
-import { easeInOut } from 'framer-motion'
 
 interface Slide {
   image: string
@@ -62,18 +64,7 @@ const slides: Slide[] = [
     link: 'https://www.example.com/'
   }
 ]
-const containerVariants_ = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: easeInOut,
-      staggerChildren: 0.15
-    }
-  }
-};
+
 function getSliderWindow(slidesArr: Slide[], selectedIndex: number): Slide[] {
   const total = slidesArr.length
   return [
@@ -93,18 +84,6 @@ const Skills: React.FC = () => {
   const displayedSlides = getSliderWindow(slides, activeIndex)
 
   // Animation variants for the bottom frame
-  const containerVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeInOut",
-        staggerChildren: 0.15
-      }
-    }
-  }
 
   useEffect(() => {
     if (inView) controls.start('visible')
@@ -198,7 +177,7 @@ const Skills: React.FC = () => {
                   drag="x"
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.15}
-                  onDragEnd={(event, info) => {
+                  onDragEnd={(_, info) => {
                     if (info.offset.x < -100) setActiveIndex((activeIndex + 1) % slides.length)
                     else if (info.offset.x > 100) setActiveIndex((activeIndex - 1 + slides.length) % slides.length)
                   }}
@@ -303,7 +282,7 @@ const Skills: React.FC = () => {
         className="absolute bottom-0 left-0 z-20"
         initial="hidden"
         animate={controls}
-        variants={containerVariants_}
+        variants={containerVariants}
       >
         <div className="relative" style={{ width: 200, height: 200 }}>
           <div className="absolute bottom-0 left-0 h-20 w-100 bg-gradient-to-r bg-black to-black rounded" />

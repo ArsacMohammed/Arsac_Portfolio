@@ -1,14 +1,23 @@
 import React from 'react'
 import { Layout } from './components/layout'
 import { ErrorBoundary } from './components/common'
-import Hero from './components/sections/Hero/Hero'
-import About from './components/sections/About/About'
-import Skills from './components/sections/Skill/Skills'
-// import Skills from './components/sections/Extra/Skills'
-import Connect from './components/sections/Connect/Connects'
-import Projects from './components/sections/Project/Projects'
+import { withIntersectionLazyLoading, preloadComponent } from './lib/lazyLoad'
 
 import '@/styles/globals.css'
+
+// Critical component - load immediately
+import Hero from './components/sections/Hero/Hero'
+
+// Lazy load non-critical components
+const About = withIntersectionLazyLoading(() => import('./components/sections/About/About'))
+const Skills = withIntersectionLazyLoading(() => import('./components/sections/Skill/Skills'))
+const Projects = withIntersectionLazyLoading(() => import('./components/sections/Project/Projects'))
+const Connect = withIntersectionLazyLoading(() => import('./components/sections/Connect/Connects'))
+
+// Preload components that are likely to be viewed soon
+React.startTransition(() => {
+  preloadComponent(() => import('./components/sections/About/About'))
+})
 
 function App() {
   return (

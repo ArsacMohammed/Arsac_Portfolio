@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Sun, Moon, Monitor } from 'lucide-react'
 import { Button } from '../../../components/ui'
 import { useTheme } from '../../../hooks'
-import { NAVIGATION_ITEMS, SITE_CONFIG } from '../../..//lib/constants'
+import { NAVIGATION_ITEMS } from '../../..//lib/constants'
 import { useLenis } from '../../../components/common'
 import { cn } from '../../../lib/utils'
 import type { ThemeMode } from '../../../types'
@@ -11,7 +11,7 @@ import type { ThemeMode } from '../../../types'
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const lenis = useLenis()
 
   useEffect(() => {
@@ -127,7 +127,7 @@ const Header: React.FC = () => {
 
             {/* Right Section */}
             <div className="flex ml-auto space-x-8 items-center">
-              {NAVIGATION_ITEMS.slice(2).map((item, index) => (
+              {NAVIGATION_ITEMS.slice(2).map((item) => (
                               <motion.button
   key={item.id}
   onClick={() => handleNavClick(item.href)} // Use correct href for each item

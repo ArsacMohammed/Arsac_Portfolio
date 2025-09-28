@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { gsap } from 'gsap'
 import { useGSAP } from '../../../hooks'
 import { useLenis } from '../../../components/common/'
 import { scrollToElement } from '../../../components/common'
-import MetaBalls from './Metaballs'   // Import MetaBalls
+// Dynamic import for MetaBalls to reduce initial bundle size
+const MetaBalls = React.lazy(() => import('./Metaballs'))
 
 // ✅ Error Boundary Component
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error: any }> {
@@ -75,7 +76,7 @@ const Hero: React.FC = () => {
   }
 
   // GSAP animations matching the design
-  const heroRef = useGSAP<HTMLElement>((element) => {
+  const heroRef = useGSAP<HTMLElement>((_) => {
     const tl = gsap.timeline()
 
     // Animate elements in sequence
@@ -165,18 +166,20 @@ const Hero: React.FC = () => {
             className="absolute top-1/2 left-8/9 transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none"
             style={{ width: '1300px', height: '700px' }}
           >
-            <MetaBalls
-              color="#000000"
-              cursorBallColor="#000000"
-              cursorBallSize={1}
-              ballCount={10}
-              animationSize={15}
-              enableMouseInteraction={true}
-              enableTransparency={true}
-              hoverSmoothness={0.05}
-              clumpFactor={1}
-              speed={0.9}
-            />
+            <React.Suspense fallback={<div className="w-full h-full bg-transparent" />}>
+              <MetaBalls
+                color="#000000"
+                cursorBallColor="#000000"
+                cursorBallSize={1}
+                ballCount={10}
+                animationSize={15}
+                enableMouseInteraction={true}
+                enableTransparency={true}
+                hoverSmoothness={0.05}
+                clumpFactor={1}
+                speed={0.9}
+              />
+            </React.Suspense>
           </div>
 
           {/* Content container */}
