@@ -83,10 +83,10 @@ const ProjectsInner: React.FC = () => {
 
   if (state.error) {
     return (
-      <section id="Projects" role="region" aria-labelledby="projects-heading" className="min-h-[50vh] flex flex-col items-center justify-center text-center">
-        <AlertTriangle className="text-red-500 w-12 h-12 mb-4" aria-hidden="true" />
-        <p className="text-gray-700 mb-2">{state.userFriendlyError?.message || "Something went wrong while loading projects."}</p>
-        <Button onClick={retry} className="flex items-center gap-2">
+      <section id="Projects" role="region" aria-labelledby="projects-heading" className="min-h-token-50vh flex flex-col items-center justify-center text-center">
+        <AlertTriangle className="text-red-500 w-token-12 h-token-12 mb-token-4" aria-hidden="true" />
+        <p className="text-gray-700 mb-token-2">{state.userFriendlyError?.message || "Something went wrong while loading projects."}</p>
+        <Button onClick={retry} className="flex items-center gap-token-2">
           <RefreshCw size={16} /> Try Again
         </Button>
       </section>
@@ -104,13 +104,13 @@ const ProjectsInner: React.FC = () => {
       >
         {/* Header */}
         <motion.div
-          className="absolute top-0 left-140 right-0 z-20 px-0 pt-40 pb-16"
+          className="absolute top-0 left-140 right-0 z-token-sticky px-0 pt-token-40 pb-token-16"
           initial="hidden"
           animate={controls}
           variants={containerVariants}
         >
-          <h1 id="projects-heading" className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-tight ml-0">
-            <span className="text-7xl font-extrabold leading-tight bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">
+          <h1 id="projects-heading" className="text-token-4xl lg:text-token-6xl xl:text-token-7xl font-token-bold text-gray-900 tracking-tight ml-0">
+            <span className="text-token-7xl font-token-extrabold leading-token-tight bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">
               Projects Completed
             </span>
           </h1>
@@ -118,12 +118,12 @@ const ProjectsInner: React.FC = () => {
 
         {/* Accordion List */}
         <motion.div
-          className="w-full h-full flex items-start justify-center pt-80 pb-16 overflow-visible"
+          className="w-full h-full flex items-start justify-center pt-token-80 pb-token-16 overflow-visible"
           initial="hidden"
           animate={controls}
           variants={containerVariants}
         >
-          <div className="w-full px-6 md:px-12 lg:px-16 xl:px-50" ref={containerRef}>
+          <div className="w-full px-token-6 md:px-token-12 lg:px-token-16 xl:px-50" ref={containerRef}>
             <div className="relative overflow-visible" role="list">
               <AnimatePresence>
                 {projects.map((item, index) => {
@@ -155,7 +155,7 @@ const ProjectsInner: React.FC = () => {
                       role="listitem"
                     >
                       <motion.button
-                        className="w-full flex items-center rounded-2xl border border-gray-200 shadow-md transition px-0 py-0 mb-6 focus:outline-none focus:ring-2 focus:ring-[#72383D] focus:ring-offset-2 bg-[#F9F8F7]"
+                        className="w-full flex items-center rounded-token-2xl border border-gray-200 shadow-token-md transition px-0 py-0 mb-token-6 focus:outline-none focus:ring-2 focus:ring-[#72383D] focus:ring-offset-2 bg-[#F9F8F7]"
                         style={{
                           borderColor: isOpen ? '#72383D' : '#EEE',
                           boxShadow: isOpen ? `0 6px 32px -6px #72383D22` : undefined
@@ -172,7 +172,7 @@ const ProjectsInner: React.FC = () => {
                       >
                         {/* Meta Box */}
                         <div
-                          className="flex flex-col items-center w-40 min-w-[8rem] h-full rounded-l-2xl border-r py-10 px-4 justify-center"
+                          className="flex flex-col items-center w-token-40 min-w-[8rem] h-full rounded-l-token-2xl border-r py-token-10 px-token-4 justify-center"
                           style={{
                             background: luxeMetaColors[index % luxeMetaColors.length],
                             borderColor: '#72383D',
@@ -180,21 +180,21 @@ const ProjectsInner: React.FC = () => {
                           }}
                           aria-hidden="true"
                         >
-                          <div className="text-3xl font-semibold mb-2">{item.number}</div>
+                          <div className="text-token-3xl font-token-semibold mb-token-2">{item.number}</div>
                         </div>
 
                         {/* Title & Actions */}
-                        <div className="flex-1 flex flex-row items-center px-7 py-7 justify-between">
+                        <div className="flex-1 flex flex-row items-center px-token-7 py-token-7 justify-between">
                           <div>
-                            <h3 id={`project-title-${index}`} className="text-3xl font-semibold leading-tight text-[#322D29] mb-2">
+                            <h3 id={`project-title-${index}`} className="text-token-3xl font-token-semibold leading-token-tight text-[#322D29] mb-token-2">
                               {item.title}
                             </h3>
                           </div>
-                          <div className="flex gap-3 items-center">
-                            <span className="px-4 py-1 border border-[#D1C7BD] rounded-full text-xs font-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
+                          <div className="flex gap-token-3 items-center">
+                            <span className="px-token-4 py-token-1 border border-[#D1C7BD] rounded-token-full text-token-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
                               VIEW CASE
                             </span>
-                            <span className="px-4 py-1 border border-[#D1C7BD] rounded-full text-xs font-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
+                            <span className="px-token-4 py-token-1 border border-[#D1C7BD] rounded-token-full text-token-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
                               LIVE WEBSITE
                             </span>
                             <motion.div
@@ -240,19 +240,19 @@ const ProjectsInner: React.FC = () => {
                             className="overflow-hidden origin-top"
                             style={{ transformOrigin: 'top' }}
                           >
-                            <div className="px-4 pb-6 pt-2">
-                              <ul className="space-y-4" role="list">
+                            <div className="px-token-4 pb-token-6 pt-token-2">
+                              <ul className="gap-token-4 flex flex-col" role="list">
                                 {item.description?.map((point, idx) => (
                                   <motion.li
                                     key={idx}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.4, delay: idx * 0.1, ease: 'easeOut' }}
-                                    className="flex items-start space-x-3 text-gray-700 leading-relaxed"
+                                    className="flex items-start gap-token-3 text-gray-700 leading-token-relaxed"
                                     role="listitem"
                                   >
-                                    <div className="w-2 h-2 bg-gradient-to-r from-[#560F13] to-black rounded-full mt-2 flex-shrink-0" aria-hidden="true" />
-                                    <p className="text-base lg:text-3 xl">{point}</p>
+                                    <div className="w-token-2 h-token-2 bg-gradient-to-r from-[#560F13] to-black rounded-token-full mt-token-2 flex-shrink-0" aria-hidden="true" />
+                                    <p className="text-token-base lg:text-3 xl">{point}</p>
                                   </motion.li>
                                 ))}
                               </ul>

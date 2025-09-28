@@ -114,18 +114,18 @@ const Skills: React.FC = () => {
         overflowX: 'hidden'
       }}
     >
-      <div className="w-full flex items-center justify-between px-4 py-2 absolute top-0 left-0 right-0 z-20 bg-transparent">
+      <div className="w-full flex items-center justify-between px-token-4 py-token-2 absolute top-0 left-0 right-0 z-token-sticky bg-transparent">
         {/* Left: Heading */}
-        <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 tracking-tight mt-0 mb-0 ml-180">
-          <span className="text-7xl font-extrabold leading-tight mb-2 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">Skills</span>
+        <h1 className="text-token-4xl lg:text-token-6xl xl:text-token-7xl font-token-bold text-gray-900 tracking-tight mt-0 mb-0 ml-180">
+          <span className="text-token-7xl font-token-extrabold leading-token-tight mb-token-2 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">Skills</span>
         </h1>
 
         {/* Right: Top-right '7' Frame with gradient */}
-        <div className="relative mr-4" style={{ width: 200, height: 200 }}>
-          <div className="absolute top-0 right-0 h-20 w-100 bg-gradient-to-r bg-black rounded" />
+        <div className="relative mr-token-4" style={{ width: 200, height: 200 }}>
+          <div className="absolute top-0 right-0 h-token-20 w-100 bg-gradient-to-r bg-black rounded" />
           {/* <div className="absolute top-0 right-0 h-10 w-100 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black rounded" /> */}
 
-          <div className="absolute top-0 right-0 w-20 h-100 bg-gradient-to-t bg-black to-black rounded" />
+          <div className="absolute top-0 right-0 w-token-20 h-100 bg-gradient-to-t bg-black to-black rounded" />
         </div>
       </div>
 
@@ -214,26 +214,26 @@ const Skills: React.FC = () => {
                   )}
                   {i === 1 && (
                     <>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10" />
-                      <div className="absolute left-8 bottom-8 z-20 text-white">
-                        <h2 className="text-2xl font-bold leading-tight mb-1 drop-shadow">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-token-docked" />
+                      <div className="absolute left-8 bottom-8 z-token-sticky text-white">
+                        <h2 className="text-token-2xl font-token-bold leading-token-tight mb-token-1 drop-shadow">
                           {slide.title}
                         </h2>
                         {slide.subtitle && (
-                          <div className="text-white text-base font-medium mb-2 opacity-85">
+                          <div className="text-white text-token-base font-token-medium mb-token-2 opacity-85">
                             {slide.subtitle}
                           </div>
                         )}
-                        <div className="text-gray-200 text-base mb-3 opacity-70 max-w-xs">
+                        <div className="text-gray-200 text-token-base mb-token-3 opacity-70 max-w-xs">
                           {slide.description}
                         </div>
                         <Button
                           variant="secondary"
                           size="sm"
                           onClick={() => window.open(slide.link, '_blank')}
-                          className="bg-white text-gray-800 font-semibold rounded-full px-4 py-2 hover:bg-gray-100"
+                          className="bg-white text-gray-800 font-token-semibold rounded-token-full px-token-4 py-token-2 hover:bg-gray-100"
                         >
-                          <ExternalLink className="w-4 h-4 mr-2" />
+                          <ExternalLink className="w-token-4 h-token-4 mr-token-2" />
                           Visit
                         </Button>
                       </div>
@@ -279,14 +279,14 @@ const Skills: React.FC = () => {
 
       {/* Bottom Frame - positioned at the very bottom of the section */}
       <motion.div
-        className="absolute bottom-0 left-0 z-20"
+        className="absolute bottom-0 left-0 z-token-sticky"
         initial="hidden"
         animate={controls}
         variants={containerVariants}
       >
         <div className="relative" style={{ width: 200, height: 200 }}>
-          <div className="absolute bottom-0 left-0 h-20 w-100 bg-gradient-to-r bg-black to-black rounded" />
-          <div className="absolute bottom-0 left-0 w-20 h-100 bg-gradient-to-t bg-black to-black rounded" />
+          <div className="absolute bottom-0 left-0 h-token-20 w-100 bg-gradient-to-r bg-black to-black rounded" />
+          <div className="absolute bottom-0 left-0 w-token-20 h-100 bg-gradient-to-t bg-black to-black rounded" />
         </div>
       </motion.div>
     </section>

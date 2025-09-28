@@ -21,16 +21,16 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({
   
   const paddings = {
     none: '',
-    sm: 'p-4',
-    md: 'p-6',
-    lg: 'p-8'
+    sm: 'p-token-4',
+    md: 'p-token-6',
+    lg: 'p-token-8'
   }
 
   return (
     <div
       ref={ref}
       className={cn(
-        'rounded-xl transition-colors',
+        'rounded-token-xl transition-colors',
         variants[variant],
         paddings[padding],
         className
@@ -49,7 +49,7 @@ const CardHeader = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElemen
 }, ref) => (
   <div
     ref={ref}
-    className={cn('flex flex-col space-y-1.5 pb-6', className)}
+    className={cn('flex flex-col gap-token-1 pb-token-6', className)}
     {...props}
   />
 ))
@@ -60,7 +60,7 @@ const CardTitle = forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadin
 }, ref) => (
   <h3
     ref={ref}
-    className={cn('text-2xl font-semibold leading-none tracking-tight', className)}
+    className={cn('text-token-2xl font-token-semibold leading-token-none tracking-tight', className)}
     {...props}
   />
 ))
@@ -71,7 +71,7 @@ const CardDescription = forwardRef<HTMLParagraphElement, React.HTMLAttributes<HT
 }, ref) => (
   <p
     ref={ref}
-    className={cn('text-sm text-gray-600 dark:text-gray-400', className)}
+    className={cn('text-token-sm text-gray-600 dark:text-gray-400', className)}
     {...props}
   />
 ))
@@ -93,7 +93,7 @@ const CardFooter = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElemen
 }, ref) => (
   <div
     ref={ref}
-    className={cn('flex items-center pt-6', className)}
+    className={cn('flex items-center pt-token-6', className)}
     {...props}
   />
 ))

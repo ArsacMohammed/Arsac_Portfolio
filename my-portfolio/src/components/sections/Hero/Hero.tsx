@@ -123,25 +123,25 @@ const Hero: React.FC = () => {
         aria-labelledby="hero-title"
       >
         {/* Top Navigation */}
-        <nav className="hero-nav absolute top-0 left-0 right-0 z-30" aria-label="Main navigation">
-          <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 py-6">
+        <nav className="hero-nav absolute top-0 left-0 right-0 z-token-sticky" aria-label="Main navigation">
+          <div className="w-full px-token-6 sm:px-token-8 lg:px-token-12 xl:px-token-16 py-token-6">
             <div className="flex items-center justify-between">
-              <a href="#home" className="text-sm font-medium text-gray-50" aria-label="Home">+1</a>
-              <ul className="flex space-x-8 hidden md:flex">
-                <li><button className="text-sm font-medium text-gray-50" onClick={scrollToProjects} tabIndex={0} aria-label="View projects">Projects</button></li>
-                <li><a href="#about" className="text-sm font-medium text-gray-50" tabIndex={0}>About</a></li>
-                <li><a href="#contact" className="text-sm font-medium text-gray-50" tabIndex={0}>Contact</a></li>
+              <a href="#home" className="text-token-sm font-token-medium text-gray-50" aria-label="Home">+1</a>
+              <ul className="flex gap-token-8 hidden md:flex">
+                <li><button className="text-token-sm font-token-medium text-gray-50" onClick={scrollToProjects} tabIndex={0} aria-label="View projects">Projects</button></li>
+                <li><a href="#about" className="text-token-sm font-token-medium text-gray-50" tabIndex={0}>About</a></li>
+                <li><a href="#contact" className="text-token-sm font-token-medium text-gray-50" tabIndex={0}>Contact</a></li>
               </ul>
               <button 
-                className="text-sm font-medium text-gray-50 md:hidden"
+                className="text-token-sm font-token-medium text-gray-50 md:hidden"
                 aria-label="Open menu"
                 aria-expanded="false"
                 tabIndex={0}
               >
-                <div className="flex flex-col space-y-1">
-                  <div className="w-4 h-0.5 bg-gray-50"></div>
-                  <div className="w-4 h-0.5 bg-gray-50"></div>
-                  <div className="w-4 h-0.5 bg-gray-50"></div>
+                <div className="flex flex-col gap-token-1">
+                  <div className="w-token-4 h-0.5 bg-gray-50"></div>
+                  <div className="w-token-4 h-0.5 bg-gray-50"></div>
+                  <div className="w-token-4 h-0.5 bg-gray-50"></div>
                 </div>
               </button>
             </div>
@@ -183,26 +183,26 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Content container */}
-          <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16 relative z-10">
-            <div className="grid grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center h-full">
+          <div className="w-full px-token-6 sm:px-token-8 lg:px-token-12 xl:px-token-16 relative z-token-docked">
+            <div className="grid grid-cols-12 gap-token-6 lg:gap-token-8 xl:gap-token-12 items-center h-full">
 
               {/* Left Column - Text Content */}
-              <div className="col-span-12 lg:col-span-6 xl:col-span-6 relative z-10">
-                <div className="hero-main-text mb-6 lg:mb-8">
-                  <div className="flex flex-col justify-center h-full pl-8">
+              <div className="col-span-12 lg:col-span-6 xl:col-span-6 relative z-token-docked">
+                <div className="hero-main-text mb-token-6 lg:mb-token-8">
+                  <div className="flex flex-col justify-center h-full pl-token-8">
                     <h1 id="hero-title">
                       <LettersPullUp 
                         text="Mohammed Arsac"
-                        className="text-7xl font-extrabold leading-tight mb-4 
+                        className="text-token-7xl font-token-extrabold leading-token-tight mb-token-4 
                           bg-gradient-to-r from-black to-white 
                           bg-clip-text text-transparent 
                           [text-stroke:2px_black]"
                       />
                     </h1>
 
-                    <p className="text-2xl text-gray-600 mb-4 max-w-md">Building seamless digital experiences for modern businesses.</p>
+                    <p className="text-token-2xl text-gray-600 mb-token-4 max-w-md">Building seamless digital experiences for modern businesses.</p>
                     <button 
-                      className="mt-4 py-3 px-8 bg-black text-white rounded-xl hover:bg-gray-800 transition font-medium w-fit"
+                      className="mt-token-4 py-token-3 px-token-8 bg-black text-white rounded-token-xl hover:bg-gray-800 transition font-token-medium w-fit"
                       onClick={() => {
                         const link = document.createElement('a');
                         link.href = '/Mohammed Arsac - Latest resume.pdf';
@@ -222,9 +222,9 @@ const Hero: React.FC = () => {
 
               {/* Right Column - Image */}
               <div
-                className="col-span-12 lg:col-span-6 xl:col-span-6 relative mt-8 lg:mt-32 xl:mt-32 z-10"
+                className="col-span-12 lg:col-span-6 xl:col-span-6 relative mt-token-8 lg:mt-token-32 xl:mt-token-32 z-token-docked"
               >
-                <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-10 ">
+                <div className="hero-image-container absolute inset-0 flex items-center justify-end pr-25 z-token-docked ">
                   <img
                     src="public/arsac_latest_2.png"
                     alt="Mohammed Arsac - Portfolio profile"
