@@ -14,9 +14,9 @@ const Hero: React.FC = () => {
   // Navigation handler
   const scrollToProjects = () => {
     if (lenis) {
-      lenis.scrollTo('#projects', { offset: -100 });
+      lenis.scrollTo('#Projects', { offset: -100 });
     } else {
-      scrollToElement('#projects');
+      scrollToElement('#Projects');
     }
   };
 
@@ -47,8 +47,8 @@ const Hero: React.FC = () => {
         role="region"
         aria-labelledby="hero-title"
       >
-        {/* Navigation */}
-        <HeroNavigation onProjectsClick={scrollToProjects} />
+        {/* Navigation - Commented out, using main header instead */}
+        {/* <HeroNavigation onProjectsClick={scrollToProjects} /> */}
 
         {/* Main Content Container */}
         <div

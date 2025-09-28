@@ -24,21 +24,39 @@ const Header: React.FC = () => {
   }, [])
 
   const handleNavClick = (href: string) => {
-    if (lenis) {
-      // Use Lenis for smooth scrolling with offset to account for fixed header
-      lenis.scrollTo(href, { 
-        offset: -80, // Offset to account for fixed header height
-        duration: 2.8, // Smooth duration
-        easing: (t: number) => 1 - Math.pow(1 - t, 3) // easeOutCubic for smooth feel
-      })
-    } else {
-      // Fallback to basic scroll
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
-    }
+    // Close mobile menu immediately
     setIsOpen(false)
+    
+    // Verify target element exists
+    const targetElement = document.querySelector(href)
+    if (!targetElement) {
+      console.warn(`Navigation target not found: ${href}`)
+      return
+    }
+
+    if (lenis) {
+      try {
+        // Use Lenis for smooth scrolling with offset to account for fixed header
+        lenis.scrollTo(href, { 
+          offset: -80, // Offset to account for fixed header height
+          duration: 2.8, // Smooth duration
+          easing: (t: number) => 1 - Math.pow(1 - t, 3) // easeOutCubic for smooth feel
+        })
+      } catch (error) {
+        console.warn('Lenis scroll failed, using fallback:', error)
+        // Fallback to basic scroll if Lenis fails
+        targetElement.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    } else {
+      // Fallback to basic scroll when Lenis is not available
+      targetElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
   }
 
   const ThemeIcon = theme === 'dark' ? Sun : theme === 'light' ? Moon : Monitor

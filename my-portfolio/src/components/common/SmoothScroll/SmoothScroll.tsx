@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, createContext, useContext } from 'react'
+import React, { useEffect, useRef, createContext, useContext, useState } from 'react'
 import Lenis from 'lenis'
 
 interface SmoothScrollContextType {
@@ -22,6 +22,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({
   options = {} 
 }) => {
   const lenisRef = useRef<Lenis | null>(null)
+  const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null)
 
   useEffect(() => {
     // Initialize Lenis with custom options
@@ -32,6 +33,9 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({
       smoothTouch: false, // Disable on mobile for better performance
       ...options
     })
+
+    // Update state to trigger context re-render
+    setLenisInstance(lenisRef.current)
 
     // Animation loop
     function animate(time: number) {
@@ -52,13 +56,14 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({
     // Cleanup
     return () => {
       lenisRef.current?.destroy()
+      setLenisInstance(null)
       window.removeEventListener('wheel', handleWheel)
     }
   }, [])
 
-  // Provide lenis instance to child components
+  // Provide lenis instance to child components using state instead of ref
   return (
-    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current }}>
+    <SmoothScrollContext.Provider value={{ lenis: lenisInstance }}>
       {children}
     </SmoothScrollContext.Provider>
   )
