@@ -109,16 +109,16 @@ export const SkillSlide: React.FC<SkillSlideProps> = ({
       {isSelected && (
         <>
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-token-docked" />
-          <div className="absolute left-8 bottom-8 z-token-sticky text-white">
-            <h2 className="text-token-2xl font-token-bold leading-token-tight mb-token-1 drop-shadow">
+          <div className="absolute left-4 sm:left-6 md:left-8 bottom-4 sm:bottom-6 md:bottom-8 z-token-sticky text-white">
+            <h2 className="text-lg sm:text-xl md:text-token-2xl font-token-bold leading-token-tight mb-1 sm:mb-token-1 drop-shadow">
               {slide.title}
             </h2>
             {slide.subtitle && (
-              <div className="text-white text-token-base font-token-medium mb-token-2 opacity-85">
+              <div className="text-white text-sm sm:text-base font-token-medium mb-1 sm:mb-token-2 opacity-85">
                 {slide.subtitle}
               </div>
             )}
-            <div className="text-gray-200 text-token-base mb-token-3 opacity-70 max-w-xs">
+            <div className="text-gray-200 text-xs sm:text-sm md:text-token-base mb-2 sm:mb-token-3 opacity-70 max-w-[200px] sm:max-w-xs">
               {slide.description}
             </div>
             <Button

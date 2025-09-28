@@ -43,21 +43,21 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   }
 
   return (
-    <section id="Projects" role="region" aria-labelledby="projects-heading" className="min-h-[150vh] relative overflow-visible" ref={ref}>
+    <section id="Projects" role="region" aria-labelledby="projects-heading" className="min-h-[120vh] sm:min-h-[130vh] md:min-h-[140vh] lg:min-h-[150vh] relative overflow-visible" ref={ref}>
       <a href="#Projects" className="sr-only">Skip to Projects</a>
       <div
-        className="h-[150vh] w-screen flex relative"
+        className="h-[120vh] sm:h-[130vh] md:h-[140vh] lg:h-[150vh] w-screen flex relative"
         style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
       >
         {/* Header */}
         <motion.div
-          className="absolute top-0 left-140 right-0 z-token-sticky px-0 pt-token-40 pb-token-16"
+          className="absolute top-0 left-0 sm:left-4 md:left-8 lg:left-140 right-0 z-token-sticky px-4 sm:px-6 md:px-8 pt-token-20 sm:pt-token-30 md:pt-token-40 pb-token-8 sm:pb-token-12 md:pb-token-16"
           initial="hidden"
           animate={controls}
           variants={containerVariants}
         >
-          <h1 id="projects-heading" className="text-token-4xl lg:text-token-6xl xl:text-token-7xl font-token-bold text-gray-900 tracking-tight ml-0">
-            <span className="text-token-7xl font-token-extrabold leading-token-tight bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">
+          <h1 id="projects-heading" className="text-token-3xl sm:text-token-4xl md:text-token-5xl lg:text-token-6xl xl:text-token-7xl font-token-bold text-gray-900 tracking-tight ml-0">
+            <span className="text-token-3xl sm:text-token-4xl md:text-token-5xl lg:text-token-6xl xl:text-token-7xl font-token-extrabold leading-token-tight bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1px_black] sm:[text-stroke:1.5px_black]">
               Projects Completed
             </span>
           </h1>
@@ -65,12 +65,12 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
 
         {/* Accordion List */}
         <motion.div
-          className="w-full h-full flex items-start justify-center pt-token-80 pb-token-16 overflow-visible"
+          className="w-full h-full flex items-start justify-center pt-token-40 sm:pt-token-60 md:pt-token-80 pb-token-8 sm:pb-token-12 md:pb-token-16 overflow-visible"
           initial="hidden"
           animate={controls}
           variants={containerVariants}
         >
-          <div className="w-full px-token-6 md:px-token-12 lg:px-token-16 xl:px-50" ref={containerRef}>
+          <div className="w-full px-4 sm:px-token-6 md:px-token-12 lg:px-token-16 xl:px-50" ref={containerRef}>
             <div className="relative overflow-visible" role="list">
               <AnimatePresence>
                 {projects.map((project, index) => {

@@ -68,7 +68,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       >
         {/* Meta Box */}
         <div
-          className="flex flex-col items-center w-token-40 min-w-[8rem] h-full rounded-l-token-2xl border-r py-token-10 px-token-4 justify-center"
+          className="flex flex-col items-center w-16 sm:w-24 md:w-32 lg:w-token-40 min-w-[4rem] sm:min-w-[6rem] md:min-w-[8rem] h-full rounded-l-token-2xl border-r py-2 sm:py-4 md:py-token-10 px-1 sm:px-2 md:px-token-4 justify-center"
           style={{
             background: luxeMetaColors[index % luxeMetaColors.length],
             borderColor: '#72383D',
@@ -76,27 +76,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           }}
           aria-hidden="true"
         >
-          <div className="text-token-3xl font-token-semibold mb-token-2">{project.number}</div>
+          <div className="text-xl sm:text-2xl md:text-token-3xl font-token-semibold mb-1 sm:mb-token-2">{project.number}</div>
         </div>
 
         {/* Title & Actions */}
-        <div className="flex-1 flex flex-row items-center px-token-7 py-token-7 justify-between">
+        <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center px-3 sm:px-4 md:px-token-7 py-3 sm:py-4 md:py-token-7 justify-between">
           <div>
-            <h3 id={`project-title-${index}`} className="text-token-3xl font-token-semibold leading-token-tight text-[#322D29] mb-token-2">
+            <h3 id={`project-title-${index}`} className="text-xl sm:text-2xl md:text-token-3xl font-token-semibold leading-token-tight text-[#322D29] mb-2 sm:mb-token-2">
               {project.title}
             </h3>
           </div>
-          <div className="flex gap-token-3 items-center">
-            <span className="px-token-4 py-token-1 border border-[#D1C7BD] rounded-token-full text-token-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
+          <div className="flex flex-wrap gap-2 sm:gap-token-3 items-center mt-2 sm:mt-0">
+            <span className="px-2 sm:px-token-4 py-1 border border-[#D1C7BD] rounded-token-full text-xs sm:text-token-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
               VIEW CASE
             </span>
-            <span className="px-token-4 py-token-1 border border-[#D1C7BD] rounded-token-full text-token-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
+            <span className="px-2 sm:px-token-4 py-1 border border-[#D1C7BD] rounded-token-full text-xs sm:text-token-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
               LIVE WEBSITE
             </span>
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.34, ease: 'easeInOut' }}
-              className="ml-2 text-[#72383D]"
+              className="ml-1 sm:ml-2 text-[#72383D]"
               aria-hidden="true"
             >
               <ChevronDown size={28} />

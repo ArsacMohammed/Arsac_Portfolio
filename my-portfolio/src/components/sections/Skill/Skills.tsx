@@ -67,7 +67,7 @@ const Skills: React.FC = () => {
   return (
     <section
       id="Skills"
-      className="w-full min-h-screen pt-50 relative"
+      className="w-full min-h-screen pt-20 sm:pt-30 md:pt-50 relative"
       ref={ref}
       style={{
         background:
@@ -76,10 +76,10 @@ const Skills: React.FC = () => {
         overflowX: 'hidden'
       }}
     >
-      <div className="w-full flex items-center justify-between px-token-4 py-token-2 absolute top-0 left-0 right-0 z-token-sticky bg-transparent">
+      <div className="w-full flex items-center justify-between px-4 sm:px-6 md:px-token-4 py-2 sm:py-token-2 absolute top-0 left-0 right-0 z-token-sticky bg-transparent">
         {/* Left: Heading */}
-        <h1 className="text-token-4xl lg:text-token-6xl xl:text-token-7xl font-token-bold text-gray-900 tracking-tight mt-0 mb-0 ml-180">
-          <span className="text-token-7xl font-token-extrabold leading-token-tight mb-token-2 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">Skills</span>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-token-6xl xl:text-token-7xl font-token-bold text-gray-900 tracking-tight mt-0 mb-0 ml-4 sm:ml-8 md:ml-16 lg:ml-180">
+          <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-token-7xl font-token-extrabold leading-token-tight mb-token-2 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1px_black] sm:[text-stroke:1.5px_black]">Skills</span>
         </h1>
       </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
+import { AnimatePresence, LayoutGroup } from 'framer-motion'
 import { SkillSlide, type Slide } from './SkillSlide'
 
 interface SkillsCarouselProps {
@@ -31,9 +31,28 @@ export const SkillsCarousel: React.FC<SkillsCarouselProps> = ({ slides }) => {
     return () => clearInterval(interval)
   }, [paused, slides.length])
 
-  const baseWidth = 320
-  const selectedWidth = baseWidth * 1.5
-  const containerWidth = baseWidth * 2 + selectedWidth * 2
+  // Responsive widths based on screen size
+  const [dimensions, setDimensions] = useState({
+    baseWidth: typeof window !== 'undefined' ? (window.innerWidth < 640 ? 200 : window.innerWidth < 768 ? 260 : 320) : 320,
+    containerWidth: 0,
+    selectedWidth: 0
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const base = window.innerWidth < 640 ? 200 : window.innerWidth < 768 ? 260 : 320;
+      const selected = base * 1.5;
+      setDimensions({
+        baseWidth: base,
+        selectedWidth: selected,
+        containerWidth: base * 2 + selected * 2
+      });
+    };
+    
+    handleResize(); // Set initial dimensions
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleDragEnd = (info: any) => {
     if (info.offset.x < -100) setActiveIndex((activeIndex + 1) % slides.length)
@@ -45,8 +64,12 @@ export const SkillsCarousel: React.FC<SkillsCarouselProps> = ({ slides }) => {
       {/* Carousel Container */}
       <LayoutGroup>
         <div
-          className="relative ml-55"
-          style={{ width: containerWidth, height: 400, marginTop: '8rem' }}
+          className="relative mx-auto sm:ml-10 md:ml-20 lg:ml-55 overflow-hidden"
+          style={{ 
+            width: dimensions.containerWidth || '90vw', 
+            height: window.innerWidth < 640 ? 300 : 400, 
+            marginTop: window.innerWidth < 640 ? '4rem' : window.innerWidth < 768 ? '6rem' : '8rem' 
+          }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -57,8 +80,8 @@ export const SkillsCarousel: React.FC<SkillsCarouselProps> = ({ slides }) => {
                 slide={slide}
                 index={i}
                 position={i}
-                baseWidth={baseWidth}
-                selectedWidth={selectedWidth}
+                baseWidth={dimensions.baseWidth}
+                selectedWidth={dimensions.selectedWidth}
                 activeIndex={activeIndex}
                 onDragEnd={handleDragEnd}
               />
@@ -69,15 +92,20 @@ export const SkillsCarousel: React.FC<SkillsCarouselProps> = ({ slides }) => {
 
       {/* Pagination */}
       <div
-        className="flex w-full items-end justify-end relative mt-10"
-        style={{ minHeight: 40, height: 60, maxWidth: containerWidth, margin: '0 auto' }}
+        className="flex w-full items-end justify-center sm:justify-end relative mt-6 sm:mt-8 md:mt-10"
+        style={{ 
+          minHeight: 30, 
+          height: window.innerWidth < 640 ? 40 : 60, 
+          maxWidth: dimensions.containerWidth || '90vw', 
+          margin: '0 auto' 
+        }}
       >
-        <div className="flex gap-4 mb-4 mr-[8%]">
+        <div className="flex gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-4 mr-0 sm:mr-[4%] md:mr-[8%]">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
-              className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold transition border ${
+              className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-md sm:rounded-lg flex items-center justify-center text-sm sm:text-base md:text-lg font-bold transition border ${
                 i === activeIndex
                   ? 'bg-gray-900 text-white border-primary-600'
                   : 'bg-white text-gray-400 border-gray-300 hover:bg-gray-100'
@@ -87,12 +115,14 @@ export const SkillsCarousel: React.FC<SkillsCarouselProps> = ({ slides }) => {
             </button>
           ))}
         </div>
-        <div className="absolute right-100 bottom-7 w-full flex justify-end">
+        <div className="absolute right-0 sm:right-50 md:right-100 bottom-3 sm:bottom-5 md:bottom-7 w-full flex justify-center sm:justify-end">
           <div
             className="h-1 bg-primary-600 rounded-full transition-all duration-300"
             style={{
-              width: '70px',
-              marginRight: `calc(32px * ${slides.length - activeIndex - 1})`,
+              width: window.innerWidth < 640 ? '50px' : '70px',
+              marginRight: window.innerWidth < 640 
+                ? `calc(24px * ${slides.length - activeIndex - 1})` 
+                : `calc(32px * ${slides.length - activeIndex - 1})`,
             }}
           />
         </div>
