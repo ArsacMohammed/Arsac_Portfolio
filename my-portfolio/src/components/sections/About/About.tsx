@@ -39,13 +39,14 @@ const About: React.FC = () => {
         className="min-h-screen w-screen flex flex-col lg:flex-row relative"
         style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 30%, #f8f8f8 70%, #e0e0e0 100%)' }}
       >
+        {/* Desktop images */}
         <motion.div
-          className="w-full lg:w-1/2 h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-full relative z-token-docked"
+          className="hidden md:block w-full lg:w-1/2 h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-full relative z-token-docked"
           initial="hidden"
           animate={controls}
           variants={leftVariants}
         >
-          <AboutImages />
+          <AboutImages isMobile={false} />
         </motion.div>
 
         <motion.div

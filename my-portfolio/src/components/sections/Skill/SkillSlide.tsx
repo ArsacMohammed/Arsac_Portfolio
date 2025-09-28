@@ -9,6 +9,7 @@ export interface Slide {
   subtitle: string
   description: string
   link: string
+  color: string
 }
 
 interface SkillSlideProps {
@@ -74,11 +75,12 @@ export const SkillSlide: React.FC<SkillSlideProps> = ({
       className="absolute top-0"
       style={{
         width: isSelected ? selectedWidth : baseWidth,
-        height: isSelected ? 400 : 320,
-        borderRadius: isSelected ? 20 : 12,
+        height: isSelected ? (window.innerWidth < 640 ? 250 : 400) : 320,
+        borderRadius: isSelected ? (window.innerWidth < 640 ? 16 : 20) : 12,
         overflow: 'hidden',
         zIndex: isSelected ? 2 : 1,
         perspective: 1000,
+        display: window.innerWidth < 640 && !isSelected ? 'none' : 'block'
       }}
     >
       <img

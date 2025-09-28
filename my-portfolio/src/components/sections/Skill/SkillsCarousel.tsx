@@ -40,12 +40,14 @@ export const SkillsCarousel: React.FC<SkillsCarouselProps> = ({ slides }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      const base = window.innerWidth < 640 ? 200 : window.innerWidth < 768 ? 260 : 320;
-      const selected = base * 1.5;
+      const isMobile = window.innerWidth < 640;
+      const base = isMobile ? 200 : window.innerWidth < 768 ? 260 : 320;
+      // For mobile, make selected slide take full width with padding
+      const selected = isMobile ? window.innerWidth - 32 : base * 1.5;
       setDimensions({
         baseWidth: base,
         selectedWidth: selected,
-        containerWidth: base * 2 + selected * 2
+        containerWidth: isMobile ? window.innerWidth : base * 2 + selected * 2
       });
     };
     
@@ -67,8 +69,9 @@ export const SkillsCarousel: React.FC<SkillsCarouselProps> = ({ slides }) => {
           className="relative mx-auto sm:ml-10 md:ml-20 lg:ml-55 overflow-hidden"
           style={{ 
             width: dimensions.containerWidth || '90vw', 
-            height: window.innerWidth < 640 ? 300 : 400, 
-            marginTop: window.innerWidth < 640 ? '4rem' : window.innerWidth < 768 ? '6rem' : '8rem' 
+            height: window.innerWidth < 640 ? 250 : 400, 
+            marginTop: window.innerWidth < 640 ? '2rem' : window.innerWidth < 768 ? '6rem' : '8rem',
+            marginBottom: window.innerWidth < 640 ? '1rem' : '2rem'
           }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
