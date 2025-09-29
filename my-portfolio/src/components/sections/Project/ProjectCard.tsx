@@ -39,8 +39,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         // Leave space for header, button, and some padding
         setMaxExpandedHeight(Math.min(viewportHeight * 0.4, 400))
       } else {
-        // On desktop, allow more space but still constrain
-        setMaxExpandedHeight(Math.min(viewportHeight * 0.5, 600))
+        // On desktop/laptop, use almost full screen height (leaving space for header/margins)
+        setMaxExpandedHeight(viewportHeight - 200)
       }
     }
 
@@ -165,7 +165,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             className="overflow-hidden origin-top border border-black rounded-lg"
             style={{ 
               transformOrigin: 'top',
-              maxHeight: maxExpandedHeight,
               borderWidth: '1px',
               marginTop: '8px',
               marginBottom: '8px'
@@ -177,14 +176,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               className="overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
               style={{ 
                 maxHeight: maxExpandedHeight,
+                height: maxExpandedHeight,
                 paddingRight: '8px',
                 marginRight: '-8px',
                 scrollBehavior: 'smooth'
               }}
               onClick={onToggle}
             >
-              <div className="px-token-4 pb-token-6 pt-token-2">
-                <ul className="gap-token-4 flex flex-col" role="list">
+              <div className="px-token-4 pb-token-6 pt-token-2 md:pl-token-8 lg:pl-token-12 xl:pl-token-12 lg:pr-16 xl:pr-20 h-full flex flex-col">
+                <ul className="gap-4 md:gap-6 lg:gap-10 xl:gap-12 flex flex-col flex-1 justify-evenly py-4 lg:py-8" role="list">
                   {project.description?.map((point, idx) => (
                     <motion.li
                       key={idx}
@@ -194,8 +194,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                       className="flex items-start gap-token-3 text-gray-700 leading-token-relaxed"
                       role="listitem"
                     >
-                      <div className="w-token-2 h-token-2 bg-gradient-to-r from-[#560F13] to-black rounded-token-full mt-token-2 flex-shrink-0" aria-hidden="true" />
-                      <p className="text-token-base lg:text-3 xl pr-2">{point}</p>
+                      <div className="w-2 h-2 lg:w-3 lg:h-3 xl:w-4 xl:h-4 bg-gradient-to-r from-[#560F13] to-black rounded-token-full mt-1 lg:mt-2 xl:mt-3 flex-shrink-0" aria-hidden="true" />
+                      <p className="text-sm md:text-base lg:text-3xl xl:text-2xl pr-2 leading-relaxed lg:leading-loose">{point}</p>
                     </motion.li>
                   ))}
                 </ul>

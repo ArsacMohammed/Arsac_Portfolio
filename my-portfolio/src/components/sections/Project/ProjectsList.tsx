@@ -99,7 +99,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
 <div className="w-full h-full px-4 sm:px-token-6 md:px-token-8 lg:px-token-12 xl:px-20 mx-auto" ref={containerRef}>
             
             {/* Desktop View - Full height scrollable */}
-            <div className="hidden md:block h-full">
+            <div className="hidden md:block h-full ">
               <div 
                 className="h-full overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
                 style={{ 
@@ -107,7 +107,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                   marginRight: '-8px'
                 }}
               >
-                <div className="relative py-4" role="list">
+                <div className="relative py-4 px-4 sm:px-token-6 md:px-token-8 lg:px-token-12 xl:px-30" role="list">
                   <AnimatePresence>
                     {projects.map((project, index) => {
                       const isOpen = openIndex === index

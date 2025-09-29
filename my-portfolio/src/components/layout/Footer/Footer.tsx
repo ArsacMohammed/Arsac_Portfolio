@@ -11,18 +11,18 @@ const Footer: React.FC = () => {
           <p className="font-token-bold text-base sm:text-lg md:text-token-lg underline">Contact</p>
           <p className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-1 sm:gap-token-2 cursor-pointer hover:text-[#72383D] font-token-bold text-sm sm:text-base">
             <Mail size={16} className="sm:inline" />
-            <span>hello@yourdomain.com</span>
+            <span>arsacskasha@gmail.com</span>
           </p>
           <p className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-1 sm:gap-token-2 cursor-pointer hover:text-[#72383D] font-token-bold text-sm sm:text-base">
             <Phone size={16} className="sm:inline" />
-            <span>+91-9876543210</span>
+            <span>+91-9940880029</span>
           </p>
         </div>
 
         {/* Center: Social Icons */}
         <div className="flex gap-4 sm:gap-6 md:gap-token-8 text-black font-token-bold mb-4 md:mb-0">
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/mohammed-arsac-m-0b8bb0270"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
             <Linkedin size={24} className="sm:w-[26px] sm:h-[26px] md:w-[28px] md:h-[28px]" />
           </a>
           <a
-            href="https://github.com/yourprofile"
+            href="https://github.com/ArsacMohammed"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
             </svg>
           </a>
           <a
-            href="https://instagram.com/yourprofile"
+            href="https://instagram.com/arsacskasha"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
           >
             <Instagram size={24} className="sm:w-[26px] sm:h-[26px] md:w-[28px] md:h-[28px]" />
           </a>
-          <a
+          {/* <a
             href="https://twitter.com/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
             className="hover:opacity-70 transition"
           >
             <X size={24} className="sm:w-[26px] sm:h-[26px] md:w-[28px] md:h-[28px]" />
-          </a>
+          </a> */}
         </div>
 
         {/* Right: Copyright */}

@@ -31,7 +31,9 @@ const ConnectSection: React.FC = () => {
             Ready to collaborate, learn more, or talk tech? Reach out for consulting, freelance, or product design and engineering. Let's build your next big thing.
           </p>
           <a
-            href="mailto:hello@yourdomain.com"
+            href="https://www.linkedin.com/in/mohammed-arsac-m-0b8bb0270"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               px-4 sm:px-5 md:px-token-6 py-2 sm:py-2.5 md:py-token-3 rounded-lg md:rounded-token-lg text-base sm:text-lg md:text-token-lg font-token-semibold
               bg-white text-black shadow-token-lg transition hover:bg-gray-100

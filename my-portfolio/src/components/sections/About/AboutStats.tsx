@@ -10,10 +10,10 @@ interface AboutStatsProps {
 }
 
 const defaultStats: Stat[] = [
-  { value: '25+', label: 'Projects Completed' },
-  { value: '4+', label: 'Years Experience' },
-  { value: '10+', label: 'Clients Served' },
-  { value: '7+', label: 'Technologies Mastered' }
+  { value: '10+', label: 'Industry Projects Completed' },
+  { value: '2+', label: 'Years Experience' },
+  { value: '3+', label: 'Clients Served' },
+  { value: '15+', label: 'Technologies Mastered' }
 ]
 
 export const AboutStats: React.FC<AboutStatsProps> = ({ stats = defaultStats }) => {

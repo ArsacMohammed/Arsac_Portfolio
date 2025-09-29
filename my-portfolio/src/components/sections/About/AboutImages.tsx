@@ -7,8 +7,8 @@ interface AboutImagesProps {
 }
 
 export const AboutImages: React.FC<AboutImagesProps> = ({
-  squareImage = "/image_green.png",
-  rectangleImage = "/image_green.png",
+  squareImage = "/image_green.avif",
+  rectangleImage = "/image_green.avif",
   isMobile = false
 }) => {
   if (isMobile) {

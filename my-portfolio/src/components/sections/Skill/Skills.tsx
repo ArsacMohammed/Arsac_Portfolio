@@ -20,44 +20,68 @@ const containerVariants = {
 
 const slides: Slide[] = [
   {
-    image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?fit=crop&w=600&q=80',
-    title: 'Salomon',
+    image: 'public/linux.avif',
+    title: 'Linux',
     subtitle: 'Time to play',
     description: 'Trail running shoes built for adventure.',
     link: 'https://www.salomon.com/',
-    color: '#8B2635'
+    color: '#000000'
   },
   {
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=600&q=80',
-    title: 'Smart Travel',
+    image: 'public/azure.avif',
+    title: 'Microsoft Azure',
     subtitle: 'Travel smarter, easier, greener',
     description: 'Travel smarter, easier, greener.',
     link: 'https://example.com',
-    color: '#4A7C59'
+    color: '#000000'
   },
   {
-    image: 'https://images.unsplash.com/photo-1465101162946-4377e57745c3?fit=crop&w=600&q=80',
-    title: 'Vans',
+    image: 'public/docker.avif',
+    title: 'Docker',
     subtitle: '"Off The Wall"',
     description: 'Iconic street sneakers for everyone.',
     link: 'https://www.vans.com/',
-    color: '#5DADE2'
+    color: '#000000'
   },
   {
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&w=600&q=80',
-    title: 'North Face',
+    image: 'public/java.avif',
+    title: 'Java',
     subtitle: 'Never Stop Exploring',
     description: 'Gear for the toughest outdoors.',
     link: 'https://www.thenorthface.com/',
-    color: '#2C3E50'
+    color: '#000000'
   },
   {
-    image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?fit=crop&w=600&q=80',
-    title: 'Sample Project',
+    image: 'public/terrafrom_.webp',
+    title: 'Terraform',
     subtitle: 'Innovation First',
     description: 'Sample project showcase.',
     link: 'https://www.example.com/',
-    color: '#E74C3C'
+    color: '#000000'
+  },
+    {
+    image: 'public/spring-boot.avif',
+    title: 'Spring Boot',
+    subtitle: 'Innovation First',
+    description: 'Sample project showcase.',
+    link: 'https://www.example.com/',
+    color: '#000000'
+  },
+    {
+    image: 'public/aws.avif',
+    title: 'AWS',
+    subtitle: 'Innovation First',
+    description: 'Sample project showcase.',
+    link: 'https://www.example.com/',
+    color: '#000000'
+  },
+    {
+    image: 'public/postgres.avif',
+    title: 'Postgres',
+    subtitle: 'Innovation First',
+    description: 'Sample project showcase.',
+    link: 'https://www.example.com/',
+    color: '#000000'
   }
 ]
 type SkillSlideProps = {
@@ -128,15 +152,15 @@ const SkillSlide: React.FC<SkillSlideProps> = ({ slide, isActive, isPrev, isNext
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                 {slide.title}
               </h2>
-              {slide.subtitle && (
+              {/* {slide.subtitle && (
                 <p className="text-lg sm:text-xl text-white/90 mb-3">
                   {slide.subtitle}
                 </p>
-              )}
-              <p className="text-sm sm:text-base text-white/80 mb-4 max-w-md">
+              )} */}
+              {/* <p className="text-sm sm:text-base text-white/80 mb-4 max-w-md">
                 {slide.description}
-              </p>
-              <button
+              </p> */}
+              {/* <button
                 onClick={(e) => {
                   e.stopPropagation();
                   window.open(slide.link, '_blank');
@@ -145,7 +169,7 @@ const SkillSlide: React.FC<SkillSlideProps> = ({ slide, isActive, isPrev, isNext
               >
                 <ExternalLink className="w-4 h-4" />
                 Visit
-              </button>
+              </button> */}
             </div>
           </>
         )}

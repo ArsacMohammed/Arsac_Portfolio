@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
@@ -8,6 +8,18 @@ import { AboutContent } from './AboutContent'
 const About: React.FC = () => {
   const controls = useAnimation()
   const [ref, inView] = useInView({ threshold: 0.2 })
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // md breakpoint
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     if (inView) {
@@ -15,6 +27,7 @@ const About: React.FC = () => {
     }
   }, [controls, inView])
 
+  // Desktop variants (left-to-right for images)
   const leftVariants = {
     hidden: { opacity: 0, x: -200 },
     visible: {
@@ -24,11 +37,22 @@ const About: React.FC = () => {
     }
   }
 
+  // Desktop variants (right-to-left for content)
   const rightVariants = {
     hidden: { opacity: 0, x: 200 },
     visible: {
       opacity: 1,
       x: 0,
+      transition: { duration: 1.8, ease: easeInOut, delay: 0.2 }
+    }
+  }
+
+  // Mobile variants (bottom-to-top for content)
+  const mobileVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: {
+      opacity: 1,
+      y: 0,
       transition: { duration: 1.8, ease: easeInOut, delay: 0.2 }
     }
   }
@@ -53,7 +77,7 @@ const About: React.FC = () => {
           className="w-full lg:w-1/2 h-auto lg:h-full relative z-token-docked flex items-center py-8 lg:py-0 pt-2 md:pt-24 xl:pt-27"
           initial="hidden"
           animate={controls}
-          variants={rightVariants}
+          variants={isMobile ? mobileVariants : rightVariants}
         >
           <AboutContent />
         </motion.div>
