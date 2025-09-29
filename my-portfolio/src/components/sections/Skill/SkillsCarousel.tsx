@@ -85,7 +85,7 @@ export const SkillsCarousel: React.FC<SkillsCarouselProps> = ({ slides }) => {
                 position={i}
                 baseWidth={dimensions.baseWidth}
                 selectedWidth={dimensions.selectedWidth}
-                activeIndex={activeIndex}
+                // activeIndex={activeIndex}
                 onDragEnd={handleDragEnd}
               />
             ))}

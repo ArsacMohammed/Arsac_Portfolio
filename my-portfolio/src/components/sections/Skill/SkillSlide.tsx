@@ -18,17 +18,15 @@ interface SkillSlideProps {
   position: number
   baseWidth: number
   selectedWidth: number
-  activeIndex: number
+  // activeIndex: number
   onDragEnd: (info: any) => void
 }
 
 export const SkillSlide: React.FC<SkillSlideProps> = ({
   slide,
-  index,
   position,
   baseWidth,
   selectedWidth,
-  activeIndex,
   onDragEnd
 }) => {
   const isSelected = position === 1

@@ -1,24 +1,24 @@
 import React from 'react';
-import { useLenis } from '../../../components/common/';
-import { scrollToElement } from '../../../components/common';
+// import { useLenis } from '../../../components/common/';
+// import { scrollToElement } from '../../../components/common';
 import { useHeroAnimations } from './HeroAnimations';
 import ErrorBoundary from './ErrorBoundary';
-import HeroNavigation from './HeroNavigation';
+// import HeroNavigation from './HeroNavigation';
 import HeroBackground from './HeroBackground';
 import HeroContent from './HeroContent';
 
 const Hero: React.FC = () => {
-  const lenis = useLenis();
+  // const lenis = useLenis();
   const heroRef = useHeroAnimations();
 
   // Navigation handler
-  const scrollToProjects = () => {
-    if (lenis) {
-      lenis.scrollTo('#Projects', { offset: -100 });
-    } else {
-      scrollToElement('#Projects');
-    }
-  };
+  // const scrollToProjects = () => {
+  //   if (lenis) {
+  //     lenis.scrollTo('#Projects', { offset: -100 });
+  //   } else {
+  //     scrollToElement('#Projects');
+  //   }
+  // };
 
   // Resume download handler
   const handleDownloadResume = () => {

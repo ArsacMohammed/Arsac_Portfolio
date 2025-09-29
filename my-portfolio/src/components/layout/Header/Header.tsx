@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sun, Moon, Monitor } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '../../../components/ui'
-import { useTheme } from '../../../hooks'
+// import { useTheme } from '../../../hooks'
 import { NAVIGATION_ITEMS } from '../../..//lib/constants'
 import { useLenis } from '../../../components/common'
 import { cn } from '../../../lib/utils'
-import type { ThemeMode } from '../../../types'
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme } = useTheme();
+  // const { theme } = useTheme();
   const lenis = useLenis()
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
@@ -104,7 +103,7 @@ const Header: React.FC = () => {
     }
   }
 
-  const ThemeIcon = theme === 'dark' ? Sun : theme === 'light' ? Moon : Monitor
+  // const ThemeIcon = theme === 'dark' ? Sun : theme === 'light' ? Moon : Monitor
 
   return (
     <motion.header

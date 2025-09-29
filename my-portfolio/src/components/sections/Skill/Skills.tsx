@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import { easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ExternalLink } from 'lucide-react'
 import type { Slide } from './SkillSlide'
 
 const containerVariants = {
@@ -180,7 +179,7 @@ const SkillSlide: React.FC<SkillSlideProps> = ({ slide, isActive, isPrev, isNext
 
 const Skills: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(2);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  // const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.2 });
 
