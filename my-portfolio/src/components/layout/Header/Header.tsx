@@ -149,7 +149,7 @@ const Header: React.FC = () => {
             </div>
 
             {/* Center Section (Projects) */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 md:-ml-8 lg:-ml-12">
+            <div className="absolute left-1/2 transform -translate-x-1/2 md:-ml-8 lg:-ml-140">
               <motion.button
                 onClick={() => handleNavClick(NAVIGATION_ITEMS[1].href)} // Projects
                 className={cn(
