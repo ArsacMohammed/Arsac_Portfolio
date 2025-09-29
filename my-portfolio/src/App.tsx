@@ -2,6 +2,7 @@ import React from 'react'
 import { Layout } from './components/layout'
 import { ErrorBoundary } from './components/common'
 import { withIntersectionLazyLoading, preloadComponent } from './lib/lazyLoad'
+import LoadingAnimation from './components/animations/LoadingAnimation'
 
 import '@/styles/globals.css'
 
@@ -21,25 +22,28 @@ React.startTransition(() => {
 
 function App() {
   return (
-    <ErrorBoundary level="page" showDetails={true}>
-      <Layout>
-        <ErrorBoundary level="section">
-          <Hero />
-        </ErrorBoundary>
-        <ErrorBoundary level="section">
-          <About />
-        </ErrorBoundary>
-        <ErrorBoundary level="section">
-          <Skills />
-        </ErrorBoundary>
-        <ErrorBoundary level="section">
-          <Projects />
-        </ErrorBoundary>
-        <ErrorBoundary level="section">
-          <Connect />
-        </ErrorBoundary>
-      </Layout>
-    </ErrorBoundary>
+    <>
+      <LoadingAnimation />
+      <ErrorBoundary level="page" showDetails={true}>
+        <Layout>
+          <ErrorBoundary level="section">
+            <Hero />
+          </ErrorBoundary>
+          <ErrorBoundary level="section">
+            <About />
+          </ErrorBoundary>
+          <ErrorBoundary level="section">
+            <Skills />
+          </ErrorBoundary>
+          <ErrorBoundary level="section">
+            <Projects />
+          </ErrorBoundary>
+          <ErrorBoundary level="section">
+            <Connect />
+          </ErrorBoundary>
+        </Layout>
+      </ErrorBoundary>
+    </>
   )
 }
 

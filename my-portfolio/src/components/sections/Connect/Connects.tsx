@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { motion } from 'framer-motion'
 
 const ConnectSection: React.FC = () => {
+  const [videoError, setVideoError] = useState(false)
+
+  const handleVideoError = () => {
+    setVideoError(true)
+  }
+
   return (
     <motion.section
       id="contact"
@@ -13,13 +19,29 @@ const ConnectSection: React.FC = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
       <div className="flex flex-col md:flex-row w-full h-auto md:h-[500px] overflow-hidden bg-white rounded-2xl sm:rounded-3xl md:rounded-token-3xl shadow-token-xl">
-        {/* Left: Image */}
+        {/* Left: Video with Image Fallback */}
         <div className="w-full md:flex-1 h-[200px] sm:h-[250px] md:h-full">
-          <img
-            src="/connect.jpg"
-            alt="Contact Banner"
-            className="w-full h-full object-cover rounded-t-2xl sm:rounded-t-3xl md:rounded-t-none md:rounded-l-token-3xl"
-          />
+          {!videoError ? (
+            <video
+              src="/connect_video.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              onError={handleVideoError}
+              className="w-full h-full object-cover rounded-t-2xl sm:rounded-t-3xl md:rounded-t-none md:rounded-l-token-3xl"
+              style={{ backgroundColor: '#000' }}
+            >
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <img
+              src="/connect.jpg"
+              alt="Contact Banner"
+              className="w-full h-full object-cover rounded-t-2xl sm:rounded-t-3xl md:rounded-t-none md:rounded-l-token-3xl"
+            />
+          )}
         </div>
         {/* Right: Content */}
         <div className="w-full md:flex-1 flex flex-col justify-center items-center px-6 sm:px-10 md:px-token-16 py-8 sm:py-10 md:py-token-16 bg-gradient-to-br from-[#282828] via-[#18171A] to-black rounded-b-2xl sm:rounded-b-3xl md:rounded-b-none md:rounded-r-token-3xl">
