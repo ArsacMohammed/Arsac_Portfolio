@@ -35,7 +35,6 @@ function App() {
         <ErrorBoundary level="section">
           <Projects />
         </ErrorBoundary>
-        {/* <Skills /> */}
         <ErrorBoundary level="section">
           <Connect />
         </ErrorBoundary>

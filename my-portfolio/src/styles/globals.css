@@ -245,6 +245,10 @@
     transform-origin: center;
   }
 
+  .font-display {
+    font-family: var(--font-display);
+  }
+
   /* Design Token Utility Classes */
   
   /* Spacing Utilities */

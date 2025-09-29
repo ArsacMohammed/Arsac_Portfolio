@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
-import { useAnimation } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 import { easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { SkillsCarousel } from './SkillsCarousel'
-import { SkillsFrames } from './SkillsFrames'
+import { ExternalLink } from 'lucide-react'
 import type { Slide } from './SkillSlide'
 
 const containerVariants = {
@@ -18,73 +17,278 @@ const containerVariants = {
     }
   }
 };
+
 const slides: Slide[] = [
   {
-    image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?fit=crop&w=600&q=80',
-    title: 'Salomon',
+    image: 'public/linux.avif',
+    title: 'Linux',
     subtitle: 'Time to play',
     description: 'Trail running shoes built for adventure.',
-    link: 'https://www.salomon.com/'
+    link: 'https://www.salomon.com/',
+    color: '#000000'
   },
   {
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=600&q=80',
-    title: 'Smart Travel',
-    subtitle: '',
+    image: 'public/azure.avif',
+    title: 'Microsoft Azure',
+    subtitle: 'Travel smarter, easier, greener',
     description: 'Travel smarter, easier, greener.',
-    link: 'https://example.com'
+    link: 'https://example.com',
+    color: '#000000'
   },
   {
-    image: 'https://images.unsplash.com/photo-1465101162946-4377e57745c3?fit=crop&w=600&q=80',
-    title: 'Vans',
+    image: 'public/docker.avif',
+    title: 'Docker',
     subtitle: '"Off The Wall"',
     description: 'Iconic street sneakers for everyone.',
-    link: 'https://www.vans.com/'
+    link: 'https://www.vans.com/',
+    color: '#000000'
   },
   {
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&w=600&q=80',
-    title: 'North Face',
-    subtitle: '',
+    image: 'public/java.avif',
+    title: 'Java',
+    subtitle: 'Never Stop Exploring',
     description: 'Gear for the toughest outdoors.',
-    link: 'https://www.thenorthface.com/'
+    link: 'https://www.thenorthface.com/',
+    color: '#000000'
   },
   {
-    image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?fit=crop&w=600&q=80',
-    title: 'Sample',
-    subtitle: '',
-    description: 'Sample project.',
-    link: 'https://www.example.com/'
+    image: 'public/terrafrom_.webp',
+    title: 'Terraform',
+    subtitle: 'Innovation First',
+    description: 'Sample project showcase.',
+    link: 'https://www.example.com/',
+    color: '#000000'
+  },
+    {
+    image: 'public/spring-boot.avif',
+    title: 'Spring Boot',
+    subtitle: 'Innovation First',
+    description: 'Sample project showcase.',
+    link: 'https://www.example.com/',
+    color: '#000000'
+  },
+    {
+    image: 'public/aws.avif',
+    title: 'AWS',
+    subtitle: 'Innovation First',
+    description: 'Sample project showcase.',
+    link: 'https://www.example.com/',
+    color: '#000000'
+  },
+    {
+    image: 'public/postgres.avif',
+    title: 'Postgres',
+    subtitle: 'Innovation First',
+    description: 'Sample project showcase.',
+    link: 'https://www.example.com/',
+    color: '#000000'
   }
 ]
+type SkillSlideProps = {
+  slide: Slide;
+  isActive: boolean;
+  isPrev: boolean;
+  isNext: boolean;
+  index: number;
+  onClick: (index: number) => void;
+};
+// SkillSlide Component
+const SkillSlide: React.FC<SkillSlideProps> = ({ slide, isActive, isPrev, isNext, index, onClick }) => {
+  const isMobile = window.innerWidth < 768;
+
+  const getPosition = () => {
+    if (isActive) return { x: 0, scale: 1, zIndex: 30, opacity: 1 };
+    if (isPrev) return { x: isMobile ? -100 : -280, scale: 0.85, zIndex: 20, opacity: isMobile ? 0 : 0.7 };
+    if (isNext) return { x: isMobile ? 100 : 280, scale: 0.85, zIndex: 20, opacity: isMobile ? 0 : 0.7 };
+    return { x: isNext ? 500 : -500, scale: 0.7, zIndex: 10, opacity: 0 };
+  };
+
+  const position = getPosition();
+
+  return (
+    <motion.div
+      layout
+      initial={false}
+      animate={{
+        x: position.x,
+        scale: position.scale,
+        opacity: position.opacity,
+        rotateY: isActive ? 0 : isPrev ? 15 : isNext ? -15 : 0,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      }}
+      style={{
+        zIndex: position.zIndex,
+        perspective: 1000,
+      }}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+      onClick={() => onClick(index)}
+    >
+      <div
+        className={`relative overflow-hidden rounded-2xl ${isActive ? 'w-[85vw] h-[50vh] sm:w-[450px] sm:h-[280px] md:w-[600px] md:h-[380px] lg:w-[700px] lg:h-[420px]' :
+            'w-[70vw] h-[40vh] sm:w-[350px] sm:h-[220px] md:w-[480px] md:h-[300px] lg:w-[550px] lg:h-[330px]'
+          }`}
+        style={{
+          boxShadow: isActive
+            ? '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+            : '0 10px 25px -5px rgba(0, 0, 0, 0.3)',
+          background: slide.color,
+        }}
+      >
+        <img
+          src={slide.image}
+          alt={slide.title}
+          className="w-full h-full object-cover"
+          draggable={false}
+        />
+
+        {isActive && (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+                {slide.title}
+              </h2>
+              {/* {slide.subtitle && (
+                <p className="text-lg sm:text-xl text-white/90 mb-3">
+                  {slide.subtitle}
+                </p>
+              )} */}
+              {/* <p className="text-sm sm:text-base text-white/80 mb-4 max-w-md">
+                {slide.description}
+              </p> */}
+              {/* <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(slide.link, '_blank');
+                }}
+                className="inline-flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Visit
+              </button> */}
+            </div>
+          </>
+        )}
+      </div>
+    </motion.div>
+  );
+};
 
 const Skills: React.FC = () => {
-  const controls = useAnimation()
-  const [ref, inView] = useInView({ threshold: 0.2 })
+  const [activeIndex, setActiveIndex] = useState(2);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.2 });
 
   useEffect(() => {
-    if (inView) controls.start('visible')
-  }, [controls, inView])
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  useEffect(() => {
+    // Always enable autoplay regardless of device
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % slides.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
       id="Skills"
-      className="w-full min-h-screen pt-50 relative"
+      className="relative w-full min-h-screen overflow-hidden"
       ref={ref}
       style={{
-        background:
-          'linear-gradient(to bottom, #e0e0e0 25%, #f8f8f8 60%, #ffffff 100%, #ffffff 100%)',
-        height: '100vh',
-        overflowX: 'hidden'
+        background: 'linear-gradient(to bottom, #e0e0e0 0%, #f8f8f8 0%, #ffffff 100%, #ffffff 70%)',
       }}
     >
-      <div className="w-full flex items-center justify-between px-token-4 py-token-2 absolute top-0 left-0 right-0 z-token-sticky bg-transparent">
-        {/* Left: Heading */}
-        <h1 className="text-token-4xl lg:text-token-6xl xl:text-token-7xl font-token-bold text-gray-900 tracking-tight mt-0 mb-0 ml-180">
-          <span className="text-token-7xl font-token-extrabold leading-token-tight mb-token-2 bg-gradient-to-r from-[#560F13] via-[#560F13] to-black bg-clip-text text-transparent [text-stroke:1.5px_black]">Skills</span>
+      {/* Header */}
+      <div className="absolute top-20 sm:top-12 md:top-16 xl:top-30 left-0 right-0 text-center z-40"> 
+        <h1 className="text-7xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold">
+          <span 
+            className="bg-gradient-to-r from-[#560F13] to-black bg-clip-text text-transparent"
+            style={{ WebkitTextStroke: '1px rgba(0,0,0,0.1)' }}
+          >
+            Skills
+          </span>
         </h1>
       </div>
 
-      <SkillsCarousel slides={slides} />
-      <SkillsFrames controls={controls} containerVariants={containerVariants} />
+
+
+      {/* Carousel Container */}
+      <motion.div
+        className="relative h-screen flex items-center justify-center"
+        initial="hidden"
+        animate={controls}
+        variants={containerVariants}
+      >
+        <div className="relative w-full h-[60vh] sm:h-[400px] md:h-[600px] lg:h-[700px]">
+          {/* Frame Elements for all screen sizes */}
+          <div className="absolute top-0 right-0 w-20 sm:w-24 md:w-32 h-2 sm:h-3 bg-black" />
+          <div className="absolute top-0 right-0 w-2 sm:w-3 h-20 sm:h-24 md:h-32 bg-black" />
+          <div className="absolute bottom-0 left-2 sm:left-12 md:left-0 w-20 sm:w-24 md:w-32 h-2 sm:h-3 bg-black" />
+           <div className="absolute bottom-0 left-2 sm:left-12 md:left-0 w-2 sm:w-3 h-20 sm:h-24 md:h-32 bg-black" />
+          
+          {/* Additional frame for carousel container */}
+          {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[55vh] sm:w-[500px] sm:h-[350px] md:w-[650px] md:h-[430px] lg:w-[750px] lg:h-[470px] border-3 sm:border-4 border-black rounded-2xl sm:rounded-3xl" /> */}
+          <AnimatePresence mode="popLayout">
+            {slides.map((slide, index) => {
+              const isActive = index === activeIndex;
+              const isPrev = index === (activeIndex - 1 + slides.length) % slides.length;
+              const isNext = index === (activeIndex + 1) % slides.length;
+
+              return (
+                <SkillSlide
+                  key={`${slide.title}-${index}`}
+                  slide={slide}
+                  isActive={isActive}
+                  isPrev={isPrev}
+                  isNext={isNext}
+                  index={index}
+                  onClick={setActiveIndex}
+                />
+              );
+            })}
+          </AnimatePresence>
+        </div>
+
+        {/* Pagination */}
+        <div className="absolute bottom-20 sm:bottom-24 left-0 right-0 flex justify-center gap-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center font-bold transition-all ${index === activeIndex
+                  ? 'bg-black text-white scale-110'
+                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-300'
+                }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+
+        {/* Progress Bar */}
+        <div className="absolute bottom-10 sm:bottom-12 left-1/2 -translate-x-1/2 w-32 h-1 bg-gray-300 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-black"
+            initial={{ width: '0%' }}
+            animate={{ width: '100%' }}
+            transition={{
+              duration: 3,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
+            key={activeIndex}
+          />
+        </div>
+      </motion.div>
     </section>
   )
 }
