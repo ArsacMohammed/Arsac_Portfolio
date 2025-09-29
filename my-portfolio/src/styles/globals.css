@@ -450,16 +450,16 @@
 
 /* Glass Morphism Statistics Buttons */
 .stat-button {
-  background: #002f2f;
+  background: #1a2f35;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 20px;
   padding: 15px 36px;
-  border: 1px solid rgba(0, 47, 47, 0.5);
+  border: 1px solid rgba(26, 47, 53, 0.5);
   box-shadow: 
-    0 8px 32px rgba(0, 47, 47, 0.4),
+    0 8px 32px rgba(26, 47, 53, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 0 rgba(0, 47, 47, 0.3);
+    inset 0 -1px 0 rgba(26, 47, 53, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
@@ -472,12 +472,12 @@
 
 .stat-button:hover {
   transform: translateY(-4px) scale(1.02);
-  background: rgba(0, 47, 47, 0.95);
+  background: rgba(26, 47, 53, 0.95);
   box-shadow: 
-    0 16px 48px rgba(0, 47, 47, 0.5),
+    0 16px 48px rgba(26, 47, 53, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 47, 47, 0.4);
-  border-color: rgba(0, 47, 47, 0.6);
+    inset 0 -1px 0 rgba(26, 47, 53, 0.4);
+  border-color: rgba(26, 47, 53, 0.6);
 }
 
 .stat-button::before {

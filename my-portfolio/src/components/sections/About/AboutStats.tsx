@@ -21,16 +21,16 @@ export const AboutStats: React.FC<AboutStatsProps> = ({ stats = defaultStats }) 
     <div className="flex flex-col items-center w-full p-8">
       <style>{`
         .stat-button {
-          background: #103C3C;
+          background: #1a2f35;
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-radius: 20px;
           padding: 15px 36px;
-          border: 1px solid rgba(16, 60, 60, 0.5);
+          border: 1px solid rgba(26, 47, 53, 0.5);
           box-shadow: 
-            0 8px 32px rgba(16, 60, 60, 0.4),
+            0 8px 32px rgba(26, 47, 53, 0.4),
             inset 0 1px 0 rgba(255, 255, 255, 0.08),
-            inset 0 -1px 0 rgba(16, 60, 60, 0.3);
+            inset 0 -1px 0 rgba(26, 47, 53, 0.3);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           cursor: pointer;
           position: relative;
@@ -39,16 +39,17 @@ export const AboutStats: React.FC<AboutStatsProps> = ({ stats = defaultStats }) 
           align-items: center;
           justify-content: flex-start;
           gap: 20px;
+          color: white;
         }
 
         .stat-button:hover {
           transform: translateY(-4px) scale(1.02);
-          background: rgba(16, 60, 60, 0.95);
+          background: rgba(26, 47, 53, 0.95);
           box-shadow: 
-            0 16px 48px rgba(16, 60, 60, 0.5),
+            0 16px 48px rgba(26, 47, 53, 0.5),
             inset 0 1px 0 rgba(255, 255, 255, 0.1),
-            inset 0 -1px 0 rgba(16, 60, 60, 0.4);
-          border-color: rgba(16, 60, 60, 0.6);
+            inset 0 -1px 0 rgba(26, 47, 53, 0.4);
+          border-color: rgba(26, 47, 53, 0.6);
         }
 
         .stat-button::before {
@@ -161,7 +162,7 @@ export const AboutStats: React.FC<AboutStatsProps> = ({ stats = defaultStats }) 
           <div key={index} className="stat-button" style={{ height: '96px' }}>
             <div className="stat-circle"></div>
             <div className="stat-content">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl">{stat.value}</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl text-white">{stat.value}</h3>
               <p className="text-xs sm:text-sm uppercase tracking-wider">{stat.label}</p>
             </div>
           </div>
@@ -173,7 +174,7 @@ export const AboutStats: React.FC<AboutStatsProps> = ({ stats = defaultStats }) 
           <div key={index + 2} className="stat-button" style={{ height: '96px' }}>
             <div className="stat-circle"></div>
             <div className="stat-content">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl">{stat.value}</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl text-white">{stat.value}</h3>
               <p className="text-xs sm:text-sm uppercase tracking-wider">{stat.label}</p>
             </div>
           </div>
