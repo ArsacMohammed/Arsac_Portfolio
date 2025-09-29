@@ -110,22 +110,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Title & Actions */}
         <div className="flex-1 flex flex-col sm:flex-row items-start sm:items-center px-3 sm:px-4 md:px-token-7 py-3 sm:py-4 md:py-token-7 justify-between">
-          <div>
+          <div className="w-full sm:w-auto flex flex-row items-center justify-between sm:justify-start">
             <h3 id={`project-title-${index}`} className="text-base sm:text-xl md:text-token-2xl lg:text-token-3xl font-token-semibold leading-token-tight text-[#322D29] mb-2 sm:mb-token-2">
               {project.title}
             </h3>
-          </div>
-          <div className="flex flex-wrap gap-2 sm:gap-token-3 items-center mt-2 sm:mt-0">
-            <span className="px-2 sm:px-token-4 py-1 border border-[#D1C7BD] rounded-token-full text-[10px] sm:text-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
-              VIEW CASE
-            </span>
-            <span className="px-2 sm:px-token-4 py-1 border border-[#D1C7BD] rounded-token-full text-[10px] sm:text-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
-              LIVE WEBSITE
-            </span>
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.34, ease: 'easeInOut' }}
-              className="ml-1 sm:ml-2 text-[#72383D]"
+              className="ml-1 text-[#72383D] block sm:hidden"
+              aria-hidden="true"
+            >
+              <ChevronDown size={28} />
+            </motion.div>
+          </div>
+          <div className="flex flex-wrap gap-2 sm:gap-token-3 items-center mt-2 sm:mt-0">
+            {/* <span className="px-2 sm:px-token-4 py-1 border border-[#D1C7BD] rounded-token-full text-[10px] sm:text-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
+              VIEW CASE
+            </span> */}
+            {/* <span className="px-2 sm:px-token-4 py-1 border border-[#D1C7BD] rounded-token-full text-[10px] sm:text-xs font-token-medium bg-[#FFF] text-[#72383D] hover:bg-[#f8f2f4] cursor-pointer">
+              LIVE WEBSITE
+            </span> */}
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.34, ease: 'easeInOut' }}
+              className="ml-1 sm:ml-2 text-[#72383D] hidden sm:block"
               aria-hidden="true"
             >
               <ChevronDown size={28} />

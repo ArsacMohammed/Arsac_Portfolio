@@ -24,33 +24,34 @@ const HeroBackground: React.FC = () => {
                 }}
             />
 
-            {/* MetaBalls Animation */}
-            <div
-                className="absolute transform -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
-                style={{
-                    top: window.innerWidth < 768 ? '30%' : '50%',   // up on mobile
-                    left: window.innerWidth < 768 ? '50%' : '75%', // more left on mobile
-                    width: window.innerWidth < 768 ? '100%' : '1300px',
-                    height: window.innerWidth < 768 ? '350px' : '700px',
-                    maxWidth: '100vw'
-                }}
-            >
-
-                <React.Suspense fallback={<div className="w-full h-full bg-transparent" />}>
-                    <MetaBalls
-                        color="#000000"
-                        cursorBallColor="#000000"
-                        cursorBallSize={1}
-                        ballCount={10}
-                        animationSize={15}
-                        enableMouseInteraction={true}
-                        enableTransparency={true}
-                        hoverSmoothness={0.05}
-                        clumpFactor={1}
-                        speed={0.9}
-                    />
-                </React.Suspense>
-            </div>
+            {/* MetaBalls Animation - Only on Mobile */}
+            {/* {window.innerWidth < 768 && (
+                <div
+                    className="absolute transform -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+                    style={{
+                        top: '30%',
+                        left: '50%',
+                        width: '100%',
+                        height: '350px',
+                        maxWidth: '100vw'
+                    }}
+                >
+                    <React.Suspense fallback={<div className="w-full h-full bg-transparent" />}>
+                        <MetaBalls
+                            color="#000000"
+                            cursorBallColor="#000000"
+                            cursorBallSize={1}
+                            ballCount={10}
+                            animationSize={15}
+                            enableMouseInteraction={true}
+                            enableTransparency={true}
+                            hoverSmoothness={0.05}
+                            clumpFactor={1}
+                            speed={0.9}
+                        />
+                    </React.Suspense>
+                </div>
+            )} */}
         </>
     );
 };

@@ -27,12 +27,12 @@ const HeroContent: React.FC<HeroContentProps> = ({ onDownloadResume }) => {
             </p>
             
             <button 
-              className="mt-2 sm:mt-4 py-2 sm:py-3 px-6 sm:px-8 bg-black text-white rounded-xl hover:bg-gray-800 transition font-medium w-fit"
+              className="mt-0 sm:mt-4 py-2 sm:py-4 px-6 sm:px-10 bg-black text-white rounded-xl hover:bg-gray-800 transition font-medium w-fit text-lg sm:text-2xl lg:text-2xl xl:text-2xl"
               onClick={onDownloadResume}
               aria-label="Download resume"
               tabIndex={0}
             >
-              Resume
+              Download Resume
             </button>
           </div>
         </div>
