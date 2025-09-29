@@ -19,7 +19,7 @@ const containerVariants = {
 
 const slides: Slide[] = [
   {
-    image: 'public/linux.avif',
+    image: '/linux.avif',
     title: 'Linux',
     subtitle: 'Time to play',
     description: 'Trail running shoes built for adventure.',
@@ -27,7 +27,7 @@ const slides: Slide[] = [
     color: '#000000'
   },
   {
-    image: 'public/azure.avif',
+    image: '/azure.avif',
     title: 'Microsoft Azure',
     subtitle: 'Travel smarter, easier, greener',
     description: 'Travel smarter, easier, greener.',
@@ -35,7 +35,7 @@ const slides: Slide[] = [
     color: '#000000'
   },
   {
-    image: 'public/docker.avif',
+    image: '/docker.avif',
     title: 'Docker',
     subtitle: '"Off The Wall"',
     description: 'Iconic street sneakers for everyone.',
@@ -43,7 +43,7 @@ const slides: Slide[] = [
     color: '#000000'
   },
   {
-    image: 'public/java.avif',
+    image: '/java.avif',
     title: 'Java',
     subtitle: 'Never Stop Exploring',
     description: 'Gear for the toughest outdoors.',
@@ -51,7 +51,7 @@ const slides: Slide[] = [
     color: '#000000'
   },
   {
-    image: 'public/terrafrom_.webp',
+    image: '/terrafrom_.webp',
     title: 'Terraform',
     subtitle: 'Innovation First',
     description: 'Sample project showcase.',
@@ -59,7 +59,7 @@ const slides: Slide[] = [
     color: '#000000'
   },
     {
-    image: 'public/spring-boot.avif',
+    image: '/spring-boot.avif',
     title: 'Spring Boot',
     subtitle: 'Innovation First',
     description: 'Sample project showcase.',
@@ -67,7 +67,7 @@ const slides: Slide[] = [
     color: '#000000'
   },
     {
-    image: 'public/aws.avif',
+    image: '/aws.avif',
     title: 'AWS',
     subtitle: 'Innovation First',
     description: 'Sample project showcase.',
@@ -75,7 +75,7 @@ const slides: Slide[] = [
     color: '#000000'
   },
     {
-    image: 'public/postgres.avif',
+    image: '/postgres.avif',
     title: 'Postgres',
     subtitle: 'Innovation First',
     description: 'Sample project showcase.',

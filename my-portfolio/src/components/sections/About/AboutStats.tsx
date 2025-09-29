@@ -24,7 +24,7 @@ export const AboutStats: React.FC<AboutStatsProps> = ({ stats = defaultStats }) 
           <div key={index} className="stat-button h-24 flex items-center justify-center">
             <div className="stat-circle"></div>
             <div className="stat-content text-center">
-              <h3 className="text-2xl sm:text-3xl md:text-token-4xl font-token-bold text-[#222222] mb-1 md:mb-token-1">{stat.value}</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-token-4xl font-token-bold text-[#0f5132] mb-1 md:mb-token-1">{stat.value}</h3>
               <p className="text-gray-500 text-xs sm:text-sm md:text-token-sm uppercase tracking-wider">{stat.label}</p>
             </div>
           </div>
@@ -36,7 +36,7 @@ export const AboutStats: React.FC<AboutStatsProps> = ({ stats = defaultStats }) 
           <div key={index + 2} className="stat-button h-24 flex items-center justify-center">
             <div className="stat-circle"></div>
             <div className="stat-content text-center">
-              <h3 className="text-2xl sm:text-3xl md:text-token-4xl font-token-bold text-[#222222] mb-1 md:mb-token-1">{stat.value}</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-token-4xl font-token-bold text-[#0f5132] mb-1 md:mb-token-1">{stat.value}</h3>
               <p className="text-gray-500 text-xs sm:text-sm md:text-token-sm uppercase tracking-wider">{stat.label}</p>
             </div>
           </div>
