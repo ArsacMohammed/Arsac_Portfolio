@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { easeInOut } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
@@ -8,11 +8,11 @@ import { AboutContent } from './AboutContent'
 const About: React.FC = () => {
   const controls = useAnimation()
   const [ref, inView] = useInView({ threshold: 0.2 })
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768) // md breakpoint
+      setIsMobile(window.innerWidth < 1024)
     }
     
     checkMobile()
@@ -27,35 +27,25 @@ const About: React.FC = () => {
     }
   }, [controls, inView])
 
-  // Desktop variants (left-to-right for images)
-  const leftVariants = {
-    hidden: { opacity: 0, x: -200 },
+  const leftVariants = useMemo(() => ({
+    hidden: isMobile ? { opacity: 0, y: 100 } : { opacity: 0, x: -200 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 1.8, ease: easeInOut, delay: 0.2 }
-    }
-  }
-
-  // Desktop variants (right-to-left for content)
-  const rightVariants = {
-    hidden: { opacity: 0, x: 200 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 1.8, ease: easeInOut, delay: 0.2 }
-    }
-  }
-
-  // Mobile variants (bottom-to-top for content)
-  const mobileVariants = {
-    hidden: { opacity: 0, y: 100 },
-    visible: {
-      opacity: 1,
       y: 0,
       transition: { duration: 1.8, ease: easeInOut, delay: 0.2 }
     }
-  }
+  }), [isMobile])
+
+  const rightVariants = useMemo(() => ({
+    hidden: isMobile ? { opacity: 0, y: 100 } : { opacity: 0, x: 200 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 1.8, ease: easeInOut, delay: 0.2 }
+    }
+  }), [isMobile])
 
   return (
     <section id="about" className="min-h-screen relative overflow-hidden" ref={ref}>
@@ -65,6 +55,7 @@ const About: React.FC = () => {
       >
         {/* Desktop images */}
         <motion.div
+          key={`left-${isMobile}`}
           className="hidden md:block w-full lg:w-1/2 h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-full relative z-token-docked"
           initial="hidden"
           animate={controls}
@@ -74,10 +65,11 @@ const About: React.FC = () => {
         </motion.div>
 
         <motion.div
+          key={`right-${isMobile}`}
           className="w-full lg:w-1/2 h-auto lg:h-full relative z-token-docked flex items-center py-8 lg:py-0 pt-2 md:pt-24 xl:pt-27"
           initial="hidden"
           animate={controls}
-          variants={isMobile ? mobileVariants : rightVariants}
+          variants={rightVariants}
         >
           <AboutContent />
         </motion.div>
